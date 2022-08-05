@@ -7,7 +7,7 @@ function App() {
   return (
     <HashRouter>
       <div className="h-screen bg-background">
-          <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen'>
+          <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen box-border'>
             <Routes>
               <Route path="/" element={<Dashboard/>} />
               <Route path="/backpack" component="" />
