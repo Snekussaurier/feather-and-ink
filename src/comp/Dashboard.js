@@ -36,6 +36,11 @@ function Dashboard(params) {
                 
                     </div>
                 </div>
+                <div className="p-[2px] rounded-lg min-w-[260px] h-[370px] bg-gradient-to-br from-pink to-purple">
+                    <div className=" flex flex-col justify-between h-full bg-background-dark text-white rounded-lg p-4">
+                
+                    </div>
+                </div>
             </div>
         </div>
     </div>);
