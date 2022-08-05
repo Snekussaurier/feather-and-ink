@@ -6,14 +6,9 @@
   "private": true,
   "main": "public/main.js",
   "build": {
+    "extends": null,
     "appId": "com.snekussaurer.featherandink",
     "productName": "Your App",
-    "mac": {
-      "category": "public.app-category.lifestyle"
-    },
-    "dmg": {
-      "icon": false
-    },
     "linux": {
       "target": [
         "AppImage"
