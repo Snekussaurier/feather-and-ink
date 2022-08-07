@@ -1,6 +1,7 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
+const database = require('../src/mdl/database');
 
 function createWindow () {
   // Create the browser window.
@@ -10,10 +11,11 @@ function createWindow () {
     webPreferences: {
       // The preload file where we will perform our app communication
       preload: isDev 
-        ? path.join(app.getAppPath(), './public/preload.js') // Loading it from the public folder for dev
-        : path.join(app.getAppPath(), './build/preload.js'), // Loading it from the build folder for production
-      nodeIntegration: true
-    }
+        ? path.resolve(path.join(__dirname, '/preload.js')) // Loading it from the public folder for dev
+        : path.join(app.getAppPath(), './build/preload.js'),
+         // Loading it from the build folder for production
+      contextIsolation: true, // Isolating context so our app is not exposed to random javascript executions making it safer.
+    },
   })
 
   win.loadURL(
@@ -49,5 +51,10 @@ app.on('activate', () => {
   }
 })
 
+// Get character details
+ipcMain.handle('get-character', (event, args) => {
+  var db = database.db;
+  db.get('SELECT * FROM sqlite_master')
+});
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
