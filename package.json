@@ -5,10 +5,12 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/main.js",
+  "homepage": "./",
+  "rebuild-sqlite3": "electron-rebuild -f -w sqlite3",
   "build": {
     "extends": null,
     "appId": "com.snekussaurer.featherandink",
-    "productName": "Your App",
+    "productName": "Feather and Ink",
     "linux": {
       "target": [
         "AppImage"
@@ -20,23 +22,31 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^7.3.0",
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "nodemon": "^2.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-indiana-drag-scroll": "^2.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-svg": "^15.1.4",
+    "sqlite3": "^5.0.11",
+    "wait-on": "^6.0.1",
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.19"
   },
   "scripts": {
-    "start": "electron-forge start",
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "start-electron": "nodemon --watch ./public/* --exec \"electron .\"",
+    "dev": "concurrently \"yarn start-react\" \"wait-on http://localhost:3000 && yarn start-electron\" ",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --linux",
-    "release": "electron-builder --linux --publish always",
+    "pack-app": "yarn build-react && electron-builder --dir",
+    "build": "yarn build-react && electron-builder",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron-dev": "electron .",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -65,6 +75,7 @@
     "autoprefixer": "^10.4.8",
     "electron": "^20.0.1",
     "electron-builder": "^23.3.3",
+    "electron-rebuild": "^3.2.9",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.7"
   },

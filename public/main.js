@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
+const isDev = require('electron-is-dev');
+const path = require('path');
 
 function createWindow () {
   // Create the browser window.
@@ -6,14 +8,21 @@ function createWindow () {
     minWidth: 800,
     minHeight: 600,
     webPreferences: {
+      // The preload file where we will perform our app communication
+      preload: isDev 
+        ? path.join(app.getAppPath(), './public/preload.js') // Loading it from the public folder for dev
+        : path.join(app.getAppPath(), './build/preload.js'), // Loading it from the build folder for production
       nodeIntegration: true
     }
   })
 
-  //load the index.html from a url
-  win.loadURL('http://localhost:3000');
+  win.loadURL(
+    isDev
+      ? 'http://localhost:3000' // Loading localhost if dev mode
+      : `file://${path.join(__dirname, '../build/index.html')}` // Loading build file if in production
+  );
 
-  //remove meni
+  //remove menu
   win.removeMenu();
 }
 
