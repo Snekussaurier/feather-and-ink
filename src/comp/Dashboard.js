@@ -1,5 +1,6 @@
 import ScrollContainer from "react-indiana-drag-scroll";
 import Tag from "./Tag.js";
+import WeaponCard from "./WeaponCard.js";
 
 function Dashboard(params) {
 
@@ -42,7 +43,7 @@ function Dashboard(params) {
                                     {params.character ? params.character.name : '{null}'}
                             </h3>
                         </div>
-                        <div className=" flex flex-row items-start gap-2 absolute p-4 bottom-0 left-0 flex-wrap">
+                        <div className=" flex flex-row items-start gap-2 flex-wrap">
                          <Tag text={params.character ? params.character.weight + ' kg' : '{null}'}/>
                          <Tag text={params.character ? params.character.height + ' cm' : '{null}'}/>
                          <Tag text='Bard'/>
@@ -102,6 +103,90 @@ function Dashboard(params) {
                         </div>
                     </div>
                 </div>
+                <div className="h-[370px] min-w-[260px] flex flex-col gap-4">
+                    <div className="rounded-md bg-gradient-to-br p-[2px] from-purple to-cyan flex-grow">
+                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
+                            <div className=" flex flex-row gap-3 items-center">
+                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
+                                    <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        +
+                                    </h3>
+                                </div>
+                                <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        DMG
+                                </h3>
+                            </div>
+                            <div className="flex flex-row gap-7 justify-center items-center flex-grow">
+                                <h1 className=" font-mono font-medium text-5xl text-foreground flex-grow text-center">
+                                    1
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rounded-md bg-gradient-to-br p-[2px] from-purple to-cyan flex-grow">
+                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
+                            <div className=" flex flex-row gap-3 items-center">
+                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
+                                    <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        ~
+                                    </h3>
+                                </div>
+                                <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        ARM
+                                </h3>
+                            </div>
+                            <div className="flex flex-row gap-7 justify-center items-center flex-grow">
+                                <h1 className=" font-mono font-medium text-5xl text-foreground flex-grow text-center">
+                                    1
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="h-[370px] min-w-[260px] flex flex-col gap-4">
+                    <div className="rounded-md bg-gradient-to-br p-[2px] from-purple to-cyan flex-grow">
+                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
+                            <div className=" flex flex-row gap-3 items-center">
+                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
+                                    <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        +
+                                    </h3>
+                                </div>
+                                <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        INI
+                                </h3>
+                            </div>
+                            <div className="flex flex-row gap-7 justify-center items-center flex-grow">
+                                <h1 className=" font-mono font-medium text-5xl text-foreground flex-grow text-center">
+                                    1
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rounded-md bg-gradient-to-br p-[2px] from-purple to-cyan flex-grow">
+                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
+                            <div className=" flex flex-row gap-3 items-center">
+                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
+                                    <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        ~
+                                    </h3>
+                                </div>
+                                <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
+                                        ATB
+                                </h3>
+                            </div>
+                            <div className="flex flex-row gap-7 justify-center items-center flex-grow">
+                                <h1 className=" font-mono font-medium text-5xl text-foreground flex-grow text-center">
+                                    1
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ScrollContainer>
+            <h3 className=" font-mono text-foreground font-medium">GEAR CARDS</h3>
+            <ScrollContainer className="overflow-x-scroll overflow-y-hidden w-[calc(100%+72px)] flex flex-row items-start gap-4 mx-[-36px] px-9">
+                <WeaponCard/>
             </ScrollContainer>
         </div>
     );

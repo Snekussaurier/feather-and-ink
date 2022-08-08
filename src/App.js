@@ -31,6 +31,7 @@ function App() {
               <Route path="/backpack" element={<Backpack/>} />
               <Route path="/leveling" component=""/>
               <Route path="/settings" component="" />
+              <Route path="/grimoire" component="" />
             </Routes>
           </div>
           <Sidenav/>

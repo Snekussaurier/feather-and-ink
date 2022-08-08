@@ -5,7 +5,7 @@ import DashboardIcon from "../res/layout.svg"
 import BackpackIcon from "../res/clipboard-list.svg"
 import LevelingIcon from "../res/bar-chart-alt.svg"
 import SettingsIcon from "../res/settings.svg"
-import FeatherIcon from "../res/feather.svg"
+import FeatherIcon from "../res/quill-ink.svg"
 
 function Sidenav() {
   return (
