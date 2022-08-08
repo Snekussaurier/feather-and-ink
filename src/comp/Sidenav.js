@@ -1,15 +1,17 @@
 import React from "react";
+import { ReactSVG } from "react-svg";
 import SidenavButton from "./SidenavButton";
 import DashboardIcon from "../res/layout.svg"
 import BackpackIcon from "../res/clipboard-list.svg"
 import LevelingIcon from "../res/bar-chart-alt.svg"
 import SettingsIcon from "../res/settings.svg"
+import FeatherIcon from "../res/feather.svg"
 
 function Sidenav() {
   return (
     <div className="h-screen absolute left-0 top-0 bg-background-dark w-[260px] px-6 py-9 flex flex-col items-center gap-9 border-r border-current-line">
         <div className="flex flex-row items-start gap-5 self-stretch">
-            <div className=" min-w-[62px] min-h-[62px] bg-gradient-to-br from-purple to-cyan rounded-lg"/>
+            <ReactSVG src={FeatherIcon} className='fill-foreground'/>
             <h1 className=" text-2xl font-mono font-bold bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
                 Feather<br/>and Ink
             </h1>

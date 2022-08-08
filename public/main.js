@@ -17,15 +17,36 @@ function createWindow () {
       contextIsolation: true, // Isolating context so our app is not exposed to random javascript executions making it safer.
     },
   })
-
   win.loadURL(
     isDev
       ? 'http://localhost:3000' // Loading localhost if dev mode
       : `file://${path.join(__dirname, '../build/index.html')}` // Loading build file if in production
   );
+  
+  // Get character details
+  ipcMain.handle('get-character', (event, args) => {
+    var db = database.db;
+    return new Promise((resolve, reject) => {
+      db.get('SELECT * FROM character WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'', (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
+  // Update character details
+  ipcMain.handle('update-character', (event, args) => {
+    const sql = 'UPDATE character SET strength = ?, dexterity = ?, constitution = ?, intelligence = ?, charisma = ?, current_tp = ?, current_mp = ?, current_exp = ? WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'';
+
+    var db = database.db;
+    db.run(sql, [args.strength, args.dexterity, args.constitution, args.intelligence, args.charisma, args.current_tp, args.current_mp, args.current_exp], function(err) {
+      if (err) return console.error(err.message);
+    });
+  });
 
   //remove menu
   win.removeMenu();
+  win.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -50,11 +71,5 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
-// Get character details
-ipcMain.handle('get-character', (event, args) => {
-  var db = database.db;
-  db.get('SELECT * FROM sqlite_master')
-});
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
