@@ -20,6 +20,8 @@ function App() {
         }
         updateCharacter();
       };
+      if (character.current_exp >= 1000) character.level = Math.floor((-1000+Math.sqrt(8000*character.current_exp+17000000))/2000);
+      else character.level = 1;
   })
 
   return (

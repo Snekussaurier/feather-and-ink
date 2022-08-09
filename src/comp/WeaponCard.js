@@ -6,11 +6,11 @@ function WeaponCard(params) {
             <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative">
                 <div className=" flex flex-row gap-3 items-center">
                     <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                        <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-yellow to-pink bg-clip-text text-transparent">
+                        <h3 className=" font-bold text-2xl bg-gradient-to-br from-yellow to-pink bg-clip-text text-transparent">
                             #
                         </h3>
                     </div>
-                    <h3 className=" font-bold text-2xl font-mono bg-gradient-to-br from-yellow to-pink bg-clip-text text-transparent">
+                    <h3 className=" font-bold text-2xl bg-gradient-to-br from-yellow to-pink bg-clip-text text-transparent">
                             {params.character ? params.character.name : '{null}'}
                     </h3>
                 </div>
