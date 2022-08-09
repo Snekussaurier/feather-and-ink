@@ -7,29 +7,42 @@ import {useEffect, useState} from 'react'
 
 function App() {
 
-  const [character, setCharacter] = useState(null)
+  const [character, setCharacter] = useState()
+  const [weapons, setWeapons] = useState([])
 
   useEffect(() => {
-    if(character === null){
-      window.api.getCharacter().then((results) => {
-          setCharacter(results)
-      });}
-      else{
-        async function updateCharacter() {
-          await window.api.updateCharacter(character)
-        }
-        updateCharacter();
-      };
-      if (character.current_exp >= 1000) character.level = Math.floor((-1000+Math.sqrt(8000*character.current_exp+17000000))/2000);
-      else character.level = 1;
-  })
+    const getCharacter = async () => {
+      const characterFromServer = await fetchCharacter()
+      setCharacter(characterFromServer);
+    }
+    const getWeapons= async () => {
+      const weaponsFromServer = await fetchWeapons()
+      setWeapons(weaponsFromServer);
+    }
+
+    getCharacter();
+    getWeapons();
+  }, []);
+
+  
+  // Fetch Character
+  const fetchCharacter = async () => {
+    const res = await window.api.getCharacter();
+    return res;
+  }
+
+  // Fetch Weapons
+  const fetchWeapons = async () => {
+    const res = await window.api.getWeapons();
+    return res;
+  }
 
   return (
     <HashRouter>
       <div className="h-screen bg-background">
           <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen scrollbar'>
             <Routes>
-              <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter}/>} />
+              <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>} />
               <Route path="/backpack" element={<Backpack/>} />
               <Route path="/leveling" component=""/>
               <Route path="/settings" component="" />

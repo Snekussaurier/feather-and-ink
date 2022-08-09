@@ -186,7 +186,7 @@ function Dashboard(params) {
             </ScrollContainer>
             <h3 className=" text-foreground font-medium">GEAR CARDS</h3>
             <ScrollContainer className="overflow-x-scroll overflow-y-hidden w-[calc(100%+72px)] flex flex-row items-start gap-4 mx-[-36px] px-9">
-                <WeaponCard/>
+                {params.weapons ? params.weapons.map((weapon) => {if(weapon.active === 1){return <WeaponCard key={weapon.id} weapon={weapon}/>} return null}) : console.log('no weapons found')}
             </ScrollContainer>
         </div>
     );
