@@ -27,7 +27,7 @@ function App() {
   return (
     <HashRouter>
       <div className="h-screen bg-background">
-          <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen'>
+          <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen scrollbar'>
             <Routes>
               <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter}/>} />
               <Route path="/backpack" element={<Backpack/>} />

@@ -28,9 +28,23 @@
   color: #61dafb;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #22212C;
+  background-clip: content-box;
+  min-width: 10px;
+  min-height: 64px;
+  border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #2f2e3d;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,1);
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
