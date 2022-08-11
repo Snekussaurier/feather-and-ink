@@ -24,7 +24,18 @@ function App() {
     getWeapons();
   }, []);
 
-  
+  const setWeaponInactive = (id) => {
+    // loop over the todos list and find the provided id.
+    let updatedWeaponArray = weapons.map(weapon => 
+      {
+        if (weapon.id === id){
+          return {...weapon, active: 0};
+        }
+        return weapon; // else return unmodified item 
+      });
+    setWeapons(updatedWeaponArray); // set state to new object with updated list
+  }
+
   // Fetch Character
   const fetchCharacter = async () => {
     const res = await window.api.getCharacter();
@@ -42,7 +53,7 @@ function App() {
       <div className="h-screen bg-background">
           <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen scrollbar'>
             <Routes>
-              <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>} />
+              <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} setWeaponInactive={setWeaponInactive}/>} />
               <Route path="/backpack" element={<Backpack/>} />
               <Route path="/leveling" component=""/>
               <Route path="/settings" component="" />
