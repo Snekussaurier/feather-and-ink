@@ -1,9 +1,12 @@
 import './App.css';
 import Sidenav from './comp/Sidenav';
+import { ReactSVG } from "react-svg";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Dashboard from './comp/Dashboard';
 import Backpack from './comp/Backpack';
-import {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react';
+import FeatherIcon from "./res/quill-ink.svg";
+import CollapseIcon from "./res/caret-left.svg";
 
 function App() {
 
@@ -48,19 +51,26 @@ function App() {
     return res;
   }
 
+  const [isExpanded, setIsExpanded] = useState(true);
+  const onExpand = () => setIsExpanded((expanded) => !expanded);
+
   return (
     <HashRouter>
-      <div className="h-screen bg-background">
-          <div className=' ml-[260px] overflow-y-auto overflow-x-hidden h-screen scrollbar'>
-            <Routes>
-              <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} setWeaponInactive={setWeaponInactive}/>} />
-              <Route path="/backpack" element={<Backpack/>} />
-              <Route path="/leveling" component=""/>
-              <Route path="/settings" component="" />
-              <Route path="/grimoire" component="" />
-            </Routes>
-          </div>
-          <Sidenav/>
+      <div className="h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[300px] transition-spacing">
+        <div className='absolute top-5 bg-background-very-dark pl-[20px] pr-[10px] py-[10px] left-0 z-40 flex flex-row border-r border-y border-current-line'>
+          <ReactSVG src={FeatherIcon} className='fill-foreground'/>
+          <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
+        </div>
+        <Sidenav character={character} isExpanded={isExpanded} onExpand={onExpand}/>
+        <div className='max-w-full flex justify-center flex-grow relative'>
+          <Routes>
+            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} setWeaponInactive={setWeaponInactive}/>} />
+            <Route path="/backpack" element={<Backpack/>} />
+            <Route path="/leveling" component=""/>
+            <Route path="/settings" component="" />
+            <Route path="/grimoire" component="" />
+          </Routes>
+        </div>
       </div>
     </HashRouter>
   );

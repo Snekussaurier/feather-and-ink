@@ -1,15 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400;500;600;700;800&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
 .App {
   text-align: center;
 }
 
-.scrollbar::-webkit-scrollbar {
-  width: 10px;
+h1 {
+  font-family: 'Eczar', serif;
+  font-weight: 600;
+  font-size: x-large;
+  color: #F5F3C2;
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
+h2 {
+  font-family: 'Eczar', serif;
+  font-weight: 500;
+  font-size: large;
+  color: #FFFFFF;
+}
+
+p{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.875rem;
+  color: white;
+}
+
+tr {
+  color: #fff;
+}
+
+tr:nth-child(odd) {
+  background-color: #00000020;
+}
+
+.scrollbar-y::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollbar-x::-webkit-scrollbar {
+  height: 12px;
+}
+
+.scrollbar-y::-webkit-scrollbar-thumb {
   background-color: #22212C;
   background-clip: content-box;
-  min-width: 10px;
+  min-width: 12px;
+  min-height: 64px;
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb {
+  background-color: #22212C;
+  background-clip: content-box;
+  min-width: 12px;
   min-height: 64px;
 }
 
@@ -18,6 +59,10 @@
 }
 .scrollbar::-webkit-scrollbar-track {
   background-color: rgba(0,0,0,1);
+}
+
+.rtl-grid {
+  direction: rtl;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */

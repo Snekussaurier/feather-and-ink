@@ -1,7 +1,11 @@
 import ScrollContainer from "react-indiana-drag-scroll";
-import AddWeaponForm from "./AddWeaponForm.js";
 import Tag from "./Tag.js";
 import WeaponCard from "./WeaponCard.js";
+import { ReactSVG } from "react-svg";
+import ArmorIcon from "../res/closed-barbute.svg";
+import HealthIcon from "../res/health-normal.svg";
+import ManaIcon from "../res/concentration-orb.svg";
+import CollapseIcon from "../res/caret-left.svg"
 
 function Dashboard(params) {
 
@@ -33,6 +37,13 @@ function Dashboard(params) {
         return 1;
     }
 
+    const xpToNextLevel = () => {
+        if(params.character){
+            if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
+        }
+        return 1000;
+    }
+
     const activeWeapons = () => {
         let activeWeaponsArr;
         if(params.weapons){
@@ -42,182 +53,88 @@ function Dashboard(params) {
     }
 
     return (
-        <div className="flex flex-col gap-5 p-9 items-start relative">
-            <div className="border-b-4 border-purple pb-2">
-                <h1 className=" text-4xl text-foreground font-semibold">Dashboard</h1>
-            </div>
-            <h3 className=" text-foreground font-medium">CHARACTER CARDS</h3>
-            <ScrollContainer className="overflow-x-scroll overflow-y-hidden w-[calc(100%+72px)] flex flex-row items-start gap-4 mx-[-36px] px-9">
-                <div className="h-[370px] min-w-[260px] rounded-md bg-gradient-to-br p-[2px] from-purple to-cyan relative">
-                    <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
-                                    {levelCalculation()}
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
-                                    {params.character ? params.character.name : '{null}'}
-                            </h3>
-                        </div>
-                        <div className=" flex flex-row items-start gap-2 flex-wrap">
-                         <Tag text={params.character ? params.character.weight + ' kg' : '{null}'}/>
-                         <Tag text={params.character ? params.character.height + ' cm' : '{null}'}/>
-                         <Tag text='Bard'/>
-                         <Tag text='Human'/>
-                        </div>
-                    </div>
-                    <div  className="absolute bg-[#00000020] h-[calc(100%-4px)] w-[calc(100%-4px)] top-0 left-0 rounded-md p-5 opacity-0 hover:opacity-100 transition-opacity flex justify-end backdrop-blur-sm m-[2px]" >
-                        <button className=" h-9 text-base font-medium rounded-full text-foreground bg-[#ffffff40] hover:bg-foreground hover:text-background-dark transition-colors px-3">
-                            Edit
-                        </button>
-                    </div>
-                </div>
-                <div className="h-[370px] min-w-[260px] flex flex-col gap-4">
-                    <div className="rounded-md bg-gradient-to-br p-[2px] from-[#45B649] to-[#DCE35B] flex-grow">
-                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
-                            <div className=" flex flex-row gap-3 items-center">
-                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                    <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#45B649] to-[#DCE35B] bg-clip-text text-transparent">
-                                        +
-                                    </h3>
-                                </div>
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#45B649] to-[#DCE35B] bg-clip-text text-transparent">
-                                        Health
-                                </h3>
-                            </div>
-                            <div className="flex flex-row justify-center items-center flex-grow">
-                                <button className=" bg-gradient-to-br from-[#45B649] to-[#DCE35B] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={decrementHealth}>
-                                    {'<'}
-                                </button>
-                                <h1 className="font-medium text-4xl text-foreground flex-grow text-center">
-                                    {params.character ? params.character.current_tp + ' / 40' : '{null}'}
-                                </h1>
-                                <button className=" bg-gradient-to-br from-[#45B649] to-[#DCE35B] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={incrementHealth}>
-                                    {'>'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="rounded-md bg-gradient-to-br p-[2px] from-[#E100FF] to-[#7F00FF] flex-grow">
-                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
-                            <div className=" flex flex-row gap-3 items-center">
-                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                    <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-transparent">
-                                        ~
-                                    </h3>
-                                </div>
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-transparent">
-                                        Mana
-                                </h3>
-                            </div>
-                            <div className="flex flex-row justify-center items-center flex-grow">
-                                <button className=" bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={decrementMana}>
-                                    {'<'}
-                                </button>
-                                <h1 className="font-medium text-4xl text-foreground flex-grow text-center">
-                                    {params.character ? params.character.current_mp + ' / 5' : '{null}'}
-                                </h1>
-                                <button className=" bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={incrementMana}>
-                                    {'>'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="h-[370px] flex flex-col gap-4">
-                    <div className="flex flex-col justify-between rounded-md bg-background-dark p-5 relative gap-3 border-current-line border-2 flex-grow">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl text-current-line">
-                                    +
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl text-current-line">
-                                    DMG
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                    <div className="flex flex-col justify-between flex-grow rounded-md bg-background-dark border-current-line border-2 p-5 relative gap-3">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl text-current-line">
-                                    ~
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl text-current-line">
-                                    ARM
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-                <div className="h-[370px] flex flex-col gap-4">
-                    <div className="flex flex-col justify-between flex-grow rounded-md bg-background-dark border-current-line border-2 p-5 relative gap-3">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl text-current-line">
-                                    +
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl text-current-line">
-                                    INI
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                    <div className="flex flex-col justify-between flex-grow rounded-md bg-background-dark border-current-line border-2 p-5 relative gap-3">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br text-current-line">
-                                    ~
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl bg-gradient-to-br text-current-line">
-                                    ATB
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-            </ScrollContainer>
-            <h3 className=" text-foreground font-medium">EQUIPPED GEAR CARDS</h3>
-            <ScrollContainer className="overflow-x-scroll h-[370px] overflow-y-hidden w-[calc(100%+72px)] flex flex-row items-start gap-4 mx-[-36px] px-9">
-                {activeWeapons().map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} setWeaponInactive={params.setWeaponInactive}/>)}
+        <div className="flex flex-col gap-4 h-fit w-fit max-w-full pt-24 pb-12 px-5">
+            <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(800px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-dashboard bg-cover">
 
-                <div className="h-[370px] w-[260px] min-w-[260px] flex items-center justify-center flex-col gap-2">
-                    <div className="rounded-full bg-gradient-to-br p-[2px] from-yellow to-pink">
-                        <button className=" bg-background-dark ho hover:bg-background h-9 text-base font-medium rounded-full px-3 text-foreground transition-color">
-                            Equip weapon
-                        </button>
+            </div>
+            <div className="flex flex-nowrap overflow-x-hidden scrollbar scrollbar-x gap-12 z-10">
+                <div className="flex flex-col gap-4">
+                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={HealthIcon}/>
+                        <h1 className=" text-foreground font-sans text-5xl">{params.character ? params.character.current_tp : '{null}'}</h1>
+                        <div className="flex flex-col gap-2">
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
+                            </button>
+                            <hr className=" w-full border-foreground-highlight"/>
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={decrementHealth}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground -rotate-90'/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className=" backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ManaIcon}/>
+                        <h1 className=" text-foreground font-sans text-5xl">{params.character ? params.character.current_mp : '{null}'}</h1>
+                        <div className="flex flex-col gap-2">
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementMana}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
+                            </button>
+                            <hr className=" w-full border-foreground-highlight"/>
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={decrementMana}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground -rotate-90'/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ArmorIcon}/>
+                        <h1 className=" text-foreground font-sans text-5xl">7.25</h1>
+                        <div className=" w-7 h-7"/>
                     </div>
                 </div>
-                <div className="min-w-[1px] h-full bg-current-line"/>
-                <div className="h-[370px] w-[260px] min-w-[260px] flex items-center justify-center flex-col gap-2">
-                    <div className="rounded-full bg-gradient-to-br p-[2px] from-cyan to-green">
-                        <button className=" bg-background-dark ho hover:bg-background h-9 text-base font-medium rounded-full px-3 text-foreground transition-colors">
-                            Equip armor
-                        </button>
-                    </div>
+                <div className="bg-cover h-[40vw] w-[25vw] min-w-[313px] min-h-[500px] max-h-[800px] max-w-[500px] relative">
+                    <div className="bg-[url('../src/res/FancyFirion.png')] bg-cover h-full"/>
                 </div>
-            </ScrollContainer>
+                <div className="flex flex-col w-64 max-h-[368px] p-2">
+                        <h1 className=" text-6xl">{params.character ? params.character.name : '{null}'}</h1>
+                        <div className="flex flex-row justify-between items-end">
+                            <h2>Level {levelCalculation()}</h2>
+                            <p className=" text-cyan">{params.character ? params.character.current_exp : '{null}'}/{xpToNextLevel()}</p> 
+                        </div>
+                        <div className=" flex p-1 w-full bg-background-very-dark">
+                            <div className=" flex h-2 w-7/12 bg-cyan">
+                            </div>
+                        </div>
+                        <table className="table-fixed mt-4 backdrop-blur-md">
+                            <tbody>
+                                <tr>
+                                <td>Race</td>
+                                <td>{params.character ? params.character.race : '{null}'}</td>
+                                </tr>
+                                <tr>
+                                <td>Profession</td>
+                                <td>{params.character ? params.character.profession : '{null}'}</td>
+                                </tr>
+                                <tr>
+                                <td>Height</td>
+                                <td>{params.character ? params.character.height + ' cm' : '{null}'}</td>
+                                </tr>
+                                <tr>
+                                <td>Weight</td>
+                                <td>{params.character ? params.character.weight + ' kg' : '{null}'}</td>
+                                </tr>
+                                <tr>
+                                <td>Age</td>
+                                <td>171</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <h1 className="text-foreground-highlight text-2xl">Weapons</h1>
+            <div className="flex flex-nowrap flex-none overflow-x-auto gap-4 scrollbar scrollbar-x">
+                <div className=" bg-background-very-dark bg-cover flex-none h-[400px] w-72 border-2 border-current-line"/>
+                <div className=" bg-background-very-dark bg-cover flex-none h-[400px] w-72 border-2 border-current-line"/>
+            </div>
         </div>
     );
 }

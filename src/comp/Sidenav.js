@@ -1,31 +1,63 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
+import { NavLink } from "react-router-dom";
 import SidenavButton from "./SidenavButton";
-import DashboardIcon from "../res/layout.svg"
 import BackpackIcon from "../res/clipboard-list.svg"
 import LevelingIcon from "../res/bar-chart-alt.svg"
 import SettingsIcon from "../res/settings.svg"
 import FeatherIcon from "../res/quill-ink.svg"
+import CollapseIcon from "../res/caret-left.svg"
 
-function Sidenav() {
+function Sidenav(params) {
+
+  const levelCalculation = () => {
+    if(params.character){
+        if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
+    }
+    return 1;
+  }
+
   return (
-    <div className="h-screen absolute left-0 top-0 bg-background-dark w-[260px] px-6 py-9 flex flex-col items-center gap-9 border-r border-current-line">
-        <div className="flex flex-row items-center justify-start self-stretch">
+    <div className={'h-screen fixed left-[-300px] top-0 bg-background-very-dark w-[300px] flex flex-col items-center border-r border-current-line small:left-0 transition-position z-50'}>
+        <div className="flex flex-row items-center justify-start self-stretch gap-2 p-5">
           <ReactSVG src={FeatherIcon} className='fill-foreground'/>
-          <h1 className=" text-2xl font-bold text-foreground">
+          <h1 className="text-xl text-foreground">
               Feather&Ink
           </h1>
+          <h1 className="text-base text-foreground opacity-30">
+            α
+          </h1>
+          <div className="flex-1"/>
+          <button>
+            <ReactSVG src={SettingsIcon} className='fill-foreground'/>
+          </button>
+          <button onClick={params.onExpand()}>
+            <ReactSVG src={CollapseIcon} className='fill-foreground'/>
+          </button>
         </div>
-        <hr className="border-1 border-current-line w-full"/>
-        <div className=" flex flex-col items-center gap-3 grow w-full">
-          <SidenavButton icon={DashboardIcon} label="Dashboard" navigation="/"/>
+        <NavLink className={({isActive}) => isActive ? 'w-full px-5 py-4 bg-background-very-dark relative transition-all grayscale-0' : 'w-full px-5 py-4 bg-background-very-dark relative hover:opacity-90 transition-all grayscale'} to="/">
+          <div className=" h-full w-full bg-landscape bg-cover bg-no-repeat absolute top-0 left-0 z-0"/>
+          <div className="z-10 relative">
+            <div className="flex">
+              <h1 className="text-base text-foreground-highlight">
+                {params.character ? params.character.name : '{null}'}
+              </h1>
+              <div className="flex-1"/>
+              <h1 className="text-base text-foreground-highlight">
+                {levelCalculation()}
+              </h1>
+            </div>
+            <div className=" flex p-1 w-full bg-background-very-dark mt-2">
+              <div className=" flex h-2 w-7/12 bg-foreground-highlight">
+              </div>
+            </div>
+          </div>
+        </NavLink>
+        <div className=" flex flex-col items-center grow w-full">
           <SidenavButton icon={BackpackIcon} label="Backpack" navigation="/backpack"/>
           <SidenavButton icon={LevelingIcon} label="Leveling" navigation="/leveling"/>
           <SidenavButton icon={SettingsIcon} label="Grimoire" navigation="/grimoire"/>
-          <hr className="border-1 border-current-line w-full" />
-          <SidenavButton icon={SettingsIcon} label="Settings" navigation="/settings"/>
         </div>
-        <hr className="border-1 border-current-line w-full"/>
         <p className="text-xs text-foreground font-mono">v0.0.1</p>
     </div>
   );

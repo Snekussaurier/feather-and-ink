@@ -6,8 +6,8 @@ const database = require('../src/mdl/database');
 function createWindow () {
   // Create the browser window.
   const win = new BrowserWindow({
-    minWidth: 800,
-    minHeight: 600,
+    minWidth: 925,
+    minHeight: 720,
     webPreferences: {
       // The preload file where we will perform our app communication
       preload: isDev 
