@@ -38,7 +38,7 @@ function createWindow () {
   ipcMain.handle('get-character', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.get('SELECT * FROM character WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'', (err, rows) => {
+      db.get('SELECT * FROM view_character WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'', (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })
