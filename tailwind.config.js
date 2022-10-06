@@ -14,7 +14,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         // simple 3 column grid
-        'dashboard': 'repeat(auto-fit, minmax(300px,1fr)))',
+        'dashboard': 'repeat(auto-fit, 270px)',
       },
       backgroundImage: {
         'landscape': "linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url('../src/res/test-background.jpg')",
@@ -35,7 +35,7 @@ module.exports = {
       'green': '#8AFF80',
       'orange': '#ffb86c',
       'pink': '#ff79c6',
-      'purple': '#7F00FF',
+      'purple': '#eb54ff',
       'red': '#ff5555',
       'yellow': '#f1fa8c',
     },

@@ -7,7 +7,7 @@ import HealthIcon from "../res/health-normal.svg";
 import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
 
-function Dashboard(params) {
+function Dashboard(params) { 
 
     // Update health
     const incrementHealth = () => {
@@ -53,11 +53,9 @@ function Dashboard(params) {
     }
 
     return (
-        <div className="flex flex-col gap-4 h-fit w-fit max-w-full pt-24 pb-12 px-5">
-            <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(800px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-dashboard bg-cover">
-
-            </div>
-            <div className="flex flex-nowrap overflow-x-hidden scrollbar scrollbar-x gap-12 z-10">
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
+            <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(600px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-dashboard bg-cover -z-10"/>
+            <div className="flex scrollbar gap-10 z-10">
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon}/>
@@ -91,9 +89,7 @@ function Dashboard(params) {
                         <div className=" w-7 h-7"/>
                     </div>
                 </div>
-                <div className="bg-cover h-[40vw] w-[25vw] min-w-[313px] min-h-[500px] max-h-[800px] max-w-[500px] relative">
-                    <div className="bg-[url('../src/res/FancyFirion.png')] bg-cover h-full"/>
-                </div>
+                <div className="bg-[url('../src/res/FancyFirion.png')] bg-cover flex-grow aspect-image"/>
                 <div className="flex flex-col w-64 max-h-[368px] p-2">
                         <h1 className=" text-6xl">{params.character ? params.character.name : '{null}'}</h1>
                         <div className="flex flex-row justify-between items-end">
@@ -101,8 +97,7 @@ function Dashboard(params) {
                             <p className=" text-cyan">{params.character ? params.character.current_exp : '{null}'}/{xpToNextLevel()}</p> 
                         </div>
                         <div className=" flex p-1 w-full bg-background-very-dark">
-                            <div className=" flex h-2 w-7/12 bg-cyan">
-                            </div>
+                            <div className=" flex h-2 w-1/12 bg-cyan bg-gradient-to-r from-cyan to-green"/>
                         </div>
                         <table className="table-fixed mt-4 backdrop-blur-md">
                             <tbody>
@@ -130,10 +125,10 @@ function Dashboard(params) {
                         </table>
                 </div>
             </div>
-            <h1 className="text-foreground-highlight text-2xl">Weapons</h1>
-            <div className="flex flex-nowrap flex-none overflow-x-auto gap-4 scrollbar scrollbar-x">
-                <div className=" bg-background-very-dark bg-cover flex-none h-[400px] w-72 border-2 border-current-line"/>
-                <div className=" bg-background-very-dark bg-cover flex-none h-[400px] w-72 border-2 border-current-line"/>
+            <h1 className="text-foreground text-2xl">Weapons</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                <WeaponCard/>
+                <WeaponCard/>
             </div>
         </div>
     );

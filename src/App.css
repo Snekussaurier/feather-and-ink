@@ -32,6 +32,10 @@ tr:nth-child(odd) {
   background-color: #00000020;
 }
 
+.aspect-image {
+  aspect-ratio: 10 / 16;
+}
+
 .scrollbar-y::-webkit-scrollbar {
   width: 12px;
 }
