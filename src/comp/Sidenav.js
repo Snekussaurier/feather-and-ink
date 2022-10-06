@@ -7,6 +7,7 @@ import LevelingIcon from "../res/bar-chart-alt.svg"
 import SettingsIcon from "../res/settings.svg"
 import FeatherIcon from "../res/quill-ink.svg"
 import CollapseIcon from "../res/caret-left.svg"
+import ProgressBar from "./ProgressBar";
 
 function Sidenav(params) {
 
@@ -24,7 +25,7 @@ function Sidenav(params) {
           <h1 className="text-xl text-foreground">
               Feather&Ink
           </h1>
-          <h1 className="text-base text-foreground opacity-30">
+          <h1 className="text-base text-rose">
             α
           </h1>
           <div className="flex-1"/>
@@ -35,7 +36,7 @@ function Sidenav(params) {
             <ReactSVG src={CollapseIcon} className='fill-foreground'/>
           </button>
         </div>
-        <NavLink className={({isActive}) => isActive ? 'w-full px-5 py-4 bg-background-very-dark relative transition-all grayscale-0' : 'w-full px-5 py-4 bg-background-very-dark relative hover:opacity-90 transition-all grayscale'} to="/">
+        <NavLink className={({isActive}) => isActive ? 'w-full px-5 py-4 bg-background-dark relative transition-all grayscale-0' : 'w-full px-5 py-4 bg-background-very-dark relative hover:opacity-90 transition-all grayscale'} to="/">
           <div className=" h-full w-full bg-landscape bg-cover bg-no-repeat absolute top-0 left-0 z-0"/>
           <div className="z-10 relative">
             <div className="flex">
@@ -47,10 +48,7 @@ function Sidenav(params) {
                 {levelCalculation()}
               </h1>
             </div>
-            <div className=" flex p-1 w-full bg-background-very-dark mt-2">
-              <div className=" flex h-2 w-7/12 bg-foreground-highlight">
-              </div>
-            </div>
+            <ProgressBar progress={50}/>
           </div>
         </NavLink>
         <div className=" flex flex-col items-center grow w-full">

@@ -1,11 +1,13 @@
 import ScrollContainer from "react-indiana-drag-scroll";
 import Tag from "./Tag.js";
 import WeaponCard from "./WeaponCard.js";
+import EffectCard from "./EffectCard.js";
 import { ReactSVG } from "react-svg";
 import ArmorIcon from "../res/closed-barbute.svg";
 import HealthIcon from "../res/health-normal.svg";
 import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
+import ProgressBar from "./ProgressBar.js";
 
 function Dashboard(params) { 
 
@@ -96,9 +98,7 @@ function Dashboard(params) {
                             <h2>Level {levelCalculation()}</h2>
                             <p className=" text-cyan">{params.character ? params.character.current_exp : '{null}'}/{xpToNextLevel()}</p> 
                         </div>
-                        <div className=" flex p-1 w-full bg-background-very-dark">
-                            <div className=" flex h-2 w-1/12 bg-cyan bg-gradient-to-r from-cyan to-green"/>
-                        </div>
+                        <ProgressBar/>
                         <table className="table-fixed mt-4 backdrop-blur-md">
                             <tbody>
                                 <tr>
@@ -129,6 +129,10 @@ function Dashboard(params) {
             <div className="grid grid-cols-3 gap-4 justify-between">
                 <WeaponCard/>
                 <WeaponCard/>
+            </div>
+            <h1 className="text-foreground text-2xl">Effects</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                <EffectCard/>
             </div>
         </div>
     );

@@ -18,6 +18,13 @@ h2 {
   color: #FFFFFF;
 }
 
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 500;
+  font-size: medium;
+  color: #FFFFFFAA;
+}
+
 p{
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 0.875rem;
