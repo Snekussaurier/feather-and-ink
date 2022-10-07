@@ -124,6 +124,12 @@ function Dashboard(params) {
             <div className="grid grid-cols-3 gap-4 justify-between">
                 <EffectCard/>
             </div>
+            <h1 className="text-foreground text-2xl">Armor</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                <div className="h-[370px] min-w-[270px] flex-grow bg-background-very-dark border border-green">
+                    <div className="bg-green p-2"><h2 className="text-background-very-dark">Test</h2></div>
+                </div>
+            </div>
         </div>
     );
 }

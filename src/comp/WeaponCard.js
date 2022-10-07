@@ -25,7 +25,7 @@ function WeaponCard(params) {
                         <h3>Angriffsbonus</h3>
                         <h2 className="text-right">{getPrefix(params.weapon.atb)}</h2>
                         <h3>Defensivbonus</h3>
-                        <h2 className="text-right">0</h2>
+                        <h2 className="text-right">{getPrefix(params.weapon.dfb)}</h2>
                         <h3>Schaden</h3>
                         <h2 className="text-right">{getPrefix(params.weapon.damage)}</h2>
                     </div>
