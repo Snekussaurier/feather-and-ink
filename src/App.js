@@ -64,7 +64,7 @@ function App() {
         <Sidenav character={character} isExpanded={isExpanded} onExpand={onExpand}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
           <Routes>
-            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} setWeaponInactive={setWeaponInactive}/>} />
+            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>} />
             <Route path="/backpack" element={<Backpack/>} />
             <Route path="/leveling" component=""/>
             <Route path="/settings" component="" />

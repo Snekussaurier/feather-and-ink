@@ -1,5 +1,3 @@
-import ScrollContainer from "react-indiana-drag-scroll";
-import Tag from "./Tag.js";
 import WeaponCard from "./WeaponCard.js";
 import EffectCard from "./EffectCard.js";
 import { ReactSVG } from "react-svg";
@@ -10,6 +8,7 @@ import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
 
 function Dashboard(params) { 
+    console.log(params)
 
     // Update health
     const incrementHealth = () => {
@@ -44,14 +43,6 @@ function Dashboard(params) {
             if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
         }
         return 1000;
-    }
-
-    const activeWeapons = () => {
-        let activeWeaponsArr;
-        if(params.weapons){
-            activeWeaponsArr = params.weapons.filter((weapon) => weapon.active === 1)
-        }
-        return activeWeaponsArr;
     }
 
     return (
@@ -103,23 +94,23 @@ function Dashboard(params) {
                             <tbody>
                                 <tr>
                                 <td>Race</td>
-                                <td>{params.character ? params.character.race : '{null}'}</td>
+                                <td className="text-right">{params.character ? params.character.race : '{null}'}</td>
                                 </tr>
                                 <tr>
                                 <td>Profession</td>
-                                <td>{params.character ? params.character.profession : '{null}'}</td>
+                                <td className="text-right">{params.character ? params.character.profession : '{null}'}</td>
                                 </tr>
                                 <tr>
                                 <td>Height</td>
-                                <td>{params.character ? params.character.height + ' cm' : '{null}'}</td>
+                                <td className="text-right">{params.character ? params.character.height + ' cm' : '{null}'}</td>
                                 </tr>
                                 <tr>
                                 <td>Weight</td>
-                                <td>{params.character ? params.character.weight + ' kg' : '{null}'}</td>
+                                <td className="text-right">{params.character ? params.character.weight + ' kg' : '{null}'}</td>
                                 </tr>
                                 <tr>
                                 <td>Age</td>
-                                <td>171</td>
+                                <td className="text-right">171</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -127,8 +118,7 @@ function Dashboard(params) {
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
-                <WeaponCard/>
-                <WeaponCard/>
+                {params.weapons ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1>HELLO</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
