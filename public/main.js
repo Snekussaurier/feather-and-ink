@@ -45,6 +45,17 @@ function createWindow () {
     })
   });
 
+  // Get all characters
+  ipcMain.handle('get-characters', (event, args) => {
+    var db = database.db;
+    return new Promise((resolve, reject) => {
+      db.all('SELECT id, name FROM character',[],(err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Update character details
   ipcMain.handle('update-character', (event, args) => {
     const sql = 'UPDATE character SET strength = ?, dexterity = ?, constitution = ?, intelligence = ?, charisma = ?, current_tp = ?, current_mp = ?, current_exp = ? WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'';

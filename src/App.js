@@ -10,10 +10,15 @@ import CollapseIcon from "./res/caret-left.svg";
 
 function App() {
 
+  const [characters, setCharacters] = useState([])
   const [character, setCharacter] = useState()
   const [weapons, setWeapons] = useState([])
 
   useEffect(() => {
+    const getCharacters = async () => {
+      const charactersFromServer = await fetchCharacters()
+      setCharacters(charactersFromServer);
+    }
     const getCharacter = async () => {
       const characterFromServer = await fetchCharacter()
       setCharacter(characterFromServer);
@@ -23,6 +28,7 @@ function App() {
       setWeapons(weaponsFromServer);
     }
 
+    getCharacters();
     getCharacter();
     getWeapons();
   }, []);
@@ -37,6 +43,12 @@ function App() {
         return weapon; // else return unmodified item 
       });
     setWeapons(updatedWeaponArray); // set state to new object with updated list
+  }
+
+  // Fetch Characters
+  const fetchCharacters = async () => {
+    const res = await window.api.getCharacters();
+    return res;
   }
 
   // Fetch Character
@@ -56,12 +68,12 @@ function App() {
 
   return (
     <HashRouter>
-      <div className="h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[300px] transition-spacing">
-        <div className='absolute top-5 bg-background-very-dark pl-[20px] pr-[10px] py-[10px] left-0 z-40 flex flex-row border-r border-y border-current-line'>
+      <div className={isExpanded ? "h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-0 transition-spacing duration-300" : "duration-300 h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[320px] transition-spacing" }>
+        <div className='absolute top-5 bg-[#0E0F21AA] backdrop-blur-md pl-[20px] pr-[10px] py-[10px] left-0 z-40 flex flex-row border-r border-y border-current-line cursor-pointer' onClick={onExpand}>
           <ReactSVG src={FeatherIcon} className='fill-foreground'/>
           <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
         </div>
-        <Sidenav character={character} isExpanded={isExpanded} onExpand={onExpand}/>
+        <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>} />

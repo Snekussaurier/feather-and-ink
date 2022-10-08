@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld('api', {
   // Invoke Methods
 
   // Character Methods
+  getCharacters: (args) => ipcRenderer.invoke('get-characters', args),
   getCharacter: (args) => ipcRenderer.invoke('get-character', args),
   updateCharacter: (args) => ipcRenderer.invoke('update-character', args),
 
