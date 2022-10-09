@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const database = require('../src/mdl/database');
+const config = require('../src/conf/config.json');
 
 function createWindow () {
   // Create the browser window.
@@ -27,7 +28,7 @@ function createWindow () {
   ipcMain.handle('get-weapons', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM weapons WHERE character_id = \'a039e0b476ae4b8dba26ff246c808630\'', (err, rows) => {
+      db.all('SELECT * FROM weapons WHERE character_id = ?',[config.currentCharacter], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })
@@ -38,7 +39,7 @@ function createWindow () {
   ipcMain.handle('get-character', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.get('SELECT * FROM view_character WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'', (err, rows) => {
+      db.get('SELECT * FROM view_character WHERE id = ?',[config.currentCharacter], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })

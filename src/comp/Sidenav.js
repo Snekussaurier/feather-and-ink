@@ -8,11 +8,9 @@ import SettingsIcon from "../res/settings.svg";
 import FeatherIcon from "../res/quill-ink.svg";
 import CollapseIcon from "../res/caret-left.svg";
 import BookIcon from "../res/book.svg";
-import MapsIcon from "../res/map.svg";
 import CharacterIcon from "../res/users.svg";
 import CloseIcon from "../res/close.svg";
 import AddCharacterIcon from "../res/user-add.svg";
-import ProgressBar from "./ProgressBar";
 import CharacterSelect from "./CharacterSelect"
 
 function Sidenav(params) {
@@ -60,26 +58,22 @@ function Sidenav(params) {
               <h2>New Character</h2>
             </div>
           </div>
-          <NavLink className={({isActive}) => isActive ? 'w-full px-5 py-4 bg-background-dark relative transition-all grayscale-0' : 'w-full px-5 py-4 bg-background-dark relative hover:opacity-90 transition-all grayscale'} to="/">
-            <div className=" h-full w-full bg-landscape bg-cover bg-no-repeat absolute top-0 left-0 z-0"/>
-            <div className="z-10 relative">
-              <div className="flex">
-                <h1 className="text-base text-foreground-highlight">
-                  {params.character ? params.character.name : '{null}'}
-                </h1>
-                <div className="flex-1"/>
-                <h1 className="text-base text-foreground-highlight">
-                  {levelCalculation()}
-                </h1>
-              </div>
-              <ProgressBar progress={50}/>
+          <NavLink className={({isActive}) => isActive ? 'w-full px-4 py-4 items-center bg-landscape bg-cover bg-background-dark relative transition-all grayscale-0' : 'w-full items-center bg-landscape bg-cover px-4 py-4 bg-background-dark relative hover:opacity-90 transition-all grayscale'} to="/">
+            <div className=" h-full w-full flex flex-row">
+              <div className="aspect-square w-8"/>
+              <h1>
+                {params.character ? params.character.name : '{null}'}
+              </h1>
+              <div className="flex-1"/>
+              <h1 className="text-base text-foreground-highlight">
+                {levelCalculation()}
+              </h1>
             </div>
           </NavLink>
           <div className=" flex flex-col items-center grow w-full">
             <SidenavButton icon={BackpackIcon} label="Backpack" navigation="/backpack"/>
             <SidenavButton icon={LevelingIcon} label="Leveling" navigation="/leveling"/>
             <SidenavButton icon={BookIcon} label="Grimoire" navigation="/grimoire"/>
-            <SidenavButton icon={MapsIcon} label="Karten" navigation="/maps"/>
           </div>
         </div>
 

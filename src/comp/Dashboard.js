@@ -8,8 +8,6 @@ import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
 
 function Dashboard(params) { 
-    console.log(params)
-
     // Update health
     const incrementHealth = () => {
         params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
@@ -89,7 +87,7 @@ function Dashboard(params) {
                             <h2>Level {levelCalculation()}</h2>
                             <p className=" text-cyan">{params.character ? params.character.current_exp : '{null}'}/{xpToNextLevel()}</p> 
                         </div>
-                        <ProgressBar/>
+                        <ProgressBar target={xpToNextLevel()} now={params.character ? params.character.current_exp : 0}/>
                         <table className="table-fixed mt-4 backdrop-blur-md">
                             <tbody>
                                 <tr>
