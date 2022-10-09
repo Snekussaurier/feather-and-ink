@@ -17,6 +17,7 @@ function App() {
     "profession": "Barde",
     "weight": 70,
     "height": 180,
+    "age": 20,
     "current_tp": 4,
     "current_mp": 4,
     "current_exp": 0

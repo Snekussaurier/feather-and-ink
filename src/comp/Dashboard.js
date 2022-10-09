@@ -103,7 +103,7 @@ function Dashboard(params) {
                                 </tr>
                                 <tr>
                                 <td>Age</td>
-                                <td className="text-right">171</td>
+                                <td className="text-right">{params.character.age}</td>
                                 </tr>
                             </tbody>
                         </table>
