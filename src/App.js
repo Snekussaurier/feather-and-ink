@@ -10,8 +10,20 @@ import CollapseIcon from "./res/caret-left.svg";
 
 function App() {
 
+  const defaultCharacter = {
+    "id": "0",
+    "name": "Schwanhild Heinrike",
+    "race": "Mensch",
+    "profession": "Barde",
+    "weight": 70,
+    "height": 180,
+    "current_tp": 4,
+    "current_mp": 4,
+    "current_exp": 0
+  };
+
   const [characters, setCharacters] = useState([])
-  const [character, setCharacter] = useState()
+  const [character, setCharacter] = useState(defaultCharacter)
   const [weapons, setWeapons] = useState([])
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
 
-function Dashboard(params) { 
+function Dashboard(params) {
     // Update health
     const incrementHealth = () => {
         params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
@@ -29,17 +29,12 @@ function Dashboard(params) {
     }
 
     const levelCalculation = () => {
-        if(params.character){
-            if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
-            else return 1;
-        }
+        if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
         return 1;
     }
 
     const xpToNextLevel = () => {
-        if(params.character){
-            if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
-        }
+        if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
         return 1000;
     }
 
@@ -50,7 +45,7 @@ function Dashboard(params) {
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon}/>
-                        <h1 className=" text-foreground font-sans text-5xl">{params.character ? params.character.current_tp : '{null}'}</h1>
+                        <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
@@ -63,7 +58,7 @@ function Dashboard(params) {
                     </div>
                     <div className=" backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ManaIcon}/>
-                        <h1 className=" text-foreground font-sans text-5xl">{params.character ? params.character.current_mp : '{null}'}</h1>
+                        <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementMana}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
@@ -82,29 +77,29 @@ function Dashboard(params) {
                 </div>
                 <div className="bg-[url('../src/res/FancyFirion.png')] bg-cover flex-grow aspect-image"/>
                 <div className="flex flex-col w-64 max-h-[368px] p-2">
-                        <h1 className=" text-6xl">{params.character ? params.character.name : '{null}'}</h1>
+                        <h1 className=" text-6xl">{params.character.name}</h1>
                         <div className="flex flex-row justify-between items-end">
                             <h2>Level {levelCalculation()}</h2>
-                            <p className=" text-cyan">{params.character ? params.character.current_exp : '{null}'}/{xpToNextLevel()}</p> 
+                            <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
                         </div>
-                        <ProgressBar target={xpToNextLevel()} now={params.character ? params.character.current_exp : 0}/>
+                        <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
                         <table className="table-fixed mt-4 backdrop-blur-md">
                             <tbody>
                                 <tr>
                                 <td>Race</td>
-                                <td className="text-right">{params.character ? params.character.race : '{null}'}</td>
+                                <td className="text-right">{params.character.race}</td>
                                 </tr>
                                 <tr>
                                 <td>Profession</td>
-                                <td className="text-right">{params.character ? params.character.profession : '{null}'}</td>
+                                <td className="text-right">{params.character.profession}</td>
                                 </tr>
                                 <tr>
                                 <td>Height</td>
-                                <td className="text-right">{params.character ? params.character.height + ' cm' : '{null}'}</td>
+                                <td className="text-right">{params.character.height}</td>
                                 </tr>
                                 <tr>
                                 <td>Weight</td>
-                                <td className="text-right">{params.character ? params.character.weight + ' kg' : '{null}'}</td>
+                                <td className="text-right">{params.character.weight}</td>
                                 </tr>
                                 <tr>
                                 <td>Age</td>
@@ -116,7 +111,7 @@ function Dashboard(params) {
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
-                {params.weapons ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1>HELLO</h1>}
+                {params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>)}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
