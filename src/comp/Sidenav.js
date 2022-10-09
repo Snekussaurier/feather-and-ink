@@ -49,8 +49,8 @@ function Sidenav(params) {
         <div className="w-full flex flex-col flex-grow relative">
           <div className={characterMenuIsExpanded ? "h-full bg-background-dark w-full absolute top-0 left-0 z-[60] transition-all flex flex-col duration-300" : "h-0 bg-background-dark w-full absolute top-0 left-0 z-[60] overflow-hidden transition-all flex flex-col duration-150"}>
             <h1 className=" text-foreground mx-4 mb-4">Characters</h1>
-            <div className="overflow-y-auto flex flex-col gap-4 px-4 scrollbar scrollbar-y">
-              {params.characters ? params.characters.map((character) => <CharacterSelect key={character.id} character={character}/>) : <div/>}
+            <div className="overflow-y-auto flex flex-col gap-4 px-4 scrollbar scrollbar-y" onChange={event => console.log(event.target.value)}>
+                {params.characters ? params.characters.map((character) => <CharacterSelect key={character.id} character={character}/>) : <div/>}
             </div>
             <div className="flex-grow"/>
             <div className="bg-current-line border border-foreground-highlight m-4 p-4 hover:bg-background-very-dark cursor-pointer transition-all flex flex-row justify-center gap-4">

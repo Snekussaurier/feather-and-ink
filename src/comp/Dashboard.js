@@ -6,6 +6,7 @@ import HealthIcon from "../res/health-normal.svg";
 import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
+import Image from "../res/FancyFirion.png"
 
 function Dashboard(params) {
     // Update health
@@ -75,38 +76,40 @@ function Dashboard(params) {
                         <div className=" w-7 h-7"/>
                     </div>
                 </div>
-                <div className="bg-[url('../src/res/FancyFirion.png')] bg-cover flex-grow aspect-image"/>
-                <div className="flex flex-col w-64 max-h-[368px] p-2">
-                        <h1 className=" text-6xl">{params.character.name}</h1>
-                        <div className="flex flex-row justify-between items-end">
-                            <h2>Level {levelCalculation()}</h2>
-                            <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
-                        </div>
-                        <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
-                        <table className="table-fixed mt-4 backdrop-blur-md">
-                            <tbody>
-                                <tr>
-                                <td>Race</td>
-                                <td className="text-right">{params.character.race}</td>
-                                </tr>
-                                <tr>
-                                <td>Profession</td>
-                                <td className="text-right">{params.character.profession}</td>
-                                </tr>
-                                <tr>
-                                <td>Height</td>
-                                <td className="text-right">{params.character.height}</td>
-                                </tr>
-                                <tr>
-                                <td>Weight</td>
-                                <td className="text-right">{params.character.weight}</td>
-                                </tr>
-                                <tr>
-                                <td>Age</td>
-                                <td className="text-right">{params.character.age}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div className="bg-cover flex-grow aspect-image">
+                    <img src={`data:image/png;base64,${params.character.character_image}`}/>
+                </div>
+                <div className="flex flex-col min-w-[256px] flex-grow p-2">
+                    <h1 className=" text-6xl">{params.character.name}</h1>
+                    <div className="flex flex-row justify-between items-end">
+                        <h2>Level {levelCalculation()}</h2>
+                        <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
+                    </div>
+                    <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
+                    <table className="table-fixed mt-4 backdrop-blur-md">
+                        <tbody>
+                            <tr>
+                            <td>Race</td>
+                            <td className="text-right">{params.character.race}</td>
+                            </tr>
+                            <tr>
+                            <td>Profession</td>
+                            <td className="text-right">{params.character.profession}</td>
+                            </tr>
+                            <tr>
+                            <td>Height</td>
+                            <td className="text-right">{params.character.height}</td>
+                            </tr>
+                            <tr>
+                            <td>Weight</td>
+                            <td className="text-right">{params.character.weight}</td>
+                            </tr>
+                            <tr>
+                            <td>Age</td>
+                            <td className="text-right">{params.character.age}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>

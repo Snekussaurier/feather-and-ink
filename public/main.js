@@ -28,7 +28,7 @@ function createWindow () {
   ipcMain.handle('get-weapons', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM weapons WHERE character_id = ?',[config.currentCharacter], (err, rows) => {
+      db.all('SELECT * FROM weapons WHERE character_id = ?',[args.characterId], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })
@@ -37,9 +37,11 @@ function createWindow () {
 
   // Get character details
   ipcMain.handle('get-character', (event, args) => {
+    console.log(args);
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.get('SELECT * FROM view_character WHERE id = ?',[config.currentCharacter], (err, rows) => {
+      db.get('SELECT * FROM view_character WHERE id = \'?\'',[args.characterId], (err, rows) => {
+        console.log(rows);
         if (err) reject(err);
         resolve(rows);
       })
@@ -50,7 +52,7 @@ function createWindow () {
   ipcMain.handle('get-characters', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.all('SELECT id, name FROM character',[],(err, rows) => {
+      db.all('SELECT id, name, character_image FROM character',[],(err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })

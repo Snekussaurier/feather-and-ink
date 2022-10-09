@@ -23,6 +23,7 @@ function App() {
     "current_exp": 0
   };
 
+  const [characterId, setCharacterId] = useState('a039e0b476ae4b8dba26ff246c808630')
   const [characters, setCharacters] = useState([])
   const [character, setCharacter] = useState(defaultCharacter)
   const [weapons, setWeapons] = useState([])
@@ -34,6 +35,7 @@ function App() {
     }
     const getCharacter = async () => {
       const characterFromServer = await fetchCharacter()
+      console.log(characterFromServer);
       setCharacter(characterFromServer);
     }
     const getWeapons= async () => {
@@ -66,13 +68,13 @@ function App() {
 
   // Fetch Character
   const fetchCharacter = async () => {
-    const res = await window.api.getCharacter();
+    const res = await window.api.getCharacter(characterId);
     return res;
   }
 
   // Fetch Weapons
   const fetchWeapons = async () => {
-    const res = await window.api.getWeapons();
+    const res = await window.api.getWeapons(characterId);
     return res;
   }
 
