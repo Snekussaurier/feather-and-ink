@@ -50,7 +50,7 @@ function createWindow () {
   ipcMain.handle('get-characters', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.all('SELECT id, name, character_image FROM character',[],(err, rows) => {
+      db.all('SELECT id, name, character_image, character_background FROM view_character',[],(err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })

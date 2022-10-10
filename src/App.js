@@ -67,7 +67,6 @@ function App() {
 
   // Fetch Character
   const fetchCharacter = async (id) => {
-    console.log(id)
     const res = await window.api.getCharacter(id);
     return res;
   }
