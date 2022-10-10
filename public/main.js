@@ -28,7 +28,7 @@ function createWindow () {
   ipcMain.handle('get-weapons', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM weapons WHERE character_id = ?',[args], (err, rows) => {
+      db.all('SELECT * FROM view_weapons WHERE character_id = ?',[args], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })
