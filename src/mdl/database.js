@@ -9,7 +9,7 @@ const db = new sqlite3.Database(
     : path.join(process.resourcesPath, 'db/data.db'), // the resources path if in production build
   (err) => {
     if (err) {
-      console.log(`Database Error: ${err}`);
+      console.err(`Database Error: ${err}`);
     } else {
       console.log('Database Loaded');
     }

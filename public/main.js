@@ -37,11 +37,9 @@ function createWindow () {
 
   // Get character details
   ipcMain.handle('get-character', (event, args) => {
-    console.log(args);
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.get('SELECT * FROM view_character WHERE id = \'?\'',[args.characterId], (err, rows) => {
-        console.log(rows);
+      db.get('SELECT * FROM view_character WHERE id = ?',[args], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })
