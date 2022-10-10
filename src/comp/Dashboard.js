@@ -9,8 +9,10 @@ import ProgressBar from "./ProgressBar.js";
 import Image from "../res/FancyFirion.png"
 
 function Dashboard(params) {
-
-    const backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
+    console.log(params)
+    let backgroundImage;
+    if(params.character.character_background !== undefined) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
+    else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
     // Update health
     const incrementHealth = () => {
         params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });

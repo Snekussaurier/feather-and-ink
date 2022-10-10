@@ -1,6 +1,7 @@
 function SidenavButton(params) {
-    const backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
-
+    let backgroundImage;
+    if(params.character.character_background !== null) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
+    else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
     return(
         <div>
             <input type="radio" id={params.character.id} name="selected_character" value={params.character.id} className="peer hidden"/>
