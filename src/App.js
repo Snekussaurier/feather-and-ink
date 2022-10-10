@@ -34,21 +34,21 @@ function App() {
       setCharacters(charactersFromServer);
     }
     const getCharacter = async () => {
-      const characterFromServer = await fetchCharacter()
+      const characterFromServer = await fetchCharacter(characterId)
       setCharacter(characterFromServer);
     }
     const getWeapons= async () => {
-      const weaponsFromServer = await fetchWeapons()
+      const weaponsFromServer = await fetchWeapons(characterId)
       setWeapons(weaponsFromServer);
     }
 
     getCharacters();
     getCharacter();
     getWeapons();
-  }, []);
+  }, [characterId]);
 
   const setWeaponInactive = (id) => {
-    // loop over the todos list and find the provided id.
+    // loop over the weapons list and find the provided id.
     let updatedWeaponArray = weapons.map(weapon => 
       {
         if (weapon.id === id){
@@ -66,14 +66,15 @@ function App() {
   }
 
   // Fetch Character
-  const fetchCharacter = async () => {
-    const res = await window.api.getCharacter(characterId);
+  const fetchCharacter = async (id) => {
+    console.log(id)
+    const res = await window.api.getCharacter(id);
     return res;
   }
 
   // Fetch Weapons
-  const fetchWeapons = async () => {
-    const res = await window.api.getWeapons(characterId);
+  const fetchWeapons = async (id) => {
+    const res = await window.api.getWeapons(id);
     return res;
   }
 
@@ -87,10 +88,10 @@ function App() {
           <ReactSVG src={FeatherIcon} className='fill-foreground'/>
           <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
         </div>
-        <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand}/>
+        <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
           <Routes>
-            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>} />
+            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>}/>
             <Route path="/backpack" element={<Backpack/>} />
             <Route path="/leveling" component=""/>
             <Route path="/settings" component="" />

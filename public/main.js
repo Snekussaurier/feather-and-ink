@@ -17,7 +17,7 @@ function createWindow () {
          // Loading it from the build folder for production
       contextIsolation: true, // Isolating context so our app is not exposed to random javascript executions making it safer.
     },
-  })
+  });
   win.loadURL(
     isDev
       ? 'http://localhost:3000' // Loading localhost if dev mode
@@ -28,7 +28,7 @@ function createWindow () {
   ipcMain.handle('get-weapons', (event, args) => {
     var db = database.db;
     return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM weapons WHERE character_id = ?',[args.characterId], (err, rows) => {
+      db.all('SELECT * FROM weapons WHERE character_id = ?',[args], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })

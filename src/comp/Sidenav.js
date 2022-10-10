@@ -16,9 +16,7 @@ import CharacterSelect from "./CharacterSelect"
 function Sidenav(params) {
 
   const levelCalculation = () => {
-    if(params.character){
-        if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
-    }
+    if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
     return 1;
   }
 
@@ -49,7 +47,7 @@ function Sidenav(params) {
         <div className="w-full flex flex-col flex-grow relative">
           <div className={characterMenuIsExpanded ? "h-full bg-background-dark w-full absolute top-0 left-0 z-[60] transition-all flex flex-col duration-300" : "h-0 bg-background-dark w-full absolute top-0 left-0 z-[60] overflow-hidden transition-all flex flex-col duration-150"}>
             <h1 className=" text-foreground mx-4 mb-4">Characters</h1>
-            <div className="overflow-y-auto flex flex-col gap-4 px-4 scrollbar scrollbar-y" onChange={event => console.log(event.target.value)}>
+            <div className="overflow-y-auto flex flex-col gap-4 px-4 scrollbar scrollbar-y" onChange={event => params.setCharacterId(event.target.value)}>
                 {params.characters ? params.characters.map((character) => <CharacterSelect key={character.id} character={character}/>) : <div/>}
             </div>
             <div className="flex-grow"/>
