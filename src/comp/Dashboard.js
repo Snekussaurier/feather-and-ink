@@ -102,11 +102,11 @@ function Dashboard(params) {
                             </tr>
                             <tr>
                             <td>Height</td>
-                            <td className="text-right">{params.character.height}</td>
+                            <td className="text-right">{params.character.height} cm</td>
                             </tr>
                             <tr>
                             <td>Weight</td>
-                            <td className="text-right">{params.character.weight}</td>
+                            <td className="text-right">{params.character.weight} kg</td>
                             </tr>
                             <tr>
                             <td>Age</td>
@@ -118,7 +118,7 @@ function Dashboard(params) {
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
-                {params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>)}
+                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1>Hello</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
