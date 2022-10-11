@@ -12,13 +12,22 @@ import CharacterIcon from "../res/users.svg";
 import CloseIcon from "../res/close.svg";
 import AddCharacterIcon from "../res/user-add.svg";
 import CharacterSelect from "./CharacterSelect"
+import ProgressBar from "./ProgressBar";
 
 function Sidenav(params) {
+
+  let backgroundImage;
+  if(params.character.character_background !== undefined) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
+  else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
 
   const levelCalculation = () => {
     if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
     return 1;
   }
+  const xpToNextLevel = () => {
+    if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
+    return 1000;
+}
 
   const [characterMenuIsExpanded, setCharacterMenuIsExpanded] = useState(false);
   const onExpandCharacterMenu = () => setCharacterMenuIsExpanded((expanded) => !expanded);
@@ -56,16 +65,18 @@ function Sidenav(params) {
               <h2>New Character</h2>
             </div>
           </div>
-          <NavLink className={({isActive}) => isActive ? 'w-full px-4 py-4 items-center bg-landscape bg-cover bg-background-dark relative transition-all grayscale-0' : 'w-full items-center bg-landscape bg-cover px-4 py-4 bg-background-dark relative hover:opacity-90 transition-all grayscale'} to="/">
-            <div className=" h-full w-full flex flex-row">
-              <div className="aspect-square w-8"/>
-              <h1>
-                {params.character ? params.character.name : '{null}'}
-              </h1>
-              <div className="flex-1"/>
-              <h1 className="text-base text-foreground-highlight">
-                {levelCalculation()}
-              </h1>
+          <NavLink className={({isActive}) => isActive ? 'w-full px-4 py-4 items-center bg-cover bg-background-dark relative transition-all grayscale-0' : 'w-full items-center bg-cover px-4 py-4 bg-background-dark relative hover:opacity-90 transition-all grayscale'} style={{backgroundImage: `linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url(${backgroundImage})`}} to="/">
+            <div className=" h-full w-full flex flex-col">
+              <div className="flex flex-row items-center">
+                <h1>
+                  {params.character ? params.character.name : '{null}'}
+                </h1>
+                <div className="flex-1"/>
+                <h1>
+                    {levelCalculation()}
+                </h1>
+              </div>
+              <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
             </div>
           </NavLink>
           <div className=" flex flex-col items-center grow w-full">
