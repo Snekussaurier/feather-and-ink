@@ -2,7 +2,6 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const database = require('../src/mdl/database');
-const config = require('../src/conf/config.json');
 
 function createWindow () {
   // Create the browser window.

@@ -6,10 +6,8 @@ import HealthIcon from "../res/health-normal.svg";
 import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
-import Image from "../res/FancyFirion.png"
 
 function Dashboard(params) {
-    console.log(params)
     let backgroundImage;
     if(params.character.character_background !== undefined) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
     else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
