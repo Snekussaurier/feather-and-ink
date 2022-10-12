@@ -8,9 +8,6 @@ import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
 
 function Dashboard(params) {
-    let backgroundImage;
-    if(params.character.character_background !== undefined) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
-    else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
     // Update health
     const incrementHealth = () => {
         params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
@@ -43,7 +40,6 @@ function Dashboard(params) {
 
     return (
         <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
-            <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(600px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-cover -z-10" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.1), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
             <div className="flex scrollbar gap-10 z-10">
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
@@ -116,7 +112,7 @@ function Dashboard(params) {
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
-                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1>Hello</h1>}
+                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1 className=" text-current-line">No weapons</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">

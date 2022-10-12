@@ -7,6 +7,7 @@ import Backpack from './comp/Backpack';
 import {useEffect, useState} from 'react';
 import FeatherIcon from "./res/quill-ink.svg";
 import CollapseIcon from "./res/caret-left.svg";
+import Leveling from './comp/Leveling';
 
 function App() {
 
@@ -80,6 +81,10 @@ function App() {
   const [isExpanded, setIsExpanded] = useState(true);
   const onExpand = () => setIsExpanded((expanded) => !expanded);
 
+  let backgroundImage;
+  if(character.character_background !== undefined) backgroundImage = require('./res/background-illustration-' + character.character_background + '.jpg');
+  else backgroundImage = require('./res/background-illustration-' + 1 + '.jpg');
+
   return (
     <HashRouter>
       <div className={isExpanded ? "h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-0 transition-spacing duration-300" : "duration-300 h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[320px] transition-spacing" }>
@@ -89,10 +94,11 @@ function App() {
         </div>
         <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
+          <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(600px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-cover" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.1), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>}/>
-            <Route path="/backpack" element={<Backpack/>} />
-            <Route path="/leveling" component=""/>
+            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter}/>} />
+            <Route path="/leveling" element={<Leveling/>}/>
             <Route path="/settings" component="" />
             <Route path="/grimoire" component="" />
           </Routes>
