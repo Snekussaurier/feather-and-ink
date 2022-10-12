@@ -58,10 +58,9 @@ function createWindow () {
 
   // Update character details
   ipcMain.handle('update-character', (event, args) => {
-    const sql = 'UPDATE character SET strength = ?, dexterity = ?, constitution = ?, intelligence = ?, charisma = ?, current_tp = ?, current_mp = ?, current_exp = ? WHERE id = \'a039e0b476ae4b8dba26ff246c808630\'';
-
+    const sql = 'UPDATE character SET strength = ?, dexterity = ?, constitution = ?, intelligence = ?, charisma = ?, current_tp = ?, current_mp = ?, current_exp = ? WHERE id = ?';
     var db = database.db;
-    db.run(sql, [args.strength, args.dexterity, args.constitution, args.intelligence, args.charisma, args.current_tp, args.current_mp, args.current_exp], function(err) {
+    db.run(sql, [args.strength, args.dexterity, args.constitution, args.intelligence, args.charisma, args.current_tp, args.current_mp, args.current_exp, args.id], function(err) {
       if (err) return console.error(err.message);
     });
   });

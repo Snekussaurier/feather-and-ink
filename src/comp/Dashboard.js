@@ -114,15 +114,29 @@ function Dashboard(params) {
             <div className="grid grid-cols-3 gap-4 justify-between">
                 {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1 className=" text-current-line">No weapons</h1>}
             </div>
+            <h1 className="text-foreground text-2xl">Armor</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                <div className="h-[210px] min-w-[270px] flex-grow bg-background-very-dark border border-green">
+                    <div className="bg-green p-2">
+                        <h2 className="text-background-very-dark">Lederlendenschutz</h2>
+                        <h3 className="text-background-very-dark">Lendenschutz</h3>
+                    </div>
+                    <div className="flex flex-col p-2 w-full">
+                        <div className="grid grid-cols-2 grid-flow-row-dense justify-between w-full">
+                            <h3>Rüstungswert</h3>
+                            <h2 className="text-right">0.25</h2>
+                        </div>
+                        <hr className=" border-green my-2"/>
+                        <h2>Info</h2>
+                        <h3>
+                            Test
+                        </h3>
+                    </div>
+                </div>
+            </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
                 <EffectCard/>
-            </div>
-            <h1 className="text-foreground text-2xl">Armor</h1>
-            <div className="grid grid-cols-3 gap-4 justify-between">
-                <div className="h-[370px] min-w-[270px] flex-grow bg-background-very-dark border border-green">
-                    <div className="bg-green p-2"><h2 className="text-background-very-dark">Test</h2></div>
-                </div>
             </div>
         </div>
     );

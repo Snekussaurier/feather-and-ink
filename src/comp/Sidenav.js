@@ -2,6 +2,7 @@ import {useEffect, useState, React} from "react";
 import { ReactSVG } from "react-svg";
 import { NavLink } from "react-router-dom";
 import SidenavButton from "./SidenavButton";
+import DashboardIcon from "../res/newspaper.svg";
 import BackpackIcon from "../res/backpack.svg";
 import LevelingIcon from "../res/analytics.svg";
 import SettingsIcon from "../res/settings.svg";
@@ -33,7 +34,7 @@ function Sidenav(params) {
   const onExpandCharacterMenu = () => setCharacterMenuIsExpanded((expanded) => !expanded);
 
   return (
-    <div className={params.isExpanded ? 'h-screen fixed left-[-320px] top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-50 duration-300' : ' duration-300 h-screen fixed left-0 top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-50'}>
+    <div className={!params.isExpanded ? 'h-screen fixed left-[-320px] top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-50 duration-300' : ' duration-300 h-screen fixed left-0 top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-50'}>
         <div className="flex flex-row items-center justify-start self-stretch gap-2 p-5">
           <ReactSVG src={FeatherIcon} className='fill-foreground'/>
           <h1 className="text-xl text-foreground">
@@ -65,11 +66,11 @@ function Sidenav(params) {
               <h2>New Character</h2>
             </div>
           </div>
-          <NavLink className={({isActive}) => isActive ? 'w-full px-4 py-4 items-center bg-cover bg-background-dark relative transition-all grayscale-0' : 'w-full items-center bg-cover px-4 py-4 bg-background-dark relative hover:opacity-90 transition-all grayscale'} style={{backgroundImage: `linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url(${backgroundImage})`}} to="/">
+          <div className='w-full px-4 py-4 items-center bg-cover bg-background-dark relative transition-all grayscale-0' style={{backgroundImage: `linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url(${backgroundImage})`}}>
             <div className=" h-full w-full flex flex-col">
               <div className="flex flex-row items-center">
                 <h1>
-                  {params.character ? params.character.name : '{null}'}
+                  {params.character.name}
                 </h1>
                 <div className="flex-1"/>
                 <h1>
@@ -78,8 +79,9 @@ function Sidenav(params) {
               </div>
               <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
             </div>
-          </NavLink>
+          </div>
           <div className=" flex flex-col items-center grow w-full">
+            <SidenavButton icon={DashboardIcon} label="Dashbord" navigation="/"/>
             <SidenavButton icon={BackpackIcon} label="Backpack" navigation="/backpack"/>
             <SidenavButton icon={LevelingIcon} label="Leveling" navigation="/leveling"/>
             <SidenavButton icon={BookIcon} label="Grimoire" navigation="/grimoire"/>
