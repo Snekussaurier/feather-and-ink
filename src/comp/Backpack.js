@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 import CoinButton from "./CoinButton";
+import ArmorIcon from "../res/closed-barbute.svg"
 
 function Backpack(params) {
 
@@ -21,6 +22,17 @@ function Backpack(params) {
                 <CoinButton name='Muena' value={params.character.muena} currency="Muena"/>
             </div>
             <h1 className="text-foreground">Items</h1>
+            <div className=" flex flex-row gap-4">
+                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
+                    <ReactSVG src={ArmorIcon}/>
+                </button>
+                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
+                    <ReactSVG src={ArmorIcon}/>
+                </button>
+                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
+                    <ReactSVG src={ArmorIcon}/>
+                </button>
+            </div>
         </div>
     );
 }

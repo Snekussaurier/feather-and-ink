@@ -26,10 +26,34 @@ function App() {
 
   const config = require('./conf/config.json')
 
+  const attributeBonus = {
+    1: -3,
+    2: -2,
+    3: -1,
+    4: -1,
+    5: 0,
+    6: 1,
+    7: 1,
+    8: 2,
+    9: 2,
+    10: 3 
+  }
+
+  const tpProfessions = {
+    1: 6,
+    2: 6,
+    3: 10,
+    4: 8,
+    5: 6,
+    6: 8,
+    7: 4
+  }
+
   const [characterId, setCharacterId] = useState(config.currentCharacter);
   const [characters, setCharacters] = useState([]);
   const [character, setCharacter] = useState(defaultCharacter);
   const [weapons, setWeapons] = useState([]);
+  const [armor, setArmor] = useState([]);
 
   // Get character from db
   useEffect(() => {
@@ -41,14 +65,19 @@ function App() {
       const characterFromServer = await fetchCharacter(characterId)
       setCharacter(characterFromServer);
     }
-    const getWeapons= async () => {
+    const getWeapons = async () => {
       const weaponsFromServer = await fetchWeapons(characterId)
       setWeapons(weaponsFromServer);
+    }
+    const getArmor = async () => {
+      const armorFromServer = await fetchArmor(characterId)
+      setArmor(armorFromServer)
     }
 
     getCharacters();
     getCharacter();
     getWeapons();
+    getArmor();
   }, [characterId]);
 
   // Update character in db
@@ -90,6 +119,12 @@ function App() {
     return res;
   }
 
+  // Fetch Armor
+  const fetchArmor = async (id) => {
+    const res = await window.api.getArmor(id);
+    return res;
+  }
+
   // Update Character
   const updateCharacter = async () => {
     await window.api.updateCharacter(character);
@@ -113,10 +148,9 @@ function App() {
         <div className='max-w-full flex justify-center flex-grow relative'>
           <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(600px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-cover" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.1), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
-            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons}/>}/>
+            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>} />
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter}/>} />
             <Route path="/leveling" element={<Leveling/>}/>
-            <Route path="/settings" component="" />
             <Route path="/grimoire" component="" />
           </Routes>
         </div>

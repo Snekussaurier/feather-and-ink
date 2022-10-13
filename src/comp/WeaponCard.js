@@ -1,5 +1,3 @@
-import WeaponTag from "./WeaponTag";
-
 const getPrefix = (value) => {
     if(value > 0){
         return '+' + value;
@@ -19,7 +17,7 @@ function WeaponCard(params) {
             <div className="flex flex-col p-2 w-full">
                 <div className="grid grid-cols-2 grid-flow-row-dense justify-between w-full">
                     <h3>Initiative</h3>
-                    <h2 className="text-right">+2</h2>
+                    <h2 className="text-right"><span className="text-cyan">({getPrefix(params.weapon.initiative)})</span> {getPrefix(params.initiative + params.weapon.initiative)}</h2>
                     <h3>Kampfbonus</h3>
                     <h2 className="text-right">+3</h2>
                     <h3>Angriffsbonus</h3>

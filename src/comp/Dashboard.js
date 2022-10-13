@@ -1,5 +1,6 @@
 import WeaponCard from "./WeaponCard.js";
 import EffectCard from "./EffectCard.js";
+import ArmorCard from "./ArmorCard.js";
 import { ReactSVG } from "react-svg";
 import ArmorIcon from "../res/closed-barbute.svg";
 import HealthIcon from "../res/health-normal.svg";
@@ -10,7 +11,8 @@ import ProgressBar from "./ProgressBar.js";
 function Dashboard(params) {
     // Update health
     const incrementHealth = () => {
-        params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
+        if(params.character.current_tp < (getAttributeBonus(params.character.constitution) + params.tpProfessions[params.character.profession_id]) * levelCalculation())
+            params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
     }
     const decrementHealth = () => {
         if (params.character.current_tp > 0) {
@@ -36,6 +38,28 @@ function Dashboard(params) {
     const xpToNextLevel = () => {
         if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
         return 1000;
+    }
+
+    const calculateArmor = () => {
+        let armorValue = 5;
+        if (params.armor.length > 0) {
+            params.armor.forEach(element => {
+                armorValue += element.value;
+            });
+        }
+        // Check if character profession is priest
+        if (params.character.profession_id === 4){
+            armorValue += 1;
+        }
+        // Check if character race is dwarf
+        if (params.character.race_id === 3){
+            armorValue += 1;
+        }
+        return armorValue;
+    }
+
+    const getAttributeBonus = (attributeValue) => {
+        return params.attributeBonus[attributeValue]
     }
 
     return (
@@ -68,9 +92,9 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ArmorIcon}/>
-                        <h1 className=" text-foreground font-sans text-5xl">7.25</h1>
+                        <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
                         <div className=" w-7 h-7"/>
                     </div>
                 </div>
@@ -112,30 +136,16 @@ function Dashboard(params) {
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
-                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1 className=" text-current-line">No weapons</h1>}
+                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} initiative={getAttributeBonus(params.character.dexterity)}/>) : <h1 className=" text-current-line">No weapons</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Armor</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
-                <div className="h-[210px] min-w-[270px] flex-grow bg-background-very-dark border border-green">
-                    <div className="bg-green p-2">
-                        <h2 className="text-background-very-dark">Lederlendenschutz</h2>
-                        <h3 className="text-background-very-dark">Lendenschutz</h3>
-                    </div>
-                    <div className="flex flex-col p-2 w-full">
-                        <div className="grid grid-cols-2 grid-flow-row-dense justify-between w-full">
-                            <h3>Rüstungswert</h3>
-                            <h2 className="text-right">0.25</h2>
-                        </div>
-                        <hr className=" border-green my-2"/>
-                        <h2>Info</h2>
-                        <h3>
-                            Test
-                        </h3>
-                    </div>
-                </div>
+                {params.armor.length > 0 ? params.armor.map((armor) => <ArmorCard key={armor.id} armor={armor}/>) : <h1 className=" text-background-dark">No armor</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
+                {params.character.race_id === 4 ? <EffectCard/> : <></>}
+                {params.character.profession_id === 4 ? <EffectCard/> : <></>}
                 <EffectCard/>
             </div>
         </div>

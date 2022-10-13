@@ -34,6 +34,17 @@ function createWindow () {
     })
   });
 
+  // Get armor details
+  ipcMain.handle('get-armor', (event, args) => {
+    var db = database.db;
+    return new Promise((resolve, reject) => {
+      db.all('SELECT * FROM view_armor WHERE character_id = ?',[args], (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Get character details
   ipcMain.handle('get-character', (event, args) => {
     var db = database.db;
