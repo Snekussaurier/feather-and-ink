@@ -99,7 +99,7 @@ function Dashboard(params) {
                     </div>
                 </div>
                 <div className="bg-cover flex-grow aspect-image">
-                    <img src={`data:image/png;base64,${params.character.character_image}`}/>
+                    <img src={`data:image/png;base64,${params.character.character_image}`} alt=""/>
                 </div>
                 <div className="flex flex-col min-w-[256px] flex-grow p-2">
                     <h1 className=" text-6xl">{params.character.name}</h1>

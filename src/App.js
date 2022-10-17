@@ -83,23 +83,11 @@ function App() {
   // Update character in db
   useEffect(() => {
     const postCharacter = async () => {
-      await updateCharacter();
+      await window.api.updateCharacter(character);
     }
 
     postCharacter();
   }, [character]);
-
-  const setWeaponInactive = (id) => {
-    // loop over the weapons list and find the provided id.
-    let updatedWeaponArray = weapons.map(weapon => 
-      {
-        if (weapon.id === id){
-          return {...weapon, active: 0};
-        }
-        return weapon; // else return unmodified item 
-      });
-    setWeapons(updatedWeaponArray); // set state to new object with updated list
-  }
 
   // Fetch Characters
   const fetchCharacters = async () => {
@@ -123,11 +111,6 @@ function App() {
   const fetchArmor = async (id) => {
     const res = await window.api.getArmor(id);
     return res;
-  }
-
-  // Update Character
-  const updateCharacter = async () => {
-    await window.api.updateCharacter(character);
   }
 
   const [isExpanded, setIsExpanded] = useState(true);

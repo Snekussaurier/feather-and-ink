@@ -1,5 +1,3 @@
-import {useEffect, useState} from 'react';
-
 const ProgressBar = (props) => {
 
   const target = props.target;

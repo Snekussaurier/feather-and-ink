@@ -1,5 +1,4 @@
-import React from 'react'
-import CoinButton from './CoinButton'
+import React from 'react';
 
 export default function Leveling() {
   return (

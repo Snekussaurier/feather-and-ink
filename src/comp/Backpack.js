@@ -5,10 +5,6 @@ import ArmorIcon from "../res/closed-barbute.svg"
 
 function Backpack(params) {
 
-    const incrementCurrency = (currency) => {
-        params.setCharacter({ ...params.character, current_mp: params.character.current_mp + 1 });
-    }
-
     return (
         <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
             <div className="flex flex-row items-center">

@@ -1,5 +1,3 @@
-import EffectTag from "./EffectTag";
-
 function EffectCard(params) {
     return(                
         <div className="h-[300px] min-w-[270px] flex-grow bg-background-very-dark border border-purple">

@@ -1,6 +1,5 @@
-import {useEffect, useState, React} from "react";
+import {useState, React} from "react";
 import { ReactSVG } from "react-svg";
-import { NavLink } from "react-router-dom";
 import SidenavButton from "./SidenavButton";
 import DashboardIcon from "../res/newspaper.svg";
 import BackpackIcon from "../res/backpack.svg";
@@ -8,7 +7,6 @@ import LevelingIcon from "../res/analytics.svg";
 import SettingsIcon from "../res/settings.svg";
 import FeatherIcon from "../res/quill-ink.svg";
 import CollapseIcon from "../res/caret-left.svg";
-import BookIcon from "../res/book-open.svg";
 import CharacterIcon from "../res/users.svg";
 import CloseIcon from "../res/close.svg";
 import AddCharacterIcon from "../res/user-add.svg";
