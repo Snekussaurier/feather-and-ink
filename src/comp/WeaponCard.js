@@ -29,7 +29,7 @@ function WeaponCard(params) {
                 </div>
                 <hr className=" border-pink my-2"/>
                 <h2>Info</h2>
-                <h3>
+                <h3 className="italic">
                     {params.weapon.description}
                 </h3>
             </div>
