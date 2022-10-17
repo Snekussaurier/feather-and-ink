@@ -9,13 +9,27 @@
   "rebuild-sqlite3": "electron-rebuild -f -w sqlite3",
   "build": {
     "extends": null,
-    "appId": "com.snekussaurer.featherandink",
-    "productName": "Feather and Ink",
-    "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "category": "Office"
+    "appId": "com.snekussaurier.featherandink",
+    "productName": "feather-and-ink",
+    "copyright": "Copyright Snekussaurier",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "./public/main.js"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "extraResources": [
+      {
+        "from": "./db/",
+        "to": "db/",
+        "filter": [ "**/*" ]
+      }
+    ],
+    "win":
+    {
+      "target": ["7z"]
     }
   },
   "dependencies": {
@@ -78,32 +92,5 @@
     "electron-rebuild": "^3.2.9",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.7"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "feather_and_ink"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
   }
 }

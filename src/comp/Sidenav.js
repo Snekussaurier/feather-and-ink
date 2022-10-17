@@ -84,11 +84,10 @@ function Sidenav(params) {
             <SidenavButton icon={DashboardIcon} label="Dashbord" navigation="/"/>
             <SidenavButton icon={BackpackIcon} label="Backpack" navigation="/backpack"/>
             <SidenavButton icon={LevelingIcon} label="Leveling" navigation="/leveling"/>
-            <SidenavButton icon={BookIcon} label="Grimoire" navigation="/grimoire"/>
           </div>
         </div>
 
-        <p className="text-s text-foreground m-2 font-bold font-mono">v0.0.1</p>
+        <p className="text-s text-foreground m-2 font-bold font-mono">v0.1.0</p>
     </div>
   );
 }

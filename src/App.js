@@ -151,7 +151,6 @@ function App() {
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>} />
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter}/>} />
             <Route path="/leveling" element={<Leveling/>}/>
-            <Route path="/grimoire" component="" />
           </Routes>
         </div>
       </div>
