@@ -65,6 +65,7 @@
     "start": "react-scripts start",
     "package": "react-scripts build && electron-forge package",
     "make": "react-scripts build && electron-forge make",
+    "publish": "electron-forge publish",
     "electron": "wait-on tcp:3000 && electron-forge start"
   },
   "eslintConfig": {
