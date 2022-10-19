@@ -20,4 +20,4 @@ jobs:
           node-version: 16.x
 
       - name: Electron Builder Action
-        uses: samuelmeuli/action-electron-builder@v1
+        uses: samuelmeuli/action-electron-builder@v1.6.0
