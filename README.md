@@ -1,3 +1,6 @@
+![example workflow](https://github.com/Snekussaurier/feather-and-ink/actions/workflows/build.yml/badge.svg)
+![example workflow](https://github.com/Snekussaurier/feather-and-ink/actions/workflows/release.yml/badge.svg)
+
 # Feather&Ink
 
 Feather&Ink is a visualization tool for your pen&paper character in the world of Aborea. It uses a stack of React.js, Electron and SQLite 3.0.
