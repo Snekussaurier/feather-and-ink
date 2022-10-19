@@ -5,10 +5,11 @@ jobs:
   build_on_win:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: borales/actions-yarn@v3.0.0
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        cmd: install # will run `yarn install` command
-    - uses: borales/actions-yarn@v3.0.0
-      with:
-        cmd: build # will run `yarn build` command
+        node-version: 16
+    - name: Install dependencies 📦
+      run: yarn install --frozen-lockfile
+    - name: Build electron app
+      run: yarn build
