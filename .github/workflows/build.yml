@@ -1,19 +1,23 @@
-# name of your github action
-name: CI
-on:
-  push:
-    branches:
-    # this will run on the electron branch
-      - dev
+name: Build/release
+
+on: push
+
 jobs:
-  build_on_win:
-    runs-on: windows-latest
+  release:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
     steps:
-    - uses: actions/checkout@master
-      with:
-        ref: feature/github-actions        
-    - uses: actions/setup-node@master
-      with:
-        node-version: 16.x
-    - name: see directory
-      run: ls
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Electron Builder Action
+        uses: samuelmeuli/action-electron-builder@v1.6.0
