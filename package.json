@@ -66,7 +66,8 @@
     "start-electron": "nodemon --watch ./public/* --exec \"electron .\"",
     "dev": "concurrently \"yarn start-react\" \"wait-on http://localhost:3000 && yarn start-electron\" ",
     "pack-app": "yarn build-react && electron-builder --dir",
-    "build": "yarn build-react && electron-builder",
+    "build": "yarn build-react && electron-builder --publish never",
+    "publish": "yarn build-react && electron-builder --publish always",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
