@@ -13,7 +13,6 @@
   "homepage": "./",
   "license": "Apache 2.0",
 	"private": true,
-  "rebuild-sqlite3": "electron-rebuild -f -w sqlite3",
   "build": {
     "extends": null,
     "appId": "com.snekussaurier.featherandink",
