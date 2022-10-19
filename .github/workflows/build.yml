@@ -10,6 +10,6 @@ jobs:
       with:
         node-version: 16
     - name: Install dependencies 📦
-      run: yarn install --frozen-lockfile
+      run: yarn install
     - name: Build electron app
       run: yarn build
