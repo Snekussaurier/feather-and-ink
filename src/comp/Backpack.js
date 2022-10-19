@@ -1,10 +1,33 @@
 import React from "react";
+import { ReactSVG } from "react-svg";
+import CoinButton from "./CoinButton";
+import ArmorIcon from "../res/closed-barbute.svg"
 
 function Backpack(params) {
+
     return (
-        <div className="flex flex-col gap-5 p-9 items-start">
-            <div className="border-b-4 border-purple pb-2">
-                <h1 className=" text-4xl text-foreground font-mono font-semibold">Backpack</h1>
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
+            <div className="flex flex-row items-center">
+                <h1 className="text-5xl">Backpack</h1>
+            </div>
+            <h1 className="text-foreground">Wallet</h1>
+            <div className="flex flex-row gap-4">
+                <CoinButton name='Goldfalken' value={params.character.goldfalken} currency="goldfalken"/>
+                <CoinButton name='Triontaler' value={params.character.triontaler} currency="Triontaler"/>
+                <CoinButton name='Kupferlinge' value={params.character.kupferlinge} currency="Kupferlinge"/>
+                <CoinButton name='Muena' value={params.character.muena} currency="Muena"/>
+            </div>
+            <h1 className="text-foreground">Items</h1>
+            <div className=" flex flex-row gap-4">
+                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
+                    <ReactSVG src={ArmorIcon}/>
+                </button>
+                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
+                    <ReactSVG src={ArmorIcon}/>
+                </button>
+                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
+                    <ReactSVG src={ArmorIcon}/>
+                </button>
             </div>
         </div>
     );

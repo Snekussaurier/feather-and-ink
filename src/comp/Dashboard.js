@@ -1,13 +1,18 @@
-import ScrollContainer from "react-indiana-drag-scroll";
-import AddWeaponForm from "./AddWeaponForm.js";
-import Tag from "./Tag.js";
 import WeaponCard from "./WeaponCard.js";
+import EffectCard from "./EffectCard.js";
+import ArmorCard from "./ArmorCard.js";
+import { ReactSVG } from "react-svg";
+import ArmorIcon from "../res/closed-barbute.svg";
+import HealthIcon from "../res/health-normal.svg";
+import ManaIcon from "../res/concentration-orb.svg";
+import CollapseIcon from "../res/caret-left.svg"
+import ProgressBar from "./ProgressBar.js";
 
 function Dashboard(params) {
-
     // Update health
     const incrementHealth = () => {
-        params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
+        if(params.character.current_tp < (getAttributeBonus(params.character.constitution) + params.tpProfessions[params.character.profession_id]) * levelCalculation())
+            params.setCharacter({ ...params.character, current_tp: params.character.current_tp + 1 });
     }
     const decrementHealth = () => {
         if (params.character.current_tp > 0) {
@@ -26,198 +31,123 @@ function Dashboard(params) {
     }
 
     const levelCalculation = () => {
-        if(params.character){
-            if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
-            else return 1;
-        }
+        if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
         return 1;
     }
 
-    const activeWeapons = () => {
-        let activeWeaponsArr;
-        if(params.weapons){
-            activeWeaponsArr = params.weapons.filter((weapon) => weapon.active === 1)
+    const xpToNextLevel = () => {
+        if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
+        return 1000;
+    }
+
+    const calculateArmor = () => {
+        let armorValue = 5;
+        if (params.armor.length > 0) {
+            params.armor.forEach(element => {
+                armorValue += element.value;
+            });
         }
-        return activeWeaponsArr;
+        // Check if character profession is priest
+        if (params.character.profession_id === 4){
+            armorValue += 1;
+        }
+        // Check if character race is dwarf
+        if (params.character.race_id === 3){
+            armorValue += 1;
+        }
+        return armorValue;
+    }
+
+    const getAttributeBonus = (attributeValue) => {
+        return params.attributeBonus[attributeValue]
     }
 
     return (
-        <div className="flex flex-col gap-5 p-9 items-start relative">
-            <div className="border-b-4 border-purple pb-2">
-                <h1 className=" text-4xl text-foreground font-semibold">Dashboard</h1>
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
+            <div className="flex scrollbar gap-10 z-10">
+                <div className="flex flex-col gap-4">
+                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={HealthIcon}/>
+                        <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
+                        <div className="flex flex-col gap-2">
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
+                            </button>
+                            <hr className=" w-full border-foreground-highlight"/>
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={decrementHealth}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground -rotate-90'/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className=" backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ManaIcon}/>
+                        <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
+                        <div className="flex flex-col gap-2">
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementMana}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
+                            </button>
+                            <hr className=" w-full border-foreground-highlight"/>
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={decrementMana}>
+                                <ReactSVG src={CollapseIcon} className='fill-foreground -rotate-90'/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ArmorIcon}/>
+                        <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
+                        <div className=" w-7 h-7"/>
+                    </div>
+                </div>
+                <div className="bg-cover flex-grow aspect-image">
+                    <img src={`data:image/png;base64,${params.character.character_image}`} alt=""/>
+                </div>
+                <div className="flex flex-col min-w-[256px] flex-grow p-2">
+                    <h1 className=" text-6xl">{params.character.name}</h1>
+                    <div className="flex flex-row justify-between items-end">
+                        <h2>Level {levelCalculation()}</h2>
+                        <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
+                    </div>
+                    <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
+                    <table className="table-fixed mt-4 backdrop-blur-md">
+                        <tbody>
+                            <tr>
+                            <td>Race</td>
+                            <td className="text-right">{params.character.race}</td>
+                            </tr>
+                            <tr>
+                            <td>Profession</td>
+                            <td className="text-right">{params.character.profession}</td>
+                            </tr>
+                            <tr>
+                            <td>Height</td>
+                            <td className="text-right">{params.character.height} cm</td>
+                            </tr>
+                            <tr>
+                            <td>Weight</td>
+                            <td className="text-right">{params.character.weight} kg</td>
+                            </tr>
+                            <tr>
+                            <td>Age</td>
+                            <td className="text-right">{params.character.age}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <h3 className=" text-foreground font-medium">CHARACTER CARDS</h3>
-            <ScrollContainer className="overflow-x-scroll overflow-y-hidden w-[calc(100%+72px)] flex flex-row items-start gap-4 mx-[-36px] px-9">
-                <div className="h-[370px] min-w-[260px] rounded-md bg-gradient-to-br p-[2px] from-purple to-cyan relative">
-                    <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
-                                    {levelCalculation()}
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl bg-gradient-to-br from-purple to-cyan bg-clip-text text-transparent">
-                                    {params.character ? params.character.name : '{null}'}
-                            </h3>
-                        </div>
-                        <div className=" flex flex-row items-start gap-2 flex-wrap">
-                         <Tag text={params.character ? params.character.weight + ' kg' : '{null}'}/>
-                         <Tag text={params.character ? params.character.height + ' cm' : '{null}'}/>
-                         <Tag text='Bard'/>
-                         <Tag text='Human'/>
-                        </div>
-                    </div>
-                    <div  className="absolute bg-[#00000020] h-[calc(100%-4px)] w-[calc(100%-4px)] top-0 left-0 rounded-md p-5 opacity-0 hover:opacity-100 transition-opacity flex justify-end backdrop-blur-sm m-[2px]" >
-                        <button className=" h-9 text-base font-medium rounded-full text-foreground bg-[#ffffff40] hover:bg-foreground hover:text-background-dark transition-colors px-3">
-                            Edit
-                        </button>
-                    </div>
-                </div>
-                <div className="h-[370px] min-w-[260px] flex flex-col gap-4">
-                    <div className="rounded-md bg-gradient-to-br p-[2px] from-[#45B649] to-[#DCE35B] flex-grow">
-                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
-                            <div className=" flex flex-row gap-3 items-center">
-                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                    <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#45B649] to-[#DCE35B] bg-clip-text text-transparent">
-                                        +
-                                    </h3>
-                                </div>
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#45B649] to-[#DCE35B] bg-clip-text text-transparent">
-                                        Health
-                                </h3>
-                            </div>
-                            <div className="flex flex-row justify-center items-center flex-grow">
-                                <button className=" bg-gradient-to-br from-[#45B649] to-[#DCE35B] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={decrementHealth}>
-                                    {'<'}
-                                </button>
-                                <h1 className="font-medium text-4xl text-foreground flex-grow text-center">
-                                    {params.character ? params.character.current_tp + ' / 40' : '{null}'}
-                                </h1>
-                                <button className=" bg-gradient-to-br from-[#45B649] to-[#DCE35B] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={incrementHealth}>
-                                    {'>'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="rounded-md bg-gradient-to-br p-[2px] from-[#E100FF] to-[#7F00FF] flex-grow">
-                        <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-3">
-                            <div className=" flex flex-row gap-3 items-center">
-                                <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                    <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-transparent">
-                                        ~
-                                    </h3>
-                                </div>
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-transparent">
-                                        Mana
-                                </h3>
-                            </div>
-                            <div className="flex flex-row justify-center items-center flex-grow">
-                                <button className=" bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={decrementMana}>
-                                    {'<'}
-                                </button>
-                                <h1 className="font-medium text-4xl text-foreground flex-grow text-center">
-                                    {params.character ? params.character.current_mp + ' / 5' : '{null}'}
-                                </h1>
-                                <button className=" bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-2 rounded-md w-9 h-9 flex justify-center items-center font-medium text-base" onClick={incrementMana}>
-                                    {'>'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="h-[370px] flex flex-col gap-4">
-                    <div className="flex flex-col justify-between rounded-md bg-background-dark p-5 relative gap-3 border-current-line border-2 flex-grow">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl text-current-line">
-                                    +
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl text-current-line">
-                                    DMG
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                    <div className="flex flex-col justify-between flex-grow rounded-md bg-background-dark border-current-line border-2 p-5 relative gap-3">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl text-current-line">
-                                    ~
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl text-current-line">
-                                    ARM
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-                <div className="h-[370px] flex flex-col gap-4">
-                    <div className="flex flex-col justify-between flex-grow rounded-md bg-background-dark border-current-line border-2 p-5 relative gap-3">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl text-current-line">
-                                    +
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl text-current-line">
-                                    INI
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                    <div className="flex flex-col justify-between flex-grow rounded-md bg-background-dark border-current-line border-2 p-5 relative gap-3">
-                        <div className=" flex flex-row gap-3 items-center">
-                            <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                                <h3 className=" font-bold text-2xl bg-gradient-to-br text-current-line">
-                                    ~
-                                </h3>
-                            </div>
-                            <h3 className=" font-bold text-2xl bg-gradient-to-br text-current-line">
-                                    ATB
-                            </h3>
-                        </div>
-                        <div className="flex flex-row gap-7 justify-center items-center flex-grow">
-                            <h1 className="font-medium text-5xl text-foreground flex-grow text-center">
-                                1
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-            </ScrollContainer>
-            <h3 className=" text-foreground font-medium">EQUIPPED GEAR CARDS</h3>
-            <ScrollContainer className="overflow-x-scroll h-[370px] overflow-y-hidden w-[calc(100%+72px)] flex flex-row items-start gap-4 mx-[-36px] px-9">
-                {activeWeapons().map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} setWeaponInactive={params.setWeaponInactive}/>)}
-
-                <div className="h-[370px] w-[260px] min-w-[260px] flex items-center justify-center flex-col gap-2">
-                    <div className="rounded-full bg-gradient-to-br p-[2px] from-yellow to-pink">
-                        <button className=" bg-background-dark ho hover:bg-background h-9 text-base font-medium rounded-full px-3 text-foreground transition-color">
-                            Equip weapon
-                        </button>
-                    </div>
-                </div>
-                <div className="min-w-[1px] h-full bg-current-line"/>
-                <div className="h-[370px] w-[260px] min-w-[260px] flex items-center justify-center flex-col gap-2">
-                    <div className="rounded-full bg-gradient-to-br p-[2px] from-cyan to-green">
-                        <button className=" bg-background-dark ho hover:bg-background h-9 text-base font-medium rounded-full px-3 text-foreground transition-colors">
-                            Equip armor
-                        </button>
-                    </div>
-                </div>
-            </ScrollContainer>
+            <h1 className="text-foreground text-2xl">Weapons</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} initiative={getAttributeBonus(params.character.dexterity)}/>) : <h1 className=" text-current-line">No weapons</h1>}
+            </div>
+            <h1 className="text-foreground text-2xl">Armor</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                {params.armor.length > 0 ? params.armor.map((armor) => <ArmorCard key={armor.id} armor={armor}/>) : <h1 className=" text-background-dark">No armor</h1>}
+            </div>
+            <h1 className="text-foreground text-2xl">Effects</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                {params.character.race_id === 4 ? <EffectCard/> : <></>}
+                {params.character.profession_id === 4 ? <EffectCard/> : <></>}
+                <EffectCard/>
+            </div>
         </div>
     );
 }

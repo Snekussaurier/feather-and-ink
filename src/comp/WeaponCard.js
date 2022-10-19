@@ -1,35 +1,37 @@
-import WeaponTag from "./WeaponTag";
+const getPrefix = (value) => {
+    if(value > 0){
+        return '+' + value;
+    }    
+    else{
+        return value;
+    }
+}
 
 function WeaponCard(params) {
     return(                
-        <div className="h-[370px] w-[260px] min-w-[260px] rounded-md bg-gradient-to-br p-[2px] from-yellow to-pink relative">
-            <div className="flex flex-col justify-between h-full rounded-md bg-background-dark p-5 relative gap-2">
-                <div className=" flex flex-row gap-3 items-center">
-                    <div className=" bg-background flex items-center justify-center p-[3px] rounded-3xl min-h-[36px] min-w-[36px]">
-                        <h3 className=" font-bold text-2xl bg-gradient-to-br from-yellow to-pink bg-clip-text text-transparent">
-                            #
-                        </h3>
-                    </div>
-                    <h3 className=" font-bold text-2xl bg-gradient-to-br from-yellow to-pink bg-clip-text text-transparent">
-                        {params.weapon.name}
-                    </h3>
-                </div>
-                <p className="flex-grow text-foreground">
-                    {params.weapon.description}
-                </p>    
-                <div className=" flex flex-row items-start gap-2 flex-wrap">
-                    <WeaponTag text={'DMG: ' + params.weapon.damage}/>
-                    <WeaponTag text={'INI: ' + params.weapon.initiative}/>
-                    <WeaponTag text={'ATB: ' + params.weapon.atb}/>
-                    <WeaponTag text={params.weapon.attribute}/>
-                    <WeaponTag text={params.weapon.weapon_group}/>
-                    <WeaponTag text={params.weapon.weight + ' kg'}/>
-                </div>
+        <div className="h-[370px] min-w-[270px] flex-grow bg-background-very-dark border border-pink transition-all overflow-hidden">
+            <div className="bg-pink p-2 select-none cursor-pointer">
+                <h2 className="text-background-very-dark">{params.weapon.name}</h2> 
+                <h3 className="text-background-very-dark">{params.weapon.weapon_group}</h3>
             </div>
-            <div  className="absolute bg-[#00000020] h-[calc(100%-8px)] w-[calc(100%-8px)] top-0 left-0 rounded-md p-5 opacity-0 hover:opacity-100 transition-opacity flex justify-end backdrop-blur-sm m-1">
-                <button className=" h-9 text-base font-medium rounded-full text-foreground bg-[#ffffff40] hover:bg-red hover:text-background-dark transition-colors px-3" onClick={() => params.setWeaponInactive(params.weapon.id)}>
-                    remove
-                </button>
+            <div className="flex flex-col p-2 w-full">
+                <div className="grid grid-cols-2 grid-flow-row-dense justify-between w-full">
+                    <h3>Initiative</h3>
+                    <h2 className="text-right"><span className="text-cyan">({getPrefix(params.weapon.initiative)})</span> {getPrefix(params.initiative + params.weapon.initiative)}</h2>
+                    <h3>Kampfbonus</h3>
+                    <h2 className="text-right">+3</h2>
+                    <h3>Angriffsbonus</h3>
+                    <h2 className="text-right">{getPrefix(params.weapon.atb)}</h2>
+                    <h3>Defensivbonus</h3>
+                    <h2 className="text-right">{getPrefix(params.weapon.dfb)}</h2>
+                    <h3>Schaden</h3>
+                    <h2 className="text-right">{getPrefix(params.weapon.damage)}</h2>
+                </div>
+                <hr className=" border-pink my-2"/>
+                <h2>Info</h2>
+                <h3 className="italic">
+                    {params.weapon.description}
+                </h3>
             </div>
         </div>
     );
