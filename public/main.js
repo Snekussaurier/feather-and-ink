@@ -86,7 +86,7 @@ function createWindow () {
 
   //remove menu
   win.removeMenu();
-  win.webContents.openDevTools()
+  if(isDev) win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
