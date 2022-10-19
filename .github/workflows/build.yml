@@ -13,3 +13,5 @@ jobs:
       run: yarn install
     - name: Build electron app
       run: yarn build
+      with:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

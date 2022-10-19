@@ -32,6 +32,13 @@
         "to": "db/",
         "filter": [ "**/*" ]
       }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Snekussaurier",
+        "repo": "feather-and-ink"
+      }
     ]
   },
   "dependencies": {
