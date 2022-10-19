@@ -52,7 +52,6 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
     "start-react": "react-scripts start",
     "build-react": "react-scripts build",
     "start-electron": "nodemon --watch ./public/* --exec \"electron .\"",
