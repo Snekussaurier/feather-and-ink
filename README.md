@@ -10,10 +10,9 @@
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/downloads/snekussaurier/feather-and-ink/total.svg?style=flat-square&color=purple"/>
 </p>
 
-![1  Amplication main](https://raw.githubusercontent.com/Snekussaurier/feather-and-ink/dev/Background.png)
+![Background](https://user-images.githubusercontent.com/68194327/196973843-c8b627ef-1276-472a-a65a-3d80ea9f142e.png)
 
-
-Feather&Ink is a visualization tool for your pen&paper character in the world of Aborea. It uses a stack of React.js, Electron and SQLite 3.0.
+#### Feather&Ink is a visualization tool for your pen&paper character in the world of Aborea. It uses a stack of React.js, Electron and SQLite 3.0.
 # Features
 
 Feather&Ink provides the following features:
