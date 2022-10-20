@@ -1,6 +1,6 @@
 {
   "name": "feather-and-ink",
-  "productName": "Feather&Ink",
+  "productName": "Feather and Ink",
   "description": "A visualization tool for your pen&paper character in the world of Aborea.",
   "productDescription": "A visualization tool for your pen&paper character in the world of Aborea.",
   "version": "0.1.0",
@@ -17,7 +17,7 @@
   "build": {
     "extends": null,
     "appId": "com.snekussaurier.featherandink",
-    "productName": "feather-and-ink",
+    "productName": "Feather and Ink",
     "copyright": "Copyright Snekussaurier",
     "files": [
       "build/**/*",
