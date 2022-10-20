@@ -17,6 +17,7 @@ function createWindow () {
     }
   );
 
+
   // Create the browser window.
   const win = new BrowserWindow({
     minWidth: 925,
