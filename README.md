@@ -12,7 +12,7 @@
 
 ![Background](https://user-images.githubusercontent.com/68194327/196973843-c8b627ef-1276-472a-a65a-3d80ea9f142e.png)
 
-Feather&Ink is a visualization tool for your pen&paper character in the world of Aborea. It uses a stack of React.js, Electron and SQLite 3.0.
+#### Feather&Ink is a visualization tool for your pen&paper character in the world of Aborea. It uses a stack of React.js, Electron and SQLite 3.0.
 # Features
 
 Feather&Ink provides the following features:
