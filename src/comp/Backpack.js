@@ -1,7 +1,5 @@
 import React from "react";
-import { ReactSVG } from "react-svg";
 import CoinButton from "./CoinButton";
-import ArmorIcon from "../res/closed-barbute.svg"
 
 function Backpack(params) {
 
@@ -18,17 +16,29 @@ function Backpack(params) {
                 <CoinButton name='Muena' value={params.character.muena} currency="Muena"/>
             </div>
             <h1 className="text-foreground">Items</h1>
-            <div className=" flex flex-row gap-4">
-                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
-                    <ReactSVG src={ArmorIcon}/>
+            <div className=" flex flex-row gap-2">
+                <button className=" rounded-full py-1 px-3 bg-background-very-dark border border-background-very-dark hover:border-pink transition-colors font-medium text-foreground">
+                    weapons
                 </button>
-                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
-                    <ReactSVG src={ArmorIcon}/>
+                <button className=" rounded-full py-1 px-3 bg-background-very-dark border border-background-very-dark hover:border-green transition-colors font-medium text-foreground">
+                    armor
                 </button>
-                <button className=" rounded-full bg-background-very-dark p-2 backdrop-blur-md fill-foreground hover:fill-background-very-dark hover:bg-foreground transition-colors">
-                    <ReactSVG src={ArmorIcon}/>
+                <button className=" rounded-full py-1 px-3 bg-background-very-dark border border-background-very-dark hover:border-foreground-highlight transition-colors font-medium text-foreground ">
+                    items
                 </button>
             </div>
+            <table>
+                <th>
+                    <td>name</td>
+                    <td>name</td>
+                    <td>name</td>
+                </th>
+                <tr>
+                    <td>name</td>
+                    <td>name</td>
+                    <td>name</td>
+                </tr>
+            </table>
         </div>
     );
 }
