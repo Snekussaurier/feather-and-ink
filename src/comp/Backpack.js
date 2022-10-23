@@ -10,10 +10,10 @@ function Backpack(params) {
             </div>
             <h1 className="text-foreground">Wallet</h1>
             <div className="flex flex-row gap-4">
-                <CoinButton name='Goldfalken' value={params.character.goldfalken} currency="goldfalken"/>
-                <CoinButton name='Triontaler' value={params.character.triontaler} currency="Triontaler"/>
-                <CoinButton name='Kupferlinge' value={params.character.kupferlinge} currency="Kupferlinge"/>
-                <CoinButton name='Muena' value={params.character.muena} currency="Muena"/>
+                <CoinButton name='Goldfalken' currency="goldfalken" character={params.character} setCharacter={params.setCharacter}/>
+                <CoinButton name='Triontaler' currency="triontaler" character={params.character} setCharacter={params.setCharacter}/>
+                <CoinButton name='Kupferlinge' currency="kupferlinge" character={params.character} setCharacter={params.setCharacter}/>
+                <CoinButton name='Muena' currency="muena" character={params.character} setCharacter={params.setCharacter}/>
             </div>
             <h1 className="text-foreground">Items</h1>
             <div className=" flex flex-row gap-2">
@@ -28,16 +28,18 @@ function Backpack(params) {
                 </button>
             </div>
             <table>
-                <th>
+                <thead>
                     <td>name</td>
                     <td>name</td>
                     <td>name</td>
-                </th>
-                <tr>
-                    <td>name</td>
-                    <td>name</td>
-                    <td>name</td>
-                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>name</td>
+                        <td>name</td>
+                        <td>name</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     );
