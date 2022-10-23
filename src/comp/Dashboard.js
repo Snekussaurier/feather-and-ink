@@ -66,7 +66,7 @@ function Dashboard(params) {
         <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
             <div className="flex scrollbar gap-10 z-10">
                 <div className="flex flex-col gap-4">
-                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                    <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon}/>
                         <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
                         <div className="flex flex-col gap-2">
@@ -79,7 +79,7 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className=" backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                    <div className=" backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ManaIcon}/>
                         <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
                         <div className="flex flex-col gap-2">
@@ -92,7 +92,7 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
+                    <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ArmorIcon}/>
                         <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
                         <div className=" w-7 h-7"/>
@@ -108,7 +108,7 @@ function Dashboard(params) {
                         <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
                     </div>
                     <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
-                    <table className="table-fixed mt-4 backdrop-blur-md">
+                    <table className="table-fixed mt-4 backdrop-blur-md bg-[#ffffff0a]">
                         <tbody>
                             <tr>
                             <td>Race</td>

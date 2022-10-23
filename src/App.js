@@ -128,7 +128,7 @@ function App() {
     <HashRouter>
       <div className={!isExpanded ? "h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-0 transition-spacing duration-300" : "duration-300 h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[320px] transition-spacing" }>
         <div className='absolute top-5 bg-[#0E0F21AA] backdrop-blur-md pl-[20px] pr-[10px] py-[10px] left-0 z-40 flex flex-row border-r border-y border-current-line cursor-pointer' onClick={onExpand}>
-          <ReactSVG src={FeatherIcon} className='fill-foreground'/>
+          <ReactSVG src={FeatherIcon} className='fill-foreground-highlight'/>
           <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
         </div>
         <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>
@@ -136,7 +136,7 @@ function App() {
           <div className="absolute top-0 h-[calc(40vw+48px)] max-h-[calc(600px+48px)] min-h-[calc(500px+48px)] w-full left-0 bg-cover" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.1), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>} />
-            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter}/>} />
+            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor}/>} />
             <Route path="/leveling" element={<Leveling/>}/>
           </Routes>
         </div>
