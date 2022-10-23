@@ -85,8 +85,12 @@ function App() {
     const postCharacter = async () => {
       await window.api.updateCharacter(character);
     }
+    const postWallet = async () => {
+      await window.api.updateWallet(character);
+    }
 
     postCharacter();
+    postWallet();
   }, [character]);
 
   // Fetch Characters
