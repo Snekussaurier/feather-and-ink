@@ -17,30 +17,16 @@ function Backpack(params) {
             </div>
             <h1 className="text-foreground">Items</h1>
             <div className=" flex flex-row gap-2">
-                <button className=" rounded-full py-1 px-3 bg-background-very-dark border border-background-very-dark hover:border-pink transition-colors font-medium text-foreground">
+                <button className=" rounded py-1 px-3 bg-background-very-dark border border-current-line hover:border-pink transition-colors font-medium text-foreground">
                     weapons
                 </button>
-                <button className=" rounded-full py-1 px-3 bg-background-very-dark border border-background-very-dark hover:border-green transition-colors font-medium text-foreground">
+                <button className=" rounded py-1 px-3 bg-background-very-dark border border-current-line hover:border-green transition-colors font-medium text-foreground">
                     armor
                 </button>
-                <button className=" rounded-full py-1 px-3 bg-background-very-dark border border-background-very-dark hover:border-foreground-highlight transition-colors font-medium text-foreground ">
+                <button className=" rounded py-1 px-3 bg-background-very-dark border border-current-line hover:border-foreground-highlight transition-colors font-medium text-foreground ">
                     items
                 </button>
             </div>
-            <table>
-                <thead>
-                    <td>name</td>
-                    <td>name</td>
-                    <td>name</td>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td>name</td>
-                        <td>name</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     );
 }

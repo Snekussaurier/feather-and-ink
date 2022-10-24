@@ -52,7 +52,6 @@ function App() {
     }
     const getCharacter = async () => {
       const characterFromServer = await fetchCharacter(characterId)
-      console.log(characterFromServer);
       setCharacter(characterFromServer);
     }
     const getWeapons = async () => {

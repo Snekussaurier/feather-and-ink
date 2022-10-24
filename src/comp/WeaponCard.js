@@ -9,8 +9,8 @@ const getPrefix = (value) => {
 
 function WeaponCard(params) {
     return(                
-        <div className="h-[370px] min-w-[270px] flex-grow bg-background-very-dark border border-pink transition-all overflow-hidden">
-            <div className="bg-pink p-2 select-none cursor-pointer">
+        <div className="h-[370px] min-w-[270px] flex-grow bg-background-very-dark border border-red transition-all overflow-hidden">
+            <div className="bg-red p-2 select-none cursor-pointer">
                 <h2 className="text-background-very-dark">{params.weapon.name}</h2> 
                 <h3 className="text-background-very-dark">{params.weapon.weapon_group}</h3>
             </div>
@@ -27,7 +27,7 @@ function WeaponCard(params) {
                     <h3>Schaden</h3>
                     <h2 className="text-right">{getPrefix(params.weapon.damage)}</h2>
                 </div>
-                <hr className=" border-pink my-2"/>
+                <hr className=" border-red my-2"/>
                 <h2>Info</h2>
                 <h3 className="italic">
                     {params.weapon.description}
