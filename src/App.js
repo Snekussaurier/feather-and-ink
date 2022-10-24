@@ -11,18 +11,7 @@ import Leveling from './comp/Leveling';
 
 function App() {
 
-  const defaultCharacter = {
-    "id": "0",
-    "name": "Schwanhild Heinrike",
-    "race": "Mensch",
-    "profession": "Barde",
-    "weight": 70,
-    "height": 180,
-    "age": 20,
-    "current_tp": 4,
-    "current_mp": 4,
-    "current_exp": 0
-  };
+  const defaultCharacter = require('./conf/defaultChar.json')
 
   const config = require('./conf/config.json')
 
@@ -63,6 +52,7 @@ function App() {
     }
     const getCharacter = async () => {
       const characterFromServer = await fetchCharacter(characterId)
+      console.log(characterFromServer);
       setCharacter(characterFromServer);
     }
     const getWeapons = async () => {
