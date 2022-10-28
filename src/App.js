@@ -117,7 +117,7 @@ function App() {
     <HashRouter>
       <div className={!isExpanded ? "h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-0 transition-spacing duration-300" : "duration-300 h-screen bg-background overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[320px] transition-spacing" }>
         <div className='absolute top-5 bg-[#0E0F21AA] backdrop-blur-md pl-[20px] pr-[10px] py-[10px] left-0 z-40 flex flex-row border-r border-y border-current-line cursor-pointer' onClick={onExpand}>
-          <ReactSVG src={FeatherIcon} className='fill-foreground-highlight'/>
+          <ReactSVG src={FeatherIcon} className='fill-foreground'/>
           <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
         </div>
         <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>

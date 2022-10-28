@@ -39,7 +39,7 @@ function Sidenav(params) {
           <h1 className="text-xl text-foreground">
               Feather&Ink
           </h1>
-          <h1 className="text-base text-pink">
+          <h1 className="text-base text-foreground opacity-10">
             α
           </h1>
           <div className="flex-1"/>

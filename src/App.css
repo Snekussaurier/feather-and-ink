@@ -39,6 +39,10 @@ tr:nth-child(odd) {
   background-color: #00000020;
 }
 
+th {
+  text-align: left;
+}
+
 .aspect-image {
   aspect-ratio: 10 / 16;
 }

@@ -7,6 +7,11 @@ import HealthIcon from "../res/health-normal.svg";
 import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
+import RaceIcon from "../res/wolf-head.svg"
+import ProfessionIcon from "../res/drink-me.svg"
+import HeightIcon from "../res/vertical-flip.svg"
+import WeightIcon from "../res/weight.svg"
+import AgeIcon from "../res/abstract-017.svg"
 
 function Dashboard(params) {
     // Update health
@@ -87,7 +92,7 @@ function Dashboard(params) {
                                 <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
                             </button>
                             <hr className=" w-full border-foreground-highlight"/>
-                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={decrementMana}>
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line rounded-f" onClick={decrementMana}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground -rotate-90'/>
                             </button>
                         </div>
@@ -109,25 +114,25 @@ function Dashboard(params) {
                     </div>
                     <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
                     <table className="table-fixed mt-4 backdrop-blur-md bg-[#ffffff0a]">
-                        <tbody>
+                        <tbody className="">
                             <tr>
-                            <td>Race</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={RaceIcon} className=" fill-[#FFFFFFAA]"/>Race</div></td>
                             <td className="text-right">{params.character.race}</td>
                             </tr>
                             <tr>
-                            <td>Profession</td>
+                            <td><div className="flex flex-row gap-2 items-center h-5 w-5"><ReactSVG src={ProfessionIcon} className=" fill-[#FFFFFFAA]"/>Profession</div></td>
                             <td className="text-right">{params.character.profession}</td>
                             </tr>
                             <tr>
-                            <td>Height</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={HeightIcon} className=" fill-[#FFFFFFAA]"/>Height</div></td>
                             <td className="text-right">{params.character.height} cm</td>
                             </tr>
                             <tr>
-                            <td>Weight</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={WeightIcon} className=" fill-[#FFFFFFAA]"/>Weight</div></td>
                             <td className="text-right">{params.character.weight} kg</td>
                             </tr>
                             <tr>
-                            <td>Age</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={AgeIcon} className=" fill-[#FFFFFFAA]"/>Age</div></td>
                             <td className="text-right">{params.character.age}</td>
                             </tr>
                         </tbody>
@@ -146,7 +151,6 @@ function Dashboard(params) {
             <div className="grid grid-cols-3 gap-4 justify-between">
                 {params.character.race_id === 4 ? <EffectCard/> : <></>}
                 {params.character.profession_id === 4 ? <EffectCard/> : <></>}
-                <EffectCard/>
             </div>
         </div>
     );
