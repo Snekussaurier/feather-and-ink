@@ -68,11 +68,11 @@ function Dashboard(params) {
     }
 
     return (
-        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
-            <div className="flex scrollbar gap-10 z-10">
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[1160px] min-w-[910px] w-full z-10">
+            <div className="flex gap-10 z-10 justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={HealthIcon}/>
+                        <ReactSVG src={HealthIcon} className="fill-foreground"/>
                         <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
@@ -85,7 +85,7 @@ function Dashboard(params) {
                         </div>
                     </div>
                     <div className=" backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ManaIcon}/>
+                        <ReactSVG src={ManaIcon} className="fill-foreground"/>
                         <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementMana}>
@@ -98,22 +98,22 @@ function Dashboard(params) {
                         </div>
                     </div>
                     <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ArmorIcon}/>
+                        <ReactSVG src={ArmorIcon} className="fill-foreground"/>
                         <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
                         <div className=" w-7 h-7"/>
                     </div>
                 </div>
-                <div className="bg-cover flex-grow aspect-image">
+                <div className="bg-cover flex-grow aspect-image max-w-[350px]">
                     <img src={`data:image/png;base64,${params.character.character_image}`} alt=""/>
                 </div>
-                <div className="flex flex-col min-w-[256px] flex-grow p-2">
+                <div className="flex flex-col min-w-[256px] max-w-[256px] flex-grow p-2">
                     <h1 className=" text-6xl">{params.character.name}</h1>
                     <div className="flex flex-row justify-between items-end">
                         <h2>Level {levelCalculation()}</h2>
                         <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
                     </div>
                     <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
-                    <table className="table-fixed mt-4 backdrop-blur-md bg-[#ffffff0a]">
+                    <table className="table-fixed mt-4 backdrop-blur-md">
                         <tbody className="">
                             <tr>
                             <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={RaceIcon} className=" fill-[#FFFFFFAA]"/>Race</div></td>
