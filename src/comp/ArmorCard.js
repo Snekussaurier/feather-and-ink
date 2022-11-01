@@ -14,7 +14,7 @@ function ArmorCard(params) {
             </div>
             <hr className=" border-green my-2"/>
             <h2>Info</h2>
-            <h3>
+            <h3 className='italic'>
                 {params.armor.description}
             </h3>
         </div>

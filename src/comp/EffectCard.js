@@ -1,6 +1,6 @@
 function EffectCard(params) {
     return(                
-        <div className="h-[300px] min-w-[270px] flex-grow bg-background-very-dark border border-purple">
+        <div className="h-[300px] min-w-[270px] flex-grow bg-background-very-dark border border-purple overflow-hidden">
             <div className="bg-purple p-2">
                 <h2 className="text-background-very-dark">Priesterlicher Schutz</h2>
             </div>
@@ -11,7 +11,7 @@ function EffectCard(params) {
                 </div>
                 <hr className=" border-purple my-2"/>
                 <h2>Info</h2>
-                <h3>
+                <h3 className='italic'>
                     Test
                 </h3>
             </div>

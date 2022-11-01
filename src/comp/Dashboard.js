@@ -7,6 +7,11 @@ import HealthIcon from "../res/health-normal.svg";
 import ManaIcon from "../res/concentration-orb.svg";
 import CollapseIcon from "../res/caret-left.svg"
 import ProgressBar from "./ProgressBar.js";
+import RaceIcon from "../res/wolf-head.svg"
+import ProfessionIcon from "../res/drink-me.svg"
+import HeightIcon from "../res/vertical-flip.svg"
+import WeightIcon from "../res/weight.svg"
+import AgeIcon from "../res/abstract-017.svg"
 
 function Dashboard(params) {
     // Update health
@@ -63,11 +68,11 @@ function Dashboard(params) {
     }
 
     return (
-        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[960px] min-w-[910px] w-full z-10">
-            <div className="flex scrollbar gap-10 z-10">
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[1160px] min-w-[910px] w-full z-10">
+            <div className="flex gap-10 z-10 justify-between">
                 <div className="flex flex-col gap-4">
-                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={HealthIcon}/>
+                    <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={HealthIcon} className="fill-foreground"/>
                         <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
@@ -79,29 +84,29 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className=" backdrop-blur-md h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ManaIcon}/>
+                    <div className=" backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ManaIcon} className="fill-foreground"/>
                         <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementMana}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>
                             </button>
                             <hr className=" w-full border-foreground-highlight"/>
-                            <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={decrementMana}>
+                            <button className="h-7 w-7 bg-background-very-dark border border-current-line rounded-f" onClick={decrementMana}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground -rotate-90'/>
                             </button>
                         </div>
                     </div>
-                    <div className="backdrop-blur-md h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ArmorIcon}/>
+                    <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ArmorIcon} className="fill-foreground"/>
                         <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
                         <div className=" w-7 h-7"/>
                     </div>
                 </div>
-                <div className="bg-cover flex-grow aspect-image">
+                <div className="bg-cover flex-grow aspect-image max-w-[350px]">
                     <img src={`data:image/png;base64,${params.character.character_image}`} alt=""/>
                 </div>
-                <div className="flex flex-col min-w-[256px] flex-grow p-2">
+                <div className="flex flex-col min-w-[256px] max-w-[256px] flex-grow p-2">
                     <h1 className=" text-6xl">{params.character.name}</h1>
                     <div className="flex flex-row justify-between items-end">
                         <h2>Level {levelCalculation()}</h2>
@@ -109,25 +114,25 @@ function Dashboard(params) {
                     </div>
                     <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
                     <table className="table-fixed mt-4 backdrop-blur-md">
-                        <tbody>
+                        <tbody className="">
                             <tr>
-                            <td>Race</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={RaceIcon} className=" fill-[#FFFFFFAA]"/>Race</div></td>
                             <td className="text-right">{params.character.race}</td>
                             </tr>
                             <tr>
-                            <td>Profession</td>
+                            <td><div className="flex flex-row gap-2 items-center h-5 w-5"><ReactSVG src={ProfessionIcon} className=" fill-[#FFFFFFAA]"/>Profession</div></td>
                             <td className="text-right">{params.character.profession}</td>
                             </tr>
                             <tr>
-                            <td>Height</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={HeightIcon} className=" fill-[#FFFFFFAA]"/>Height</div></td>
                             <td className="text-right">{params.character.height} cm</td>
                             </tr>
                             <tr>
-                            <td>Weight</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={WeightIcon} className=" fill-[#FFFFFFAA]"/>Weight</div></td>
                             <td className="text-right">{params.character.weight} kg</td>
                             </tr>
                             <tr>
-                            <td>Age</td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={AgeIcon} className=" fill-[#FFFFFFAA]"/>Age</div></td>
                             <td className="text-right">{params.character.age}</td>
                             </tr>
                         </tbody>
@@ -146,7 +151,6 @@ function Dashboard(params) {
             <div className="grid grid-cols-3 gap-4 justify-between">
                 {params.character.race_id === 4 ? <EffectCard/> : <></>}
                 {params.character.profession_id === 4 ? <EffectCard/> : <></>}
-                <EffectCard/>
             </div>
         </div>
     );

@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('api', {
   getCharacters: (args) => ipcRenderer.invoke('get-characters', args),
   getCharacter: (args) => ipcRenderer.invoke('get-character', args),
   updateCharacter: (args) => ipcRenderer.invoke('update-character', args),
+  updateWallet: (args) => ipcRenderer.invoke('update-wallet', args),
 
   // Gear Methods
   getWeapons: (args) => ipcRenderer.invoke('get-weapons', args),

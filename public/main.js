@@ -85,6 +85,14 @@ function createWindow () {
     });
   });
 
+  // Update character details
+  ipcMain.handle('update-wallet', (event, args) => {
+    const sql = 'UPDATE wallet SET goldfalken = ?, triontaler = ?, kupferlinge = ?, muena = ? WHERE character_id = ?';
+    db.run(sql, [args.goldfalken, args.triontaler, args.kupferlinge, args.muena, args.id], function(err) {
+      if (err) return console.error(err.message);
+    });
+  });
+
   //remove menu
   win.removeMenu();
   if(isDev) win.webContents.openDevTools();

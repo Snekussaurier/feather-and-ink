@@ -25,6 +25,11 @@ h3 {
   color: #FFFFFFAA;
 }
 
+h4 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 500;
+}
+
 p{
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 0.875rem;
@@ -35,9 +40,6 @@ tr {
   color: #fff;
 }
 
-tr:nth-child(odd) {
-  background-color: #00000020;
-}
 
 .aspect-image {
   aspect-ratio: 10 / 16;

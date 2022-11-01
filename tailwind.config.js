@@ -37,7 +37,7 @@ module.exports = {
       'pink': '#ec56a7',
       'rose': '#f4c7ff',
       'purple': '#9773ff',
-      'red': '#ff5555',
+      'red': '#FF7878',
       'yellow': '#f1fa8c',
     },
   },
