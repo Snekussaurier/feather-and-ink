@@ -12,22 +12,8 @@ import CloseIcon from "../res/close.svg";
 import AddCharacterIcon from "../res/user-add.svg";
 import CharacterSelect from "./CharacterSelect"
 import BookIcon from "../res/book-open.svg"
-import ProgressBar from "./ProgressBar";
 
 function Sidenav(params) {
-
-  let backgroundImage;
-  if(params.character.character_background !== undefined) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
-  else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
-
-  const levelCalculation = () => {
-    if (params.character.current_exp >= 1000) return Math.floor((-1000+Math.sqrt(8000*params.character.current_exp+17000000))/2000);
-    return 1;
-  }
-  const xpToNextLevel = () => {
-    if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
-    return 1000;
-}
 
   const [characterMenuIsExpanded, setCharacterMenuIsExpanded] = useState(false);
   const onExpandCharacterMenu = () => setCharacterMenuIsExpanded((expanded) => !expanded);

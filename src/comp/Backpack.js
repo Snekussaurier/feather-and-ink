@@ -10,12 +10,12 @@ function Backpack(params) {
             <h1 className="text-5xl unde">Backpack</h1>
             <div className=" flex flex-row gap-4">
                 <div className="flex flex-col gap-4 flex-grow">
-                    <h1>Inventory</h1>
+                    <h1 className="text-foreground">Inventory</h1>
                     <div className="flex flex-row gap-2">
                         <div>
                             <input type="radio" id="weapons" name="selected_item_group" value="weapons" className="peer hidden" defaultChecked/>
                             <label htmlFor="weapons" className="px-4 py-2 flex flex-row items-center bg-background gap-4 backdrop-blur-md peer-checked:border-foreground-highlight peer-checked:text-foreground-highlight hover:bg-background-very-dark hover:text-foreground transition-all border border-transparent cursor-pointer rounded-full text-[#FFFFFFAA]">
-                                <h4 className=" font-medium">
+                                <h4 className="font-medium">
                                     Weapons
                                 </h4>
                             </label>
@@ -23,7 +23,7 @@ function Backpack(params) {
                         <div>
                             <input type="radio" id="armor" name="selected_item_group" value="armor" className="peer hidden"/>
                             <label htmlFor="armor" className="px-4 py-2 flex flex-row items-center bg-background gap-4 backdrop-blur-md peer-checked:border-foreground-highlight peer-checked:text-foreground-highlight hover:bg-background-very-dark hover:text-foreground transition-all border border-transparent cursor-pointer rounded-full text-[#FFFFFFAA]">
-                                <h4 className=" font-medium">
+                                <h4 className="font-medium">
                                     Armor
                                 </h4>
                             </label>
@@ -31,7 +31,7 @@ function Backpack(params) {
                         <div>
                             <input type="radio" id="items" name="selected_item_group" value="items" className="peer hidden"/>
                             <label htmlFor="items" className="px-4 py-2 flex flex-row items-center bg-background gap-4 backdrop-blur-md peer-checked:border-foreground-highlight peer-checked:text-foreground-highlight hover:bg-background-very-dark hover:text-foreground transition-all border border-transparent cursor-pointer rounded-full text-[#FFFFFFAA]">
-                                <h4 className=" font-medium">
+                                <h4 className="font-medium">
                                     Items
                                 </h4>
                             </label>
@@ -73,7 +73,7 @@ function Backpack(params) {
                     </table>
                 </div>
                 <div className="flex flex-col gap-4 w-1/5 h-fit sticky top-5">
-                    <h1>Wallet</h1>
+                    <h1 className="text-foreground">Wallet</h1>
                     <CoinButton name='Goldfalken' currency="goldfalken" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Triontaler' currency="triontaler" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Kupferlinge' currency="kupferlinge" character={params.character} setCharacter={params.setCharacter}/>
