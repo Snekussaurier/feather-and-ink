@@ -113,25 +113,25 @@ function Dashboard(params) {
                         <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
                     </div>
                     <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
-                    <table className="table-fixed mt-4 backdrop-blur-md">
+                    <table className="table-fixed mt-4 backdrop-blur-md ">
                         <tbody className="">
-                            <tr>
-                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={RaceIcon} className=" fill-[#FFFFFFAA]"/>Race</div></td>
+                            <tr className="odd:bg-[#ffffff0a]">
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={RaceIcon} className=" fill-[#FFFFFFAA] "/>Race</div></td>
                             <td className="text-right">{params.character.race}</td>
                             </tr>
-                            <tr>
+                            <tr className="odd:bg-[#ffffff0a]">
                             <td><div className="flex flex-row gap-2 items-center h-5 w-5"><ReactSVG src={ProfessionIcon} className=" fill-[#FFFFFFAA]"/>Profession</div></td>
                             <td className="text-right">{params.character.profession}</td>
                             </tr>
-                            <tr>
+                            <tr className="odd:bg-[#ffffff0a]">
                             <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={HeightIcon} className=" fill-[#FFFFFFAA]"/>Height</div></td>
                             <td className="text-right">{params.character.height} cm</td>
                             </tr>
-                            <tr>
+                            <tr className="odd:bg-[#ffffff0a]">
                             <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={WeightIcon} className=" fill-[#FFFFFFAA]"/>Weight</div></td>
                             <td className="text-right">{params.character.weight} kg</td>
                             </tr>
-                            <tr>
+                            <tr className="odd:bg-[#ffffff0a]">
                             <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={AgeIcon} className=" fill-[#FFFFFFAA]"/>Age</div></td>
                             <td className="text-right">{params.character.age}</td>
                             </tr>

@@ -18,7 +18,7 @@ function ArmorList(props) {
         return (
             <table className="w-full backdrop-blur-md">
                 <thead className="h-10 border-b border-current-line">
-                    <tr className="text-center bg-background-dark text-foreground-highlight">
+                    <tr className="text-center bg-background text-foreground-highlight">
                         <th>Name</th>
                         <th>Armor Group</th>
                         <th>Armor Value</th>
@@ -29,7 +29,7 @@ function ArmorList(props) {
                 <tbody>
                     {filteredData.map(armor => {
                     return (
-                        <tr key={armor.id} className="text-center bg-background-dark odd:bg-background-very-dark">
+                        <tr key={armor.id} className="text-center bg-background odd:bg-background-very-dark">
                             <td>{ armor.name }</td>
                             <td>{ armor.armor_group }</td>
                             <td>{ armor.value }</td>

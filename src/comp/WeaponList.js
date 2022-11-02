@@ -18,7 +18,7 @@ function WeaponList(props) {
         return (
             <table className="w-full backdrop-blur-md">
                 <thead className="h-10 border-b border-current-line">
-                    <tr className="text-center bg-background-dark text-foreground-highlight">
+                    <tr className="text-center bg-background text-foreground-highlight">
                         <th>Name</th>
                         <th>Weapon Group</th>
                         <th>Weight</th>
@@ -33,7 +33,7 @@ function WeaponList(props) {
                 <tbody>
                     {filteredData.map(weapon => {
                     return (
-                        <tr key={weapon.id} className="text-center bg-background-dark odd:bg-background-very-dark">
+                        <tr key={weapon.id} className="text-center bg-background odd:bg-background-very-dark">
                             <td>{ weapon.name }</td>
                             <td>{ weapon.weapon_group }</td>
                             <td>{ weapon.weight } kg</td>
