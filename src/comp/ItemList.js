@@ -16,7 +16,7 @@ function ItemList(props) {
     })
     if(filteredData.length > 0){
         return (
-            <table className="w-full backdrop-blur-md">
+            <table className="w-full backdrop-blur-md border border-current-line">
                 <thead className="h-10 border-b border-current-line">
                     <tr className="text-center bg-background text-foreground-highlight">
                         <th>Name</th>

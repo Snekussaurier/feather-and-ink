@@ -95,6 +95,14 @@ function createWindow () {
     });
   });
 
+  // Update weapon details
+  ipcMain.handle('update-weapon-active', (event, args) => {
+    const sql = 'UPDATE character SET active WHERE id = ?';
+    db.run(sql, [args.active, args.id], function(err) {
+      if (err) return console.error(err.message);
+    });
+  });
+
   // Update character details
   ipcMain.handle('update-wallet', (event, args) => {
     const sql = 'UPDATE wallet SET goldfalken = ?, triontaler = ?, kupferlinge = ?, muena = ? WHERE character_id = ?';

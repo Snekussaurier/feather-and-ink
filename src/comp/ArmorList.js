@@ -16,7 +16,7 @@ function ArmorList(props) {
     })
     if(filteredData.length > 0){
         return (
-            <table className="w-full backdrop-blur-md">
+            <table className="w-full backdrop-blur-md border-current-line">
                 <thead className="h-10 border-b border-current-line">
                     <tr className="text-center bg-background text-foreground-highlight">
                         <th>Name</th>
@@ -33,7 +33,7 @@ function ArmorList(props) {
                             <td>{ armor.name }</td>
                             <td>{ armor.armor_group }</td>
                             <td>{ armor.value }</td>
-                            <td><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
+                            <td><input type="checkbox" value="" className='bg-current-line border-2 cursor-pointer border-current-line h-4 w-4 appearance-none checked:bg-cyan transition-all' onChange={() => console.log("checked")}/></td>
                             <td><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
                         </tr>
                     );

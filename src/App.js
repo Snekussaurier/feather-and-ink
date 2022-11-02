@@ -136,7 +136,7 @@ function App() {
         <div className='max-w-full flex justify-center flex-grow relative'>
         <div className="w-screen h-screen bg-cover absolute" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
-            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>} />
+            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>}/>
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items}/>}/>
             <Route path="/leveling" element={<Leveling/>}/>
           </Routes>
