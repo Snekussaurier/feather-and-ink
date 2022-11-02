@@ -1,4 +1,4 @@
-function SidenavButton(params) {
+function CharacterSelect(params) {
     let backgroundImage;
     if(params.character.character_background !== undefined) backgroundImage = require('../res/background-illustration-' + params.character.character_background + '.jpg');
     else backgroundImage = require('../res/background-illustration-' + 1 + '.jpg');
@@ -16,4 +16,4 @@ function SidenavButton(params) {
         </div>
     );
 }
-export default SidenavButton;
+export default CharacterSelect;

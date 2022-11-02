@@ -43,6 +43,7 @@ function App() {
   const [character, setCharacter] = useState(defaultCharacter);
   const [weapons, setWeapons] = useState([]);
   const [armor, setArmor] = useState([]);
+  const [items, setItems] = useState([]);
 
   // Get character from db
   useEffect(() => {
@@ -62,11 +63,16 @@ function App() {
       const armorFromServer = await fetchArmor(characterId)
       setArmor(armorFromServer)
     }
+    const getItems = async () => {
+      const itemsFromServer = await fetchItems(characterId)
+      setItems(itemsFromServer)
+    }
 
     getCharacters();
     getCharacter();
     getWeapons();
     getArmor();
+    getItems();
   }, [characterId]);
 
   // Update character in db
@@ -106,6 +112,12 @@ function App() {
     return res;
   }
 
+  // Fetch Items
+  const fetchItems = async (id) => {
+    const res = await window.api.getItems(id);
+    return res;
+  }
+
   const [isExpanded, setIsExpanded] = useState(true);
   const onExpand = () => setIsExpanded((expanded) => !expanded);
 
@@ -125,7 +137,7 @@ function App() {
         <div className="w-screen h-screen bg-cover absolute" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>} />
-            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor}/>} />
+            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items}/>}/>
             <Route path="/leveling" element={<Leveling/>}/>
           </Routes>
         </div>

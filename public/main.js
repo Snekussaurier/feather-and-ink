@@ -57,6 +57,16 @@ function createWindow () {
     })
   });
 
+  // Get items details
+  ipcMain.handle('get-items', (event, args) => {
+    return new Promise((resolve, reject) => {
+      db.all('SELECT * FROM items WHERE character_id = ?',[args], (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Get character details
   ipcMain.handle('get-character', (event, args) => {
     return new Promise((resolve, reject) => {
