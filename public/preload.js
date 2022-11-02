@@ -12,6 +12,6 @@ contextBridge.exposeInMainWorld('api', {
   // Gear Methods
   getWeapons: (args) => ipcRenderer.invoke('get-weapons', args),
   updateWeapons: (args) => ipcRenderer.invoke('update-weapons', args),
-
   getArmor: (args) => ipcRenderer.invoke('get-armor', args),
+  getItems: (args) => ipcRenderer.invoke('get-items', args),
 });

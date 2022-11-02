@@ -40,6 +40,17 @@ tr {
   color: #fff;
 }
 
+th {
+  font-family: 'Eczar', serif;  
+}
+
+td {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+input {
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
 .aspect-image {
   aspect-ratio: 10 / 16;
