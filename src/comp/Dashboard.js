@@ -73,7 +73,10 @@ function Dashboard(params) {
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon} className="fill-foreground"/>
-                        <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
+                        <div className=" flex flex-row items-end gap-1">
+                            <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
+                            <h1 className=" text-cyan font-sans text-2xl">/ {(getAttributeBonus(params.character.constitution) + params.tpProfessions[params.character.profession_id]) * levelCalculation()}</h1>
+                        </div>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>

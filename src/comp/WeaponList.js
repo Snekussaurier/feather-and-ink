@@ -43,7 +43,7 @@ function WeaponList(props) {
                             <td>{ weapon.atb }</td>
                             <td>{ weapon.dfb }</td>
                             <td>{ weapon.damage }</td>
-                            <td><input type="checkbox" value="" className='bg-current-line border-2 cursor-pointer border-current-line h-4 w-4 appearance-none checked:bg-cyan transition-all' onChange={() => console.log(weapon.id)}/></td>
+                            <td><input type="checkbox" value="" className='bg-current-line border-2 cursor-pointer border-current-line h-4 w-4 appearance-none checked:bg-cyan transition-all' checked={Boolean(weapon.active)} onChange={() => console.log(weapon.id)}/></td>
                             <td><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
                         </tr>
                     );

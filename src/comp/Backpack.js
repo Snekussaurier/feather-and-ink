@@ -28,7 +28,7 @@ function Backpack(params) {
                         </div>
                         <div className="flex-1"/>
                         <form action="">
-                            <input type="text" placeholder="search..." name="q" className="bg-background border border-current-line outline-none caret-foreground text-foreground h-full w-56 px-4 py-2 focus:border-foreground-highlight hover:bg-current-line rounded-none transition-all" onChange={inputHandler}>
+                            <input type="text" placeholder="search..." name="q" className="bg-background border border-current-line outline-none caret-foreground text-foreground h-full w-56 px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line rounded-none transition-all" onChange={inputHandler}>
                             </input>
                         </form>
                     </div>

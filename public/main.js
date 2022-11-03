@@ -20,7 +20,7 @@ function createWindow () {
 
   // Create the browser window.
   const win = new BrowserWindow({
-    minWidth: 925,
+    minWidth:  1024,
     minHeight: 720,
     webPreferences: {
       // The preload file where we will perform our app communication
