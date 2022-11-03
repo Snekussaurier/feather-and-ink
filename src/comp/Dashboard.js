@@ -27,7 +27,8 @@ function Dashboard(params) {
 
     // Update mana
     const incrementMana = () => {
-        params.setCharacter({ ...params.character, current_mp: params.character.current_mp + 1 });
+        if(params.character.current_mp < calculateMaxManaPoints())
+            params.setCharacter({ ...params.character, current_mp: params.character.current_mp + 1 });
     }
     const decrementMana = () => {
         if (params.character.current_mp > 0) {
@@ -63,19 +64,25 @@ function Dashboard(params) {
         return armorValue;
     }
 
+    const calculateMaxManaPoints = () => {
+        if (params.character.profession_id === 4) return (getAttributeBonus(params.character.charisma) + 3) * params.character.develop_magic;
+        else return (getAttributeBonus(params.character.intelligence) + 3) * params.character.develop_magic;
+    }
+
     const getAttributeBonus = (attributeValue) => {
         return params.attributeBonus[attributeValue]
     }
 
     return (
-        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[1160px] min-w-[910px] w-full z-10">
-            <div className="flex gap-10 z-10 justify-between">
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[1160px] w-full z-10">
+            <div className="flex gap-10 z-10 justify-center">
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon} className="fill-foreground"/>
                         <div className=" flex flex-row items-end gap-1">
                             <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
-                            <h1 className=" text-cyan font-sans text-2xl">/ {(getAttributeBonus(params.character.constitution) + params.tpProfessions[params.character.profession_id]) * levelCalculation()}</h1>
+                            <h1 className=" text-[#FFFFFFAA] font-sans text-2xl">/</h1>
+                            <h1 className=" text-[#FFFFFFAA] font-sans text-2xl">{(getAttributeBonus(params.character.constitution) + params.tpProfessions[params.character.profession_id]) * levelCalculation()}</h1>
                         </div>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementHealth}>
@@ -89,7 +96,11 @@ function Dashboard(params) {
                     </div>
                     <div className=" backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ManaIcon} className="fill-foreground"/>
-                        <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
+                        <div className=" flex flex-row items-end gap-1">
+                            <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
+                            <h1 className=" text-[#FFFFFFAA] font-sans text-2xl">/</h1>
+                            <h1 className=" text-[#FFFFFFAA] font-sans text-2xl">{calculateMaxManaPoints()}</h1>
+                        </div>
                         <div className="flex flex-col gap-2">
                             <button className="h-7 w-7 bg-background-very-dark border border-current-line" onClick={incrementMana}>
                                 <ReactSVG src={CollapseIcon} className='fill-foreground rotate-90'/>

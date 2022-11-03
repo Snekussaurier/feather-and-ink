@@ -38,12 +38,30 @@ function App() {
     7: 4
   }
 
+  const skillLevel = {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 5,
+    7: 6,
+    8: 6,
+    9: 7,
+    10: 7,
+    11: 8,
+    12: 8,
+    13: 9,
+    14: 9
+  }
+
   const [characterId, setCharacterId] = useState(config.currentCharacter);
   const [characters, setCharacters] = useState([]);
-  const [character, setCharacter] = useState(defaultCharacter);
+  const [character, setCharacter] = useState(defaultCharacter.characterDetails);
   const [weapons, setWeapons] = useState([]);
   const [armor, setArmor] = useState([]);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(defaultCharacter.items);
 
   // Get character from db
   useEffect(() => {
@@ -65,6 +83,7 @@ function App() {
     }
     const getItems = async () => {
       const itemsFromServer = await fetchItems(characterId)
+      console.log(itemsFromServer)
       setItems(itemsFromServer)
     }
 
@@ -134,9 +153,9 @@ function App() {
         </div>
         <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
-        <div className="w-screen h-screen bg-cover absolute" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
+        <div className="w-screen h-screen bg-cover fixed" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
-            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions}/>}/>
+            <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions} skillLevel={skillLevel}/>}/>
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items}/>}/>
             <Route path="/leveling" element={<Leveling/>}/>
           </Routes>
