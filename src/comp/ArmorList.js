@@ -16,24 +16,24 @@ function ArmorList(props) {
     })
     if(filteredData.length > 0){
         return (
-            <table className="w-full backdrop-blur-md border-current-line">
+            <table className="w-full backdrop-blur-md border-current-line h-fit">
                 <thead className="h-10 border-b border-current-line">
-                    <tr className="text-center bg-background text-foreground-highlight">
+                    <tr className="text-center bg-background text-foreground-highlight leading-10">
+                        <th>Active</th>
                         <th>Name</th>
                         <th>Armor Group</th>
                         <th>Armor Value</th>
-                        <th>Active</th>
-                        <th>Delete</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredData.map(armor => {
                     return (
-                        <tr key={armor.id} className="text-center bg-background odd:bg-background-very-dark">
+                        <tr key={armor.id} className="text-center bg-background odd:bg-background-very-dark leading-10">
+                            <td><input type="checkbox" value="" className='bg-current-line border-2 cursor-pointer border-current-line h-4 w-4 appearance-none checked:bg-cyan transition-all'  checked={Boolean(armor.active)} onChange={() => console.log("checked")}/></td>
                             <td>{ armor.name }</td>
                             <td>{ armor.armor_group }</td>
                             <td>{ armor.value }</td>
-                            <td><input type="checkbox" value="" className='bg-current-line border-2 cursor-pointer border-current-line h-4 w-4 appearance-none checked:bg-cyan transition-all'  checked={Boolean(armor.active)} onChange={() => console.log("checked")}/></td>
                             <td><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
                         </tr>
                     );
@@ -44,7 +44,7 @@ function ArmorList(props) {
     }
     else {
         return (
-            <div className=' h-20 flex justify-center items-center'>
+            <div className=' h-20 flex justify-center items-center w-full'>
                 <h1>
                     No Armor
                 </h1>

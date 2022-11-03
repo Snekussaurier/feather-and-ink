@@ -19,20 +19,33 @@ function Backpack(params) {
             <h1 className="text-5xl unde">Backpack</h1>
             <div className=" flex flex-row gap-4">
                 <div className="flex flex-col gap-4 flex-grow">
-                    <h1 className="text-foreground">Inventory</h1>
-                    <div className="flex flex-row">
-                        <div className="flex flex-row gap-2" onChange={event => setSelectedItemGroup(event.target.value)}>
-                            <ItemGroupButton name="Weapons"/>
-                            <ItemGroupButton name="Armor"/>
-                            <ItemGroupButton name="Items"/>
-                        </div>
+                    <div className=" flex flex-row">
+                        <h1 className="text-foreground">Inventory</h1>
                         <div className="flex-1"/>
-                        <form action="">
-                            <input type="text" placeholder="search..." name="q" className="bg-background border border-current-line outline-none caret-foreground text-foreground h-full w-56 px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line rounded-none transition-all" onChange={inputHandler}>
-                            </input>
-                        </form>
+                        <button className="px-4 py-1 gap-2 flex flex-row items-center justify-center bg-foreground rounded-full backdrop-blur-md hover:bg-foreground-highlight transition-all cursor-pointer text-background-very-dark">
+                            <h4 className=" font-semibold text-xl">
+                                +
+                            </h4>
+                            <h4>
+                                Add item
+                            </h4>
+                        </button>
                     </div>
-                    {(() => {
+                    <div className="flex flex-row gap-4">
+                        <div className="flex flex-col gap-2 h-fit" >
+                            <h2>Search</h2>
+                            <form action="">
+                                <input type="text" placeholder="search..." className="bg-background border border-current-line outline-none caret-foreground h-fit text-foreground w-44 px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line rounded-none transition-all" onChange={inputHandler}>
+                                </input>
+                            </form>
+                            <h2>Categories</h2>
+                            <div className="flex flex-col gap-2 h-fit" onChange={event => setSelectedItemGroup(event.target.value)}>
+                                <ItemGroupButton name="Weapons"/>
+                                <ItemGroupButton name="Armor"/>
+                                <ItemGroupButton name="Items"/>
+                            </div>
+                        </div>
+                        {(() => {
                             switch (selectedItemGroup) {
                                 case "Weapons":
                                     return <WeaponList weapons={params.weapons} input={inputText}/>
@@ -44,7 +57,8 @@ function Backpack(params) {
                                     return null
                             }
                         }
-                    )()}
+                        )()}
+                    </div>
                 </div>
                 <div className="flex flex-col gap-4 w-1/5 h-fit sticky top-5">
                     <h1 className="text-foreground">Wallet</h1>
