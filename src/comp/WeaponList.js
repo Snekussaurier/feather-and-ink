@@ -1,7 +1,6 @@
-import {React, useState} from 'react'
+import {React} from 'react'
 import { ReactSVG } from "react-svg";
 import TrashIcon from "../res/trash-alt.svg"
-import itemGroupIcon from "../res/wpn_grps/weapon-group-1.svg";
 
 function WeaponList(props) {
     //create a new array by filtering the original array

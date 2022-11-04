@@ -1,6 +1,5 @@
 import WeaponCard from "./WeaponCard.js";
 import EffectCard from "./EffectCard.js";
-import ArmorCard from "./ArmorCard.js";
 import { ReactSVG } from "react-svg";
 import ArmorIcon from "../res/closed-barbute.svg";
 import HealthIcon from "../res/health-normal.svg";
