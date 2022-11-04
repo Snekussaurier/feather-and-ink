@@ -161,5 +161,78 @@
             "value": "-",
             "ammount": 100
         }
+    ],
+    "weapons": [
+        {
+            "id": "04dc62eba95f4dfd823fa64343a8d0d1",
+            "character_id": "a039e0b476ae4b8dba26ff246c808630",
+            "name": "Bow",
+            "weapon_group": "Bogen",
+            "weapon_group_id": 4,
+            "weight": 1,
+            "initiative": 1,
+            "atb": -1,
+            "dfb": 0,
+            "damage": 1,
+            "active": 1,
+            "description": "The shortbow is a flexible shaft of wood with the ends connected by strong cord."
+        },
+        {
+            "id": "50df5732476a4cbcb91dd80a427c3575",
+            "character_id": "a039e0b476ae4b8dba26ff246c808630",
+            "name": "Donnerbüchse",
+            "weapon_group": "Armbrust",
+            "weapon_group_id": 1,
+            "weight": 4,
+            "initiative": 0,
+            "atb": 0,
+            "dfb": -2,
+            "damage": 7,
+            "active": 1,
+            "description": "Büchse mit Donner"
+        },
+        {
+            "id": "51",
+            "character_id": "a039e0b476ae4b8dba26ff246c808630",
+            "name": "Fäuste",
+            "weapon_group": "Waffenlos",
+            "weapon_group_id": 10,
+            "weight": 0,
+            "initiative": 0,
+            "atb": 0,
+            "dfb": 0,
+            "damage": 0,
+            "active": 0,
+            "description": null
+        }
+    ],
+    "armor": [
+        {
+            "id": "1",
+            "character_id": "d776838625e9475aa87660f3be5c86cc",
+            "name": "Lederpanzer",
+            "value": 0.25,
+            "armor_group": "Brustschutz",
+            "active": 1,
+            "description": "Einfacher Lederharnisch"
+        },
+        {
+            "id": "2",
+            "character_id": "d776838625e9475aa87660f3be5c86cc",
+            "name": "Lederarmschutz",
+            "value": 0.25,
+            "armor_group": "Armschutz",
+            "active": 0,
+            "description": "Einfacher Lederarmschutz"
+        },
+        {
+            "id": "3",
+            "character_id": "d776838625e9475aa87660f3be5c86cc",
+            "name": "Lederlendenschutz",
+            "value": 0.25,
+            "armor_group": "Lendenschutz",
+            "active": 1,
+            "description": "Einfacher Ledernlendenschutz"
+        }
     ]
 }

@@ -59,8 +59,8 @@ function App() {
   const [characterId, setCharacterId] = useState(config.currentCharacter);
   const [characters, setCharacters] = useState([]);
   const [character, setCharacter] = useState(defaultCharacter.characterDetails);
-  const [weapons, setWeapons] = useState([]);
-  const [armor, setArmor] = useState([]);
+  const [weapons, setWeapons] = useState(defaultCharacter.weapons);
+  const [armor, setArmor] = useState(defaultCharacter.armor);
   const [items, setItems] = useState(defaultCharacter.items);
 
   // Get character from db
@@ -83,7 +83,6 @@ function App() {
     }
     const getItems = async () => {
       const itemsFromServer = await fetchItems(characterId)
-      console.log(itemsFromServer)
       setItems(itemsFromServer)
     }
 
