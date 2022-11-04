@@ -20,7 +20,7 @@ function createWindow () {
 
   // Create the browser window.
   const win = new BrowserWindow({
-    minWidth: 925,
+    minWidth:  1024,
     minHeight: 720,
     webPreferences: {
       // The preload file where we will perform our app communication
@@ -91,6 +91,14 @@ function createWindow () {
   ipcMain.handle('update-character', (event, args) => {
     const sql = 'UPDATE character SET strength = ?, dexterity = ?, constitution = ?, intelligence = ?, charisma = ?, current_tp = ?, current_mp = ?, current_exp = ? WHERE id = ?';
     db.run(sql, [args.strength, args.dexterity, args.constitution, args.intelligence, args.charisma, args.current_tp, args.current_mp, args.current_exp, args.id], function(err) {
+      if (err) return console.error(err.message);
+    });
+  });
+
+  // Update weapon details
+  ipcMain.handle('update-weapon-active', (event, args) => {
+    const sql = 'UPDATE character SET active WHERE id = ?';
+    db.run(sql, [args.active, args.id], function(err) {
       if (err) return console.error(err.message);
     });
   });

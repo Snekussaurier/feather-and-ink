@@ -16,21 +16,21 @@ function ItemList(props) {
     })
     if(filteredData.length > 0){
         return (
-            <table className="w-full backdrop-blur-md">
-                <thead className="h-10 border-b border-current-line">
-                    <tr className="text-center bg-background text-foreground-highlight">
+            <table className="w-full backdrop-blur-md border border-current-line h-fit">
+                <thead className="h-10 border-b border-current-line sticky top-0">
+                    <tr className="text-center bg-background text-foreground-highlight leading-10">
                         <th>Name</th>
                         <th>Position</th>
                         <th>Weight</th>
                         <th>Value</th>
                         <th>Ammount</th>
-                        <th>Delete</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredData.map(item => {
                     return (
-                        <tr key={item.id} className="text-center bg-background odd:bg-background-very-dark">
+                        <tr key={item.id} className="text-center bg-background odd:bg-background-very-dark leading-10">
                             <td>{ item.name }</td>
                             <td>{ item.position }</td>
                             <td>{ item.weight } kg</td>
@@ -46,7 +46,7 @@ function ItemList(props) {
     }
     else {
         return (
-            <div className=' h-20 flex justify-center items-center'>
+            <div className=' h-20 flex justify-center items-center w-full'>
                 <h1>
                     No Items
                 </h1>
