@@ -1,7 +1,6 @@
 import {React, useState} from "react";
 import CoinButton from "./CoinButton";
 import WeaponList from "../comp/WeaponList"
-import WeaponCard from "../comp/WeaponCard"
 import ArmorList from "../comp/ArmorList"
 import ItemList from "../comp/ItemList"
 import ItemGroupButton from "./ItemGroupButton";
@@ -15,9 +14,8 @@ function Backpack(params) {
         setInputText(lowerCase);
     };
 
-    return (
-        
-        <div className="flex flex-col pr-10 pl-24 py-8 w-full z-10 max-w-[1160px] gap-4">
+    return (   
+        <div className="flex flex-col pr-5 pl-24 py-8 w-full z-10 max-w-[1160px] small:pl-5 gap-4">
             <div className="w-full h-8 flex items-center">
                 <h1>Backpack / {selectedItemGroup}</h1>
                 <div className="flex-1"/>
@@ -25,6 +23,7 @@ function Backpack(params) {
                     <ItemGroupButton name="Weapons"/>
                     <ItemGroupButton name="Armor"/>
                     <ItemGroupButton name="Items"/>
+                    <ItemGroupButton name="Wallet"/>
                 </div>
             </div>
             <div className="flex flex-row mt-4">
@@ -48,6 +47,8 @@ function Backpack(params) {
                                 case "Armor":
                                     return <ArmorList armor={params.armor} input={inputText}/>
                                 case "Items":
+                                    return <ItemList items={params.items} input={inputText}/>
+                                case "Wallet":
                                     return <ItemList items={params.items} input={inputText}/>
                                 default:
                                     return null

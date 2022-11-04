@@ -1,6 +1,7 @@
 import {React, useState} from 'react'
 import { ReactSVG } from "react-svg";
 import TrashIcon from "../res/trash-alt.svg"
+import itemGroupIcon from "../res/wpn_grps/weapon-group-1.svg";
 
 function WeaponList(props) {
     //create a new array by filtering the original array
@@ -14,58 +15,75 @@ function WeaponList(props) {
             return weapon.name.toLowerCase().includes(props.input)
         }
     })
-    const [selectedItem, setSelectedItem] = useState(null)
 
+    const getPrefix = (value) => {
+        if(value > 0){
+            return '+' + value;
+        }    
+        else{
+            return value;
+        }
+    }
+
+    if(filteredData.length > 0){
         return (
             <div className=' flex flex-row flex-grow'>
                 <div className="grid grid-cols-dashboard gap-4 flex-grow">
                 {filteredData.map(weapon => {
                 return (
-                        <div key={weapon.id} className="h-56 w-44 bg-background flex flex-col transition-all cursor-pointer rounded relative duration-300" onClick={() => setSelectedItem(weapon)}>
-                            {/*<input type="checkbox" value="" className='bg-current-line absolute -top-1 -right-1 checked:bg-foreground hover:bg-current-line hover:border-foreground border-2 cursor-pointer border-foreground checked:border-current-line h-6 w-6 appearance-none transition-all rounded-full'  checked={Boolean(weapon.active)} onChange={() => console.log("checked")}/>*/}
-                            <div className='flex-1'/>
-                            <div className='flex justify-center items-center bg-pink py-1 rounded-b'>
-                                <h2 className=' text-base text-background-very-dark'>{weapon.name}</h2>
+                        <div key={weapon.id} className="h-56 w-44 bg-background flex flex-col transition-all cursor-pointer relative duration-300 border border-pink">
+                            <div className='p-2 relative overflow-hidden h-full flex flex-col'>
+                                <ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weapon_group_id + ".svg")} className='fill-pink absolute h-36 w-36 -right-4 -bottom-8 opacity-20'/>
+                                <div className='flex flex-row-reverse gap-1'>
+                                    <button className='fill-foreground hover:fill-red transition-colors'>
+                                        <ReactSVG src={TrashIcon} className='h-6 w-6'/>
+                                    </button>
+                                    <div className='flex-grow'/>
+                                    <input type="checkbox" value="" className='bg-current-line checked:bg-foreground hover:bg-current-line hover:border-foreground border-2 cursor-pointer border-foreground checked:border-current-line h-6 w-6 appearance-none transition-all'  checked={Boolean(weapon.active)} onChange={() => console.log("checked")}/>
+                                </div>
+                                <div className='flex-grow'/>
+                                <h2>
+                                    {weapon.name}
+                                </h2>
+                                <h3>
+                                    DMG
+                                </h3>
+                                <h2 className='text-2xl'>
+                                    {getPrefix(weapon.damage)}
+                                </h2>
+                                <table>
+                                    <tr className="text-center">
+                                        <th><h3>INI</h3></th>
+                                        <th><h3>KMB</h3></th>
+                                        <th><h3>ATB</h3></th>
+                                        <th><h3>DFB</h3></th>
+                                    </tr>
+                                    <tr className="text-center">
+                                        <td><h2>{getPrefix(weapon.initiative)}</h2></td>
+                                        <td><h2>+3</h2></td>
+                                        <td><h2>{getPrefix(weapon.atb)}</h2></td>
+                                        <td><h2>{getPrefix(weapon.dfb)}</h2></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div className='flex justify-center items-center bg-pink py-1'>
+                                <h2 className=' text-base text-background-very-dark'>{weapon.weapon_group}</h2>
                             </div>
                         </div>
                 );
                 })}       
             </div>
-                {selectedItem !== null ?                
-                    <div className="h-fit w-[300px] bg-background-very-dark transition-all overflow-hidden border border-pink">
-                        <div className="bg-pink p-2">
-                            <h2 className="text-background-very-dark text-2xl">{selectedItem.name}</h2> 
-                        </div>
-                        <div className="bg-background p-2 flex flex-col">
-                            <h2>{selectedItem.weapon_group}</h2> 
-                            <div className="h-5"/>
-                            <h3>
-                                DMG
-                            </h3>
-                            <h2 className='text-4xl'>
-                                {selectedItem.damage}
-                            </h2>
-                        </div>
-                        <div className="flex flex-col p-2 w-full">
-                            <div className="grid grid-cols-2 grid-flow-row-dense justify-between w-full">
-                                <h3>Initiative</h3>
-                                <h2 className="text-right"><span className="text-cyan">({selectedItem.initiative}) </span>{selectedItem.initiative}</h2>
-                                <h3>Kampfbonus</h3>
-                                <h2 className="text-right">+3</h2>
-                                <h3>Angriffsbonus</h3>
-                                <h2 className="text-right">{selectedItem.atb}</h2>
-                                <h3>Defensivbonus</h3>
-                                <h2 className="text-right">{selectedItem.dfb}</h2>
-                            </div>
-                            <hr className=" border-pink my-2"/>
-                            <h3 className="italic">
-                                {selectedItem.description}
-                            </h3>
-                        </div>
-                    </div> : 
-                    null}
-            </div>
-        )
+        </div>
+        )}
+        else {
+            return (
+                <div className=' h-20 flex justify-center items-center w-full'>
+                    <h1>
+                        No Weapons
+                    </h1>
+                </div>
+            )
+        }
     }
 
 export default WeaponList

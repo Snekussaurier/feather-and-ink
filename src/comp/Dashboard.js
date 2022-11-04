@@ -74,7 +74,7 @@ function Dashboard(params) {
     }
 
     return (
-        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[1160px] w-full z-10">
+        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 pr-5 pl-24 small:pl-5 max-w-[1160px] w-full z-10">
             <div className="flex gap-10 z-10 justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
