@@ -1,5 +1,4 @@
 import {React, useState} from "react";
-import CoinButton from "./CoinButton";
 import WeaponList from "../comp/WeaponList"
 import ArmorList from "../comp/ArmorList"
 import ItemList from "../comp/ItemList"
