@@ -41,8 +41,8 @@ function Dashboard(params) {
         return 1;
     }
 
-    const xpToNextLevel = () => {
-        if (params.character.current_exp >= 1000) return 500*(Math.pow(levelCalculation() + 1,2) + (levelCalculation() + 1) - 4);
+    const xpToNextLevel = (level) => {
+        if (params.character.current_exp >= 1000) return 500*(Math.pow(level,2) + (level) - 4);
         return 1000;
     }
 
@@ -75,7 +75,7 @@ function Dashboard(params) {
 
     return (
         <div className="flex flex-col gap-4 h-fit pt-24 pb-12 px-5 max-w-[1160px] w-full z-10">
-            <div className="flex gap-10 z-10 justify-center">
+            <div className="flex gap-10 z-10 justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon} className="fill-foreground"/>
@@ -124,9 +124,9 @@ function Dashboard(params) {
                     <h1 className=" text-6xl">{params.character.name}</h1>
                     <div className="flex flex-row justify-between items-end">
                         <h2>Level {levelCalculation()}</h2>
-                        <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel()}</p> 
+                        <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel(levelCalculation() + 1)}</p> 
                     </div>
-                    <ProgressBar target={xpToNextLevel()} now={params.character.current_exp}/>
+                    <ProgressBar target={xpToNextLevel(levelCalculation() + 1) - xpToNextLevel(levelCalculation())} now={params.character.current_exp - xpToNextLevel(levelCalculation())}/>
                     <table className="table-fixed mt-4 backdrop-blur-md ">
                         <tbody className="">
                             <tr className="odd:bg-[#ffffff0a]">
@@ -156,10 +156,6 @@ function Dashboard(params) {
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
                 {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} initiative={getAttributeBonus(params.character.dexterity)}/>) : <h1 className=" text-current-line">No weapons</h1>}
-            </div>
-            <h1 className="text-foreground text-2xl">Armor</h1>
-            <div className="grid grid-cols-3 gap-4 justify-between">
-                {params.armor.length > 0 ? params.armor.map((armor) => <ArmorCard key={armor.id} armor={armor}/>) : <h1 className=" text-background-dark">No armor</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">

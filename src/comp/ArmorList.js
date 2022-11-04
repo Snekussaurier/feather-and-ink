@@ -16,30 +16,21 @@ function ArmorList(props) {
     })
     if(filteredData.length > 0){
         return (
-            <table className="w-full backdrop-blur-md border-current-line h-fit">
-                <thead className="h-10 border-b border-current-line">
-                    <tr className="text-center bg-background text-foreground-highlight leading-10">
-                        <th>Active</th>
-                        <th>Name</th>
-                        <th>Armor Group</th>
-                        <th>Armor Value</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className=' flex flex-row flex-grow'>
+                <div className="grid grid-cols-dashboard gap-4 flex-grow">
                     {filteredData.map(armor => {
                     return (
-                        <tr key={armor.id} className="text-center bg-background odd:bg-background-very-dark leading-10">
-                            <td><input type="checkbox" value="" className='bg-current-line border-2 cursor-pointer border-current-line h-4 w-4 appearance-none checked:bg-cyan transition-all'  checked={Boolean(armor.active)} onChange={() => console.log("checked")}/></td>
-                            <td>{ armor.name }</td>
-                            <td>{ armor.armor_group }</td>
-                            <td>{ armor.value }</td>
-                            <td><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
-                        </tr>
+                            <div key={armor.id} className="h-56 w-44 bg-background flex flex-col transition-all cursor-pointer rounded relative duration-300">
+                                {/*<input type="checkbox" value="" className='bg-current-line absolute -top-1 -right-1 checked:bg-foreground hover:bg-current-line hover:border-foreground border-2 cursor-pointer border-foreground checked:border-current-line h-6 w-6 appearance-none transition-all rounded-full'  checked={Boolean(weapon.active)} onChange={() => console.log("checked")}/>*/}
+                                <div className='flex-1'/>
+                                <div className='flex justify-center items-center bg-green py-1 rounded-b'>
+                                    <h2 className=' text-base text-background-very-dark'>{armor.name}</h2>
+                                </div>
+                            </div>
                     );
-                    })}
-                </tbody>
-            </table>
+                    })}       
+                </div>
+            </div>
         )
     }
     else {
