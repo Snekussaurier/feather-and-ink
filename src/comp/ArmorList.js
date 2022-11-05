@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactSVG } from "react-svg";
 import TrashIcon from "../res/trash-alt.svg"
-import itemGroupIcon from "../res/wpn_grps/weapon-group-1.svg";
+import ArmorIcon from "../res/closed-barbute.svg";
 
 function ArmorList(props) {
     //create a new array by filtering the original array
@@ -21,10 +21,10 @@ function ArmorList(props) {
                 <div className="grid grid-cols-dashboard gap-4 flex-grow">
                     {filteredData.map(armor => {
                     return (
-                            <div key={armor.id} className="h-56 w-44 bg-background flex flex-col transition-all cursor-pointer relative duration-300 border border-green">
+                            <div key={armor.id} className="h-56 w-44 bg-background flex flex-col transition-all relative duration-300 border border-green">
                                 {/*<input type="checkbox" value="" className='bg-current-line absolute -top-1 -right-1 checked:bg-foreground hover:bg-current-line hover:border-foreground border-2 cursor-pointer border-foreground checked:border-current-line h-6 w-6 appearance-none transition-all rounded-full'  checked={Boolean(weapon.active)} onChange={() => console.log("checked")}/>*/}
                                 <div className='p-2 relative overflow-hidden h-full flex flex-col'>
-                                    <ReactSVG src={itemGroupIcon} className='fill-green absolute h-36 w-36 -right-4 -bottom-8 opacity-20'/>
+                                    <ReactSVG src={ArmorIcon} className='fill-green absolute h-36 w-36 -right-4 -bottom-8 opacity-20'/>
                                     <div className='flex flex-row-reverse'>
                                         <button className='fill-foreground hover:fill-red transition-colors'>
                                             <ReactSVG src={TrashIcon} className='h-6 w-6'/>

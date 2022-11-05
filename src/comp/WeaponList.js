@@ -30,15 +30,15 @@ function WeaponList(props) {
                 <div className="grid grid-cols-dashboard gap-4 flex-grow">
                 {filteredData.map(weapon => {
                 return (
-                        <div key={weapon.id} className="h-56 w-44 bg-background flex flex-col transition-all cursor-pointer relative duration-300 border border-pink">
+                        <div key={weapon.id} className="h-56 w-44 bg-background-dark flex flex-col transition-all relative duration-300 border border-red">
                             <div className='p-2 relative overflow-hidden h-full flex flex-col'>
-                                <ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weapon_group_id + ".svg")} className='fill-pink absolute h-36 w-36 -right-4 -bottom-8 opacity-20'/>
+                                <ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weapon_group_id + ".svg")} className='fill-red absolute h-36 w-36 -right-4 -bottom-8 opacity-20'/>
                                 <div className='flex flex-row-reverse gap-1'>
                                     <button className='fill-foreground hover:fill-red transition-colors'>
                                         <ReactSVG src={TrashIcon} className='h-6 w-6'/>
                                     </button>
                                     <div className='flex-grow'/>
-                                    <input type="checkbox" value="" className='bg-current-line checked:bg-foreground hover:bg-current-line hover:border-foreground border-2 cursor-pointer border-foreground checked:border-current-line h-6 w-6 appearance-none transition-all'  checked={Boolean(weapon.active)} onChange={() => console.log("checked")}/>
+                                    <input type="checkbox" value="" className='h-4 w-4 appearance-none' onChange={() => console.log("checked")}/>
                                 </div>
                                 <div className='flex-grow'/>
                                 <h2>
@@ -65,7 +65,7 @@ function WeaponList(props) {
                                     </tr>
                                 </table>
                             </div>
-                            <div className='flex justify-center items-center bg-pink py-1'>
+                            <div className='flex justify-center items-center bg-red py-1'>
                                 <h2 className=' text-base text-background-very-dark'>{weapon.weapon_group}</h2>
                             </div>
                         </div>

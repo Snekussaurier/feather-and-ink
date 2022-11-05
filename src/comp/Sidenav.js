@@ -57,7 +57,7 @@ function Sidenav(params) {
             <SidenavButton icon={LevelingIcon} label="Leveling" navigation="/leveling"/>
             <SidenavButton icon={BookIcon} label="Grimoire" navigation="/grimoire"/>
           </div>
-          <p className="opacity-10 text-center">Version 0.1.0-alpha</p>
+          <p className="opacity-10 text-center">Version 0.1.1-alpha</p>
         </div>
     </div>
   );

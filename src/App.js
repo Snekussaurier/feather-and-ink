@@ -8,6 +8,7 @@ import {useEffect, useState} from 'react';
 import FeatherIcon from "./res/quill-ink.svg";
 import CollapseIcon from "./res/caret-left.svg";
 import Leveling from './comp/Leveling';
+import Grimoire from './comp/Grimoire';
 
 function App() {
 
@@ -152,11 +153,12 @@ function App() {
         </div>
         <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
-        <div className="w-screen h-screen bg-cover absolute" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
+        <div className="w-screen h-screen bg-cover fixed" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions} skillLevel={skillLevel}/>}/>
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items}/>}/>
             <Route path="/leveling" element={<Leveling/>}/>
+            <Route path="/grimoire" element={<Grimoire/>}/>
           </Routes>
         </div>
       </div>
