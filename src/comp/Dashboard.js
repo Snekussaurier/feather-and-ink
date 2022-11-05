@@ -1,4 +1,5 @@
 import WeaponCard from "./WeaponCard.js";
+import ArmorCard from "./ArmorCard.js";
 import EffectCard from "./EffectCard.js";
 import { ReactSVG } from "react-svg";
 import ArmorIcon from "../res/closed-barbute.svg";
@@ -94,7 +95,7 @@ function Dashboard(params) {
                         </div>
                     </div>
                     <div className=" backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ManaIcon} className="fill-foreground"/>
+                        <ReactSVG src={ManaIcon} className="fill-foreground w-[42px]"/>
                         <div className=" flex flex-row items-end gap-1">
                             <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
                             <h1 className=" text-[#FFFFFFAA] font-sans text-2xl">/</h1>
@@ -155,6 +156,10 @@ function Dashboard(params) {
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
                 {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} initiative={getAttributeBonus(params.character.dexterity)}/>) : <h1 className=" text-current-line">No weapons</h1>}
+            </div>
+            <h1 className="text-foreground text-2xl">Armor</h1>
+            <div className="grid grid-cols-3 gap-4 justify-between">
+                {params.armor.length > 0 ? params.armor.map((armor) => <ArmorCard key={armor.id} armor={armor}/>) : <h1 className=" text-current-line">No armor</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
