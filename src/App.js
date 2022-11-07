@@ -140,6 +140,9 @@ function App() {
   const [isExpanded, setIsExpanded] = useState(true);
   const onExpand = () => setIsExpanded((expanded) => !expanded);
 
+  const [optionsActive, setOptionsActive] = useState(false);
+  const onActiveOptions = () => setOptionsActive((active) => !active);
+
   let backgroundImage;
   if(character.character_background !== undefined) backgroundImage = require('./res/background-illustration-' + character.character_background + '.jpg');
   else backgroundImage = require('./res/background-illustration-' + 1 + '.jpg');
@@ -151,9 +154,15 @@ function App() {
           <ReactSVG src={FeatherIcon} className='fill-foreground'/>
           <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
         </div>
-        <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId}/>
+        <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId} onActiveOptions={onActiveOptions}/>
         <div className='max-w-full flex justify-center flex-grow relative'>
-          <div className="w-screen h-screen bg-cover fixed top-0 -z-10" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
+          <div className={optionsActive ? 'fixed left-0 top-0 z-[49] flex justify-center items-center w-full h-full visible' : 'fixed left-0 top-0 z-[49] justify-center items-center w-full h-full hidden'}>
+            <div className=' options-container bg-background w-full h-full z-50'>
+              <h1>hello</h1>
+            </div>
+            <div className='fixed z-[48] h-full w-full left-0 bg-background-very-dark opacity-70 top-0 cursor-pointer' onClick={onActiveOptions}/>
+          </div>
+          <div className="w-screen h-screen bg-cover fixed top-0 -z-10 right-0" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} attributeBonus={attributeBonus} tpProfessions={tpProfessions} skillLevel={skillLevel}/>}/>
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items}/>}/>

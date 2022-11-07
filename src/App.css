@@ -57,32 +57,30 @@ input {
 }
 
 .scrollbar-y::-webkit-scrollbar {
-  width: 12px;
-}
-
-.scrollbar-x::-webkit-scrollbar {
-  height: 12px;
+  width: 6px;
 }
 
 .scrollbar-y::-webkit-scrollbar-thumb {
-  background-color: #22212C;
+  background-color: #FFFFFF80;
   background-clip: content-box;
-  min-width: 12px;
+  width: 6px;
   min-height: 64px;
-}
-
-.scrollbar-x::-webkit-scrollbar-thumb {
-  background-color: #22212C;
-  background-clip: content-box;
-  min-width: 12px;
-  min-height: 64px;
+  border-radius: 100px;
+  cursor: pointer;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #2f2e3d;
+  background-color: #FFFFFF60;
+  width: 6px;
 }
+
 .scrollbar::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,1);
+  background-color: rgba(0,0,0,0);
+}
+
+.options-container {
+  max-height: max(670px, 75%);
+  max-width: max(1160px, 65%);
 }
 
 .rtl-grid {

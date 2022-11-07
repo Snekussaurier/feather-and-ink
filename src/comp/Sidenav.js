@@ -19,7 +19,7 @@ function Sidenav(params) {
   const onExpandCharacterMenu = () => setCharacterMenuIsExpanded((expanded) => !expanded);
 
   return (
-    <div className={!params.isExpanded ? 'h-screen fixed left-[-320px] top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-50 duration-300 p-5' : 'p-5 duration-300 h-screen fixed left-0 top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-50'}>
+    <div className={!params.isExpanded ? 'h-screen fixed left-[-320px] top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-40 duration-300 p-5' : 'p-5 duration-300 h-screen fixed left-0 top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-40'}>
         <div className="flex flex-row items-center justify-start self-stretch gap-2 pb-5">
           <ReactSVG src={FeatherIcon} className='fill-foreground'/>
           <h1 className="text-xl text-foreground">
@@ -33,7 +33,7 @@ function Sidenav(params) {
             <ReactSVG src={!characterMenuIsExpanded ? CharacterIcon : CloseIcon} className='fill-foreground' onClick={onExpandCharacterMenu}/>
           </button>
           <button>
-            <ReactSVG src={SettingsIcon} className='fill-foreground'/>
+            <ReactSVG src={SettingsIcon} className='fill-foreground' onClick={params.onActiveOptions}/>
           </button>
           <button onClick={params.onExpand}>
             <ReactSVG src={CollapseIcon} className='fill-foreground'/>
