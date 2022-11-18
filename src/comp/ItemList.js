@@ -16,27 +16,29 @@ function ItemList(props) {
     })
     if(filteredData.length > 0){
         return (
-            <table className="w-full backdrop-blur-md border border-current-line h-fit">
-                <thead className="h-10 border-b border-current-line sticky top-0">
-                    <tr className="text-center bg-background text-foreground-highlight leading-10">
-                        <th>Name</th>
+            <table className="w-full h-full">
+                <thead>
+                    <tr className="text-right text-foreground-highlight leading-10 bg-background sticky top-0 z-10">
+                        <th>•</th>
+                        <th className='text-left'>Name</th>
                         <th>Position</th>
                         <th>Weight</th>
                         <th>Value</th>
                         <th>Ammount</th>
-                        <th></th>
+                        <th className='text-center'>•</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredData.map(item => {
                     return (
-                        <tr key={item.id} className="text-center bg-background odd:bg-background-very-dark leading-10">
-                            <td>{ item.name }</td>
+                        <tr key={item.id} className="text-right odd:bg-background-dark bg-background">
+                            <td></td>
+                            <td className='text-left'>{ item.name }</td>
                             <td>{ item.position }</td>
                             <td>{ item.weight } kg</td>
                             <td>{ item.value }</td>
                             <td>{ item.ammount }</td>
-                            <td><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
+                            <td className='text-center'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
                         </tr>
                     );
                     })}

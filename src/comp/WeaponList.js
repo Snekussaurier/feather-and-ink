@@ -26,54 +26,38 @@ function WeaponList(props) {
 
     if(filteredData.length > 0){
         return (
-            <div className=' flex flex-row flex-grow'>
-                <div className="grid grid-cols-dashboard gap-4 flex-grow">
-                {filteredData.map(weapon => {
-                return (
-                        <div key={weapon.id} className="h-56 w-44 bg-background-dark flex flex-col transition-all relative duration-300 border border-red">
-                            <div className='p-2 relative overflow-hidden h-full flex flex-col'>
-                                <ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weapon_group_id + ".svg")} className='fill-red absolute h-36 w-36 -right-4 -bottom-8 opacity-20'/>
-                                <div className='flex flex-row-reverse gap-1'>
-                                    <button className='fill-foreground hover:fill-red transition-colors'>
-                                        <ReactSVG src={TrashIcon} className='h-6 w-6'/>
-                                    </button>
-                                    <div className='flex-grow'/>
-                                    <input type="checkbox" value="" className='h-4 w-4 appearance-none' onChange={() => console.log("checked")}/>
-                                </div>
-                                <div className='flex-grow'/>
-                                <h2>
-                                    {weapon.name}
-                                </h2>
-                                <h3>
-                                    DMG
-                                </h3>
-                                <h2 className='text-2xl'>
-                                    {getPrefix(weapon.damage)}
-                                </h2>
-                                <table>
-                                    <tr className="text-center">
-                                        <th><h3>INI</h3></th>
-                                        <th><h3>KMB</h3></th>
-                                        <th><h3>ATB</h3></th>
-                                        <th><h3>DFB</h3></th>
-                                    </tr>
-                                    <tr className="text-center">
-                                        <td><h2>{getPrefix(weapon.initiative)}</h2></td>
-                                        <td><h2>+3</h2></td>
-                                        <td><h2>{getPrefix(weapon.atb)}</h2></td>
-                                        <td><h2>{getPrefix(weapon.dfb)}</h2></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div className='flex justify-center items-center bg-red py-1'>
-                                <h2 className=' text-base text-background-very-dark'>{weapon.weapon_group}</h2>
-                            </div>
-                        </div>
-                );
-                })}       
-            </div>
-        </div>
-        )}
+            <table className="w-full h-full">
+                <thead>
+                    <tr className="text-right text-foreground-highlight leading-10 bg-background sticky top-0 z-10">
+                        <th className='text-center'>•</th>
+                        <th className='text-left'>Name</th>
+                        <th>KMB</th>
+                        <th>INI</th>
+                        <th>ATB</th>
+                        <th>DFB</th>
+                        <th>DMG</th>
+                        <th className='text-center'>•</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredData.map(weapon => {
+                    return (
+                        <tr key={weapon.id} className="text-right odd:bg-background-dark bg-background">
+                            <td className='flex justify-center'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weapon_group_id + ".svg")} className='fill-red h-6 w-6'/></td>
+                            <td className='text-left'>{ weapon.name }</td>
+                            <td>+3</td>
+                            <td>{getPrefix(weapon.initiative)}</td>
+                            <td>{getPrefix(weapon.atb)}</td>
+                            <td>{getPrefix(weapon.dfb)}</td>
+                            <td>{getPrefix(weapon.damage)}</td>
+                            <td className='text-center'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
+                        </tr>
+                    );
+                    })}
+                </tbody>
+            </table>
+        );
+        }       
         else {
             return (
                 <div className=' h-20 flex justify-center items-center w-full'>

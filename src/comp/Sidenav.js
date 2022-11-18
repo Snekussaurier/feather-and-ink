@@ -21,7 +21,7 @@ function Sidenav(params) {
   return (
     <div className={!params.isExpanded ? 'h-screen fixed left-[-320px] top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-40 duration-300 p-5' : 'p-5 duration-300 h-screen fixed left-0 top-0 bg-background-dark w-[320px] flex flex-col items-center border-r border-current-line transition-position z-40'}>
         <div className="flex flex-row items-center justify-start self-stretch gap-2 pb-5">
-          <ReactSVG src={FeatherIcon} className='fill-foreground'/>
+          <ReactSVG src={FeatherIcon} className='fill-foreground h-6 w-6'/>
           <h1 className="text-xl text-foreground">
               Feather&Ink
           </h1>

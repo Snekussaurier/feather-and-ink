@@ -14,7 +14,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         // simple 3 column grid
-        'dashboard': 'repeat(auto-fit, 176px)',
+        'dashboard': 'repeat(auto-fill, minmax(300px, 1fr))',
       },
       backgroundImage: {
         'landscape': "linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url('../src/res/background-illustration-1.jpg')",

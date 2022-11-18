@@ -12,7 +12,7 @@ const CoinButton = (props) => {
     }
 
     return (
-        <div className="backdrop-blur border border-foreground-highlight bg-[#ffffff0a] p-5 flex flex-row items-center w-full justify-between">
+        <div className="backdrop-blur border border-foreground-highlight bg-[#ffffff0a] p-5 flex flex-row items-center w-48 justify-between">
             <div className="flex-col items-center justify-center">
                 <h3>{props.name}</h3>
                 <h1 className=" text-foreground font-sans text-5xl">{props.character[props.currency]}</h1>

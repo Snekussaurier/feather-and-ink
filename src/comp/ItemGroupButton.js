@@ -1,13 +1,12 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 
 function ItemGroupButton(props) {
     return (
         <div>
             <input type="radio" id={props.name} name="selected_item_group" value={props.name} className="peer hidden"/>
-            <label htmlFor={props.name} className="px-4 py-2 flex flex-row items-center bg-background gap-4 peer-checked:border-foreground-highlight peer-checked:text-foreground-highlight peer-checked:bg-current-line hover:bg-current-line hover:text-foreground transition-all border border-current-line cursor-pointer text-[#FFFFFFAA]">
-                <h4 className="font-medium">
-                    {props.name}
-                </h4>
+            <label htmlFor={props.name} className="rounded-full px-4 py-2 flex flex-row items-center gap-4 peer-checked:fill-foreground-highlight transition-all fill-[#FFFFFFAA] cursor-pointer text-[#FFFFFFAA]">
+                <ReactSVG src={props.icon} className='h-8 w-8'/>
             </label>
         </div>
     );

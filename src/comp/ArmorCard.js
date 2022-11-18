@@ -12,7 +12,7 @@ function ArmorCard(params) {
         }
     }
     return (
-        <div className="min-w-[270px] flex-grow bg-background-very-dark border border-green transition-all">
+        <div className="min-w-[270px] flex-grow bg-background-very-dark border-2 border-green transition-all">
             <div className="bg-green p-2">
                 <h2 className="text-background-very-dark text-2xl">{params.armor.name}</h2> 
             </div>
@@ -22,7 +22,7 @@ function ArmorCard(params) {
                 <h3>
                     ARM
                 </h3>
-                <h2 className='text-4xl'>
+                <h2 className='text-4xl text-green'>
                     {getPrefix(params.armor.value)}
                 </h2>
                 <ReactSVG src={ArmorIcon} className='fill-green absolute h-36 w-36 -right-4 -bottom-8'/>

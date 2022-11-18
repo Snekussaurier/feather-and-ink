@@ -11,7 +11,7 @@ const getPrefix = (value) => {
 
 function WeaponCard(params) {
     return(                
-        <div className="min-w-[270px] flex-grow bg-background-very-dark border border-red transition-all">
+        <div className="min-w-[300px] max-w-[380px] flex-grow bg-background-very-dark border-2 border-red transition-all">
             <div className="bg-red p-2">
                 <h2 className="text-background-very-dark text-2xl">{params.weapon.name}</h2> 
             </div>
@@ -21,7 +21,7 @@ function WeaponCard(params) {
                 <h3>
                     DMG
                 </h3>
-                <h2 className='text-4xl'>
+                <h2 className='text-4xl text-red'>
                     {getPrefix(params.weapon.damage)}
                 </h2>
                 <ReactSVG src={require("../res/wpn_grps/weapon-group-" + params.weapon.weapon_group_id + ".svg")} className='fill-red absolute h-36 w-36 -right-4 -bottom-8'/>
@@ -38,7 +38,7 @@ function WeaponCard(params) {
                     <h2 className="text-right">{getPrefix(params.weapon.dfb)}</h2>
                     
                 </div>
-                <hr className=" border-red my-2"/>
+                <hr className=" border-current-line my-2"/>
                 <h3 className="italic">
                     {params.weapon.description}
                 </h3>
