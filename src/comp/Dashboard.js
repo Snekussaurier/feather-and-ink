@@ -68,15 +68,28 @@ function Dashboard(params) {
         else return (getAttributeBonus(params.character.intelligence) + 3) * params.character.develop_magic;
     }
 
+    const attributeBonus = {
+        1: -3,
+        2: -2,
+        3: -1,
+        4: -1,
+        5: 0,
+        6: 1,
+        7: 1,
+        8: 2,
+        9: 2,
+        10: 3 
+    }
+
     const getAttributeBonus = (attributeValue) => {
-        return params.attributeBonus[attributeValue]
+        return attributeBonus[attributeValue]
     }
 
     return (
         <div className="flex flex-col gap-4 h-fit px-8 pt-24 pb-12 small:pl-5 max-w-[1400px] w-full z-10">
             <div className="flex gap-10 z-10 justify-between">
                 <div className="flex flex-col gap-4">
-                    <div className="backdrop-blur bg-[#ffffff0a] h-28 w-64 border-2 border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                    <div className="backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon} className="fill-foreground"/>
                         <div className=" flex flex-row items-end gap-1">
                             <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
@@ -93,7 +106,7 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className=" backdrop-blur bg-[#ffffff0a] h-28 w-64 border-2 border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                    <div className=" backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ManaIcon} className="fill-foreground w-[42px]"/>
                         <div className=" flex flex-row items-end gap-1">
                             <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
@@ -110,7 +123,7 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className="backdrop-blur bg-[#ffffff0a] h-28 w-64 border-2 border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
+                    <div className="backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={ArmorIcon} className="fill-foreground w-[42px]"/>
                         <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
                         <div className=" w-7 h-7"/>
@@ -133,7 +146,7 @@ function Dashboard(params) {
                             <td className="text-right">{params.character.race}</td>
                             </tr>
                             <tr className="odd:bg-[#ffffff0a]">
-                            <td><div className="flex flex-row gap-2 items-center h-5 w-5"><ReactSVG src={ProfessionIcon} className=" fill-[#FFFFFFAA] h-5 w-5"/>Profession</div></td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={ProfessionIcon} className='fill-[#FFFFFFAA] h-5 w-5'/>Profession</div></td>
                             <td className="text-right">{params.character.profession}</td>
                             </tr>
                             <tr className="odd:bg-[#ffffff0a]">
@@ -154,7 +167,7 @@ function Dashboard(params) {
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
             <div className="grid grid-cols-dashboard gap-4 justify-between">
-                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} initiative={getAttributeBonus(params.character.dexterity)}/>) : <h1 className=" text-current-line">No weapons</h1>}
+                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1 className=" text-current-line">No weapons</h1>}
             </div>
             <h1 className="text-foreground text-2xl">Armor</h1>
             <div className="grid grid-cols-dashboard gap-4 justify-between">

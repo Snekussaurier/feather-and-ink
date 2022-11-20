@@ -39,7 +39,14 @@
         "owner": "Snekussaurier",
         "repo": "feather-and-ink"
       }
-    ]
+    ],
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "rpm"
+      ]
+    }
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",

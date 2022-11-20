@@ -43,12 +43,12 @@ function WeaponList(props) {
                     {filteredData.map(weapon => {
                     return (
                         <tr key={weapon.id} className="text-right odd:bg-background-dark bg-background">
-                            <td className='flex justify-center'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weapon_group_id + ".svg")} className='fill-red h-6 w-6'/></td>
+                            <td className='flex justify-center'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weaponGroup + ".svg")} className='fill-red h-6 w-6'/></td>
                             <td className='text-left'>{ weapon.name }</td>
-                            <td>+3</td>
+                            <td>{getPrefix(weapon.fightBonus)}</td>
                             <td>{getPrefix(weapon.initiative)}</td>
-                            <td>{getPrefix(weapon.atb)}</td>
-                            <td>{getPrefix(weapon.dfb)}</td>
+                            <td>{getPrefix(weapon.attackBonus)}</td>
+                            <td>{getPrefix(weapon.defenseBonus)}</td>
                             <td>{getPrefix(weapon.damage)}</td>
                             <td className='text-center'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
                         </tr>

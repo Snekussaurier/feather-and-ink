@@ -12,9 +12,9 @@ function ArmorCard(params) {
         }
     }
     return (
-        <div className="min-w-[270px] flex-grow bg-background-very-dark border-2 border-green transition-all">
-            <div className="bg-green p-2">
-                <h2 className="text-background-very-dark text-2xl">{params.armor.name}</h2> 
+        <div className="min-w-[270px] flex-grow bg-background-very-dark border-2 border-current-line transition-all">
+            <div className="bg-current-line p-2">
+                <h2 className="text-foreground-highlight text-2xl">{params.armor.name}</h2> 
             </div>
             <div className="bg-background p-2 flex flex-col relative overflow-hidden">
                 <h2>{params.armor.armor_group}</h2> 

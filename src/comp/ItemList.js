@@ -19,7 +19,7 @@ function ItemList(props) {
             <table className="w-full h-full">
                 <thead>
                     <tr className="text-right text-foreground-highlight leading-10 bg-background sticky top-0 z-10">
-                        <th>•</th>
+                        <th className='text-center'>•</th>
                         <th className='text-left'>Name</th>
                         <th>Position</th>
                         <th>Weight</th>
@@ -32,7 +32,7 @@ function ItemList(props) {
                     {filteredData.map(item => {
                     return (
                         <tr key={item.id} className="text-right odd:bg-background-dark bg-background">
-                            <td></td>
+                            <td className='flex justify-center'><div className='h-6 w-6 bg-purple rounded'></div></td>
                             <td className='text-left'>{ item.name }</td>
                             <td>{ item.position }</td>
                             <td>{ item.weight } kg</td>

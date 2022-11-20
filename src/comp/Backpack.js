@@ -23,11 +23,11 @@ function Backpack(params) {
     return (   
         <div className="flex flex-col px-8 pt-24 pb-12 w-full z-10 max-w-[1160px] gap-4">
             <div className="flex flex-row w-full gap-4 h-full max-h-full">
-                <div className="flex flex-col gap-4 w-full">
-                    <h1 className="text-5xl">{selectedItemGroup}</h1>
-                    <div className="flex flex-row w-full border-b border-foreground-highlight items-center pb-2">
-                        <div className="flex flex-row gap-2" onChange={event => setSelectedItemGroup(event.target.value)}>
-                            <ItemGroupButton name="Weapons" icon={WeaponsIcon}/>
+                <div className="flex flex-col gap-2 w-full">
+                    <h1>{selectedItemGroup}</h1>
+                    <div className="flex flex-row w-full border-b border-foreground-highlight items-center pb-2 mb-2 gap-2">
+                        <div className="flex flex-row gap-3" onChange={event => setSelectedItemGroup(event.target.value)}>
+                            <ItemGroupButton name="Weapons"icon={WeaponsIcon}/>
                             <ItemGroupButton name="Armor" icon={ArmorIcon}/>
                             <ItemGroupButton name="Potions" icon={PotionsIcon}/>
                             <ItemGroupButton name="Books" icon={BooksIcon}/>
@@ -39,6 +39,9 @@ function Backpack(params) {
                             <input type="text" placeholder="search..." className="bg-background border border-current-line outline-none caret-foreground h-fit text-foreground rounded px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line transition-all" onChange={inputHandler}>
                             </input>
                         </form>
+                        <button className="bg-background text-foreground-highlight px-4 py-2 transition-all hover:bg-current-line">
+                            + Add item
+                        </button>
                     </div>
                     <div className="max-h-full overflow-y-auto scrollbar scrollbar-y gap-4">
                         {(() => {
@@ -49,8 +52,6 @@ function Backpack(params) {
                                         return <ArmorList armor={params.armor} input={inputText}/>
                                     case "Items":
                                         return <ItemList items={params.items} input={inputText}/>
-                                    case "Wallet":
-                                        return <ItemList items={params.items} input={inputText}/>
                                     default:
                                         return null
                                 }
@@ -58,7 +59,7 @@ function Backpack(params) {
                         )()}
                     </div>
                 </div>
-                <div className="flex-col flex gap-4 mt-16">
+                <div className="flex-col flex gap-4 mt-12">
                     <CoinButton name='Goldfalken' currency="goldfalken" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Triontaler' currency="triontaler" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Kupferlinge' currency="kupferlinge" character={params.character} setCharacter={params.setCharacter}/>

@@ -77,6 +77,16 @@ function createWindow () {
     })
   });
 
+  // Get character weapon skills
+  ipcMain.handle('get-character-weapon-skills', (event, args) => {
+    return new Promise((resolve, reject) => {
+      db.all('SELECT weapon_group, skill_level AS weapon_skills FROM weapon_skills WHERE character_id = ?',[args], (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Get all characters
   ipcMain.handle('get-characters', (event, args) => {
     return new Promise((resolve, reject) => {
