@@ -53,6 +53,7 @@ function App() {
   const [weapons, setWeapons] = useState([]);
   const [armor, setArmor] = useState(defaultCharacter.armor);
   const [items, setItems] = useState(defaultCharacter.items);
+  const [healingItems, setHealingItems] = useState([])
 
   // Get character from db
   useEffect(() => {
@@ -108,27 +109,32 @@ function App() {
             characterWeaponSkillsFromServer.find((object) => 
             object.weapon_group === weapon.weapon_group_id);
         try {
-          weaponSkillLevel = weaponSkillLevel.weapon_skills
+          weaponSkillLevel = weaponSkillLevel.weapon_skills;
         } catch (e) {
-          weaponSkillLevel = 0
+          weaponSkillLevel = 0;
         }
         weaponArr.push(new Weapon(weapon.id, weapon.name, weapon.weapon_group_id, weapon.weapon_group,calculateFightBonus(weaponSkillLevel, weapon.attribute), getAttributeBonus(characterFromServer.dexterity) + weapon.initiative, weapon.initiative, weapon.atb, weapon.dfb, weapon.damage, weapon.description));
       });
       setWeapons(weaponArr);
     }
     const getArmor = async () => {
-      const armorFromServer = await fetchArmor(characterId)
-      setArmor(armorFromServer)
+      const armorFromServer = await fetchArmor(characterId);
+      setArmor(armorFromServer);
     }
     const getItems = async () => {
-      const itemsFromServer = await fetchItems(characterId)
-      setItems(itemsFromServer)
+      const itemsFromServer = await fetchItems(characterId);
+      setItems(itemsFromServer);
+    }
+    const getHealingItems = async () => {
+      const healingItemsFromServer = await fetchHealingItems(characterId);
+      setHealingItems(healingItemsFromServer);
     }
     
     getCharacters();
     getCharacter();
     getArmor();
     getItems();
+    getHealingItems();
   }, [characterId]);
 
   // Update character in db
@@ -180,6 +186,11 @@ function App() {
     return res;
   }
 
+  const fetchHealingItems = async (id) => {
+    const res = await window.api.getHealingItems(id);
+    return res;
+  }
+
   const [isExpanded, setIsExpanded] = useState(true);
   const onExpand = () => setIsExpanded((expanded) => !expanded);
 
@@ -194,7 +205,7 @@ function App() {
     <HashRouter>
       <div className={!isExpanded ? "h-screen overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-0 transition-spacing duration-300" : "duration-300 h-screen overflow-y-auto overflow-x-hidden scrollbar scrollbar-y flex flex-row ml-0 small:ml-[330px] transition-spacing" }>
         <div className='absolute top-[25px] bg-background-dark backdrop-blur-md pl-[20px] pr-[10px] py-[10px] left-0 z-40 flex flex-row border-r border-y border-current-line cursor-pointer' onClick={onExpand}>
-          <ReactSVG src={FeatherIcon} className='fill-foreground h-6 w-6'/>
+          <ReactSVG src={FeatherIcon} className='fill-cyan h-6 w-6'/>
           <ReactSVG src={CollapseIcon} className='fill-foreground rotate-180'/>
         </div>
         <Sidenav characters={characters} character={character} isExpanded={isExpanded} onExpand={onExpand} setCharacterId={setCharacterId} onActiveOptions={onActiveOptions}/>
@@ -206,7 +217,7 @@ function App() {
           <div className="w-screen h-screen bg-cover fixed top-0 -z-10 right-0" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} tpProfessions={tpProfessions} skillLevel={skillLevel}/>}/>
-            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items}/>}/>
+            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items} healingItems={healingItems}/>}/>
             <Route path="/leveling" element={<Leveling/>}/>
             <Route path="/grimoire" element={<Grimoire/>}/>
           </Routes>

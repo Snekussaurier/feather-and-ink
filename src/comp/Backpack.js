@@ -6,10 +6,10 @@ import ItemGroupButton from "./ItemGroupButton";
 import CoinButton from "./CoinButton";
 import WeaponsIcon from "../res/crossed-swords.svg"
 import ArmorIcon from "../res/closed-barbute.svg"
-import PotionsIcon from "../res/drink-me.svg"
-import BooksIcon from "../res/bookmark.svg"
+import HealingIcon from "../res/drink-me.svg"
 import FoodIcon from "../res/shiny-apple.svg"
 import ItemsIcon from "../res/swap-bag.svg"
+import HealingList from "./HealingList";
 
 function Backpack(params) {
     const [selectedItemGroup , setSelectedItemGroup] = useState("Weapons");
@@ -29,8 +29,7 @@ function Backpack(params) {
                         <div className="flex flex-row gap-3" onChange={event => setSelectedItemGroup(event.target.value)}>
                             <ItemGroupButton name="Weapons"icon={WeaponsIcon}/>
                             <ItemGroupButton name="Armor" icon={ArmorIcon}/>
-                            <ItemGroupButton name="Potions" icon={PotionsIcon}/>
-                            <ItemGroupButton name="Books" icon={BooksIcon}/>
+                            <ItemGroupButton name="Healing" icon={HealingIcon}/>
                             <ItemGroupButton name="Food" icon={FoodIcon}/>
                             <ItemGroupButton name="Items" icon={ItemsIcon}/>
                         </div>
@@ -52,6 +51,8 @@ function Backpack(params) {
                                         return <ArmorList armor={params.armor} input={inputText}/>
                                     case "Items":
                                         return <ItemList items={params.items} input={inputText}/>
+                                    case "Healing":
+                                        return <HealingList healing={params.healingItems} input={inputText}/>
                                     default:
                                         return null
                                 }

@@ -17,4 +17,5 @@ contextBridge.exposeInMainWorld('api', {
   updateWeapons: (args) => ipcRenderer.invoke('update-weapons-active', args),
   getArmor: (args) => ipcRenderer.invoke('get-armor', args),
   getItems: (args) => ipcRenderer.invoke('get-items', args),
+  getHealingItems: (args) => ipcRenderer.invoke('get-healing-items', args),
 });

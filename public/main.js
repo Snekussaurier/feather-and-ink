@@ -67,6 +67,16 @@ function createWindow () {
     })
   });
 
+  // Get healing items details
+  ipcMain.handle('get-healing-items', (event, args) => {
+    return new Promise((resolve, reject) => {
+      db.all('SELECT * FROM healing_items WHERE character_id = ?',[args], (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Get character details
   ipcMain.handle('get-character', (event, args) => {
     return new Promise((resolve, reject) => {
