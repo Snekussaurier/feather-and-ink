@@ -100,7 +100,7 @@ function createWindow () {
   // Get all characters
   ipcMain.handle('get-characters', (event, args) => {
     return new Promise((resolve, reject) => {
-      db.all('SELECT id, name, character_image, character_background FROM view_character',[],(err, rows) => {
+      db.all('SELECT id, name, profession, race, current_exp, character_image, character_background FROM view_character',[],(err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })

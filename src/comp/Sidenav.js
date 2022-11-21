@@ -40,14 +40,14 @@ function Sidenav(params) {
           </button>
         </div>
         <div className="w-full flex flex-col flex-grow relative">
-          <div className={characterMenuIsExpanded ? "h-full bg-background-dark w-full absolute top-0 left-0 z-[60] transition-all flex flex-col duration-300" : "h-0 bg-background-dark w-full absolute top-0 left-0 z-[60] overflow-hidden transition-all flex flex-col duration-150"}>
+          <div className={characterMenuIsExpanded ? "h-full bg-background-dark w-full absolute top-0 left-0 z-[60] transition-all flex flex-col duration-300 mb-5" : "h-0 bg-background-dark w-full absolute top-0 left-0 z-[60] overflow-hidden transition-all flex flex-col duration-150 mb-5"}>
             <div className="overflow-y-auto flex flex-col scrollbar scrollbar-y" onChange={event => params.setCharacterId(event.target.value)}>
                 {params.characters ? params.characters.map((character) => <CharacterSelect key={character.id} character={character}/>) : <div/>}
             </div>
             <div className="flex-grow"/>
-            <div className="bg-current-line border border-foreground-highlight p-4 hover:bg-background-very-dark cursor-pointer transition-all flex flex-row justify-center gap-4">
-              <ReactSVG src={AddCharacterIcon} className='fill-foreground'/>
-              <h2>New Character</h2>
+            <div className="bg-background p-4 hover:bg-current-line cursor-pointer transition-all flex flex-row justify-center gap-4 mx-5 mb-5">
+              <ReactSVG src={AddCharacterIcon} className='fill-foreground-highlight'/>
+              <h2 className="text-foreground-highlight">New Character</h2>
             </div>
           </div>
           <div className=" flex flex-col grow items-center w-full">
