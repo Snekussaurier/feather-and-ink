@@ -9,7 +9,6 @@ import ArmorIcon from "../res/closed-barbute.svg"
 import HealingIcon from "../res/drink-me.svg"
 import FoodIcon from "../res/shiny-apple.svg"
 import ItemsIcon from "../res/swap-bag.svg"
-import HealingList from "./HealingList";
 
 function Backpack(params) {
     const [selectedItemGroup , setSelectedItemGroup] = useState("Weapons");
@@ -31,7 +30,7 @@ function Backpack(params) {
                             <ItemGroupButton name="Armor" icon={ArmorIcon}/>
                             <ItemGroupButton name="Healing" icon={HealingIcon}/>
                             <ItemGroupButton name="Food" icon={FoodIcon}/>
-                            <ItemGroupButton name="Items" icon={ItemsIcon}/>
+                            <ItemGroupButton name="Miscellaneous" icon={ItemsIcon}/>
                         </div>
                         <div className="flex-1"/>
                         <form action="">
@@ -49,10 +48,12 @@ function Backpack(params) {
                                         return <WeaponList weapons={params.weapons} input={inputText}/>
                                     case "Armor":
                                         return <ArmorList armor={params.armor} input={inputText}/>
-                                    case "Items":
-                                        return <ItemList items={params.items} input={inputText}/>
+                                    case "Miscellaneous":
+                                        return <ItemList items={params.items} itemId={0} input={inputText}/>
                                     case "Healing":
-                                        return <HealingList healing={params.healingItems} input={inputText}/>
+                                        return <ItemList items={params.items} itemId={1} input={inputText}/>
+                                    case "Food":
+                                        return <ItemList items={params.items} itemId={2} input={inputText}/>
                                     default:
                                         return null
                                 }
