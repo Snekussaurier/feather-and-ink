@@ -218,7 +218,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} tpProfessions={tpProfessions} skillLevel={skillLevel}/>}/>
             <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items} healingItems={healingItems}/>}/>
-            <Route path="/leveling" element={<Leveling/>}/>
+            <Route path="/leveling" element={<Leveling characterWeaponSkills={characterWeaponSkills}/>}/>
             <Route path="/grimoire" element={<Grimoire/>}/>
           </Routes>
         </div>
