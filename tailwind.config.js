@@ -4,7 +4,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
     screens: {
-      'small': '1300px',
+      'small': '1340px',
       // => @media (min-width: 1189px) { ... }
     },
     extend: {
@@ -14,7 +14,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         // simple 3 column grid
-        'dashboard': 'repeat(auto-fit, 176px)',
+        'dashboard': 'repeat(auto-fill, minmax(300px, 1fr))',
       },
       backgroundImage: {
         'landscape': "linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url('../src/res/background-illustration-1.jpg')",
@@ -35,12 +35,12 @@ module.exports = {
       'foreground-highlight': '#F5F3C2',
       'comment': '#6272a4',
       'cyan': '#9cdcff',
-      'green': '#d9ffe1',
+      'green': '#76FF7A',
       'orange': '#ffb86c',
       'pink': '#ec56a7',
       'rose': '#f4c7ff',
       'purple': '#9773ff',
-      'red': '#ff7878',
+      'red': '#FF2E2E',
       'yellow': '#f1fa8c',
     },
   },

@@ -67,6 +67,16 @@ function createWindow () {
     })
   });
 
+  // Get healing items details
+  ipcMain.handle('get-healing-items', (event, args) => {
+    return new Promise((resolve, reject) => {
+      db.all('SELECT * FROM healing_items WHERE character_id = ?',[args], (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Get character details
   ipcMain.handle('get-character', (event, args) => {
     return new Promise((resolve, reject) => {
@@ -77,10 +87,20 @@ function createWindow () {
     })
   });
 
+  // Get character weapon skills
+  ipcMain.handle('get-character-weapon-skills', (event, args) => {
+    return new Promise((resolve, reject) => {
+      db.all('SELECT weapon_group, skill_level AS weapon_skills FROM weapon_skills WHERE character_id = ?',[args], (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      })
+    })
+  });
+
   // Get all characters
   ipcMain.handle('get-characters', (event, args) => {
     return new Promise((resolve, reject) => {
-      db.all('SELECT id, name, character_image, character_background FROM view_character',[],(err, rows) => {
+      db.all('SELECT id, name, profession, race, current_exp, character_image, character_background FROM view_character',[],(err, rows) => {
         if (err) reject(err);
         resolve(rows);
       })

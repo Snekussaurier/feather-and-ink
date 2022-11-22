@@ -1,5 +1,5 @@
 import WeaponCard from "./WeaponCard.js";
-import EffectCard from "./EffectCard.js";
+import ArmorCard from "./ArmorCard.js";
 import { ReactSVG } from "react-svg";
 import ArmorIcon from "../res/closed-barbute.svg";
 import HealthIcon from "../res/health-normal.svg";
@@ -68,15 +68,28 @@ function Dashboard(params) {
         else return (getAttributeBonus(params.character.intelligence) + 3) * params.character.develop_magic;
     }
 
+    const attributeBonus = {
+        1: -3,
+        2: -2,
+        3: -1,
+        4: -1,
+        5: 0,
+        6: 1,
+        7: 1,
+        8: 2,
+        9: 2,
+        10: 3 
+    }
+
     const getAttributeBonus = (attributeValue) => {
-        return params.attributeBonus[attributeValue]
+        return attributeBonus[attributeValue]
     }
 
     return (
-        <div className="flex flex-col gap-4 h-fit pt-24 pb-12 pr-5 pl-24 small:pl-5 max-w-[1160px] w-full z-10">
+        <div className="flex flex-col gap-4 h-fit px-8 pt-24 pb-12 small:pl-5 max-w-[1400px] w-full z-10">
             <div className="flex gap-10 z-10 justify-between">
                 <div className="flex flex-col gap-4">
-                    <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                    <div className="backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
                         <ReactSVG src={HealthIcon} className="fill-foreground"/>
                         <div className=" flex flex-row items-end gap-1">
                             <h1 className=" text-foreground font-sans text-5xl">{params.character.current_tp}</h1>
@@ -93,8 +106,8 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className=" backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ManaIcon} className="fill-foreground"/>
+                    <div className=" backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ManaIcon} className="fill-foreground w-[42px]"/>
                         <div className=" flex flex-row items-end gap-1">
                             <h1 className=" text-foreground font-sans text-5xl">{params.character.current_mp}</h1>
                             <h1 className=" text-[#FFFFFFAA] font-sans text-2xl">/</h1>
@@ -110,13 +123,13 @@ function Dashboard(params) {
                             </button>
                         </div>
                     </div>
-                    <div className="backdrop-blur-md bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
-                        <ReactSVG src={ArmorIcon} className="fill-foreground"/>
+                    <div className="backdrop-blur bg-[#ffffff0a] h-28 w-64 border border-foreground-highlight fill-foreground p-5 flex flex-row items-center justify-between">
+                        <ReactSVG src={ArmorIcon} className="fill-foreground w-[42px]"/>
                         <h1 className=" text-foreground font-sans text-5xl">{calculateArmor()}</h1>
                         <div className=" w-7 h-7"/>
                     </div>
                 </div>
-                <div className="bg-cover flex-grow aspect-image max-w-[350px]">
+                <div className="bg-cover flex-grow aspect-image max-w-[320px]">
                     <img src={`data:image/png;base64,${params.character.character_image}`} alt=""/>
                 </div>
                 <div className="flex flex-col min-w-[256px] max-w-[256px] flex-grow p-2">
@@ -126,14 +139,14 @@ function Dashboard(params) {
                         <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel(levelCalculation() + 1)}</p> 
                     </div>
                     <ProgressBar target={xpToNextLevel(levelCalculation() + 1) - xpToNextLevel(levelCalculation())} now={params.character.current_exp - xpToNextLevel(levelCalculation())}/>
-                    <table className="table-fixed mt-4 backdrop-blur-md ">
+                    <table className="table-fixed mt-4 backdrop-blur">
                         <tbody className="">
                             <tr className="odd:bg-[#ffffff0a]">
                             <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={RaceIcon} className=" fill-[#FFFFFFAA] "/>Race</div></td>
                             <td className="text-right">{params.character.race}</td>
                             </tr>
                             <tr className="odd:bg-[#ffffff0a]">
-                            <td><div className="flex flex-row gap-2 items-center h-5 w-5"><ReactSVG src={ProfessionIcon} className=" fill-[#FFFFFFAA]"/>Profession</div></td>
+                            <td><div className="flex flex-row gap-2 items-center"><ReactSVG src={ProfessionIcon} className='fill-[#FFFFFFAA] h-5 w-5'/>Profession</div></td>
                             <td className="text-right">{params.character.profession}</td>
                             </tr>
                             <tr className="odd:bg-[#ffffff0a]">
@@ -153,14 +166,18 @@ function Dashboard(params) {
                 </div>
             </div>
             <h1 className="text-foreground text-2xl">Weapons</h1>
-            <div className="grid grid-cols-3 gap-4 justify-between">
-                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon} initiative={getAttributeBonus(params.character.dexterity)}/>) : <h1 className=" text-current-line">No weapons</h1>}
+            <div className="grid grid-cols-dashboard gap-4 justify-between">
+                {params.weapons.length > 0 ? params.weapons.map((weapon) => <WeaponCard key={weapon.id} weapon={weapon}/>) : <h1 className=" text-current-line">No weapons</h1>}
             </div>
-            <h1 className="text-foreground text-2xl">Effects</h1>
+            <h1 className="text-foreground text-2xl">Armor</h1>
+            <div className="grid grid-cols-dashboard gap-4 justify-between">
+                {params.armor.length > 0 ? params.armor.map((armor) => <ArmorCard key={armor.id} armor={armor}/>) : <h1 className=" text-current-line">No armor</h1>}
+            </div>
+            {/*<h1 className="text-foreground text-2xl">Effects</h1>
             <div className="grid grid-cols-3 gap-4 justify-between">
                 {params.character.race_id === 4 ? <EffectCard/> : <></>}
                 {params.character.profession_id === 4 ? <EffectCard/> : <></>}
-            </div>
+            </div>*/}
         </div>
     );
 }
