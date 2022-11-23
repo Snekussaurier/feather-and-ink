@@ -43,12 +43,12 @@ function WeaponList(props) {
                     <div key={weapon.id} className="table-row">
                         <div className='flex justify-center w-10'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weaponGroup + ".svg")} className='fill-red h-6 w-6'/></div>
                         <div className='text-left w-48'>{ weapon.name }</div>
-                        <div className='w-14'>{getPrefix(weapon.fightBonus)}</div>
-                        <div className='w-14'>{getPrefix(weapon.initiative)}</div>
-                        <div className='w-14'>{getPrefix(weapon.attackBonus)}</div>
-                        <div className='w-14'>{getPrefix(weapon.defenseBonus)}</div>
-                        <div className='w-14'>{getPrefix(weapon.damage)}</div>
-                        <div className='flex-grow'>{ weapon.description ? weapon.description : ' - ' }</div>
+                        <div className='w-12'>{getPrefix(weapon.fightBonus)}</div>
+                        <div className='w-12'>{getPrefix(weapon.initiative)}</div>
+                        <div className='w-12'>{getPrefix(weapon.attackBonus)}</div>
+                        <div className='w-12'>{getPrefix(weapon.defenseBonus)}</div>
+                        <div className='w-12'>{getPrefix(weapon.damage)}</div>
+                        <div className='w-full'>{ weapon.description ? weapon.description : ' - ' }</div>
                         <div className='text-center w-10'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></div>
                     </div>
                 );
