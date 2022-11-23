@@ -26,29 +26,29 @@ function ItemList(props) {
 
     if(filteredData.length > 0){
         return (
-            <table className="w-full h-full">
+            <table className="w-full h-full table-fixed">
                 <thead>
-                    <tr className="text-right text-foreground-highlight leading-10 bg-background sticky top-0 z-10">
-                        <th className='text-center'>•</th>
-                        <th className='text-left'>Name</th>
-                        <th>Gewicht</th>
-                        <th>Preis</th>
-                        <th>Funktion</th>
-                        <th>Anzahl</th>
-                        <th className='text-center'>•</th>
+                    <tr className="text-right text-foreground-highlight leading-10 bg-background sticky top-0 z-10 border-spacing-2">
+                        <th className='text-center w-10'>•</th>
+                        <th className='text-left w-48'>Name</th>
+                        <th className='w-16'>Gewicht</th>
+                        <th className='w-16'>Preis</th>
+                        <th className='w-full'>Funktion</th>
+                        <th className='w-16'>Anzahl</th>
+                        <th className='text-center w-10'>•</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredData.map(item => {
                     return (
                         <tr key={item.id} className="text-right odd:bg-background-dark bg-background">
-                            <td className='flex justify-center h-full items-center'><div className='h-5 w-5 bg-purple rounded-sm'></div></td>
-                            <td className='text-left'>{ item.name }</td>
-                            <td>{item.weight} Kg</td>
-                            <td>{ item.value }</td>
-                            <td>{ item.description ? item.description : ' - ' }</td>
-                            <td>{ item.ammount }</td>
-                            <td className='text-center'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
+                            <td className='flex justify-center h-full items-center w-10'><div className='h-5 w-5 bg-purple rounded-sm'></div></td>
+                            <td className='text-left w-48'>{ item.name }</td>
+                            <td className='w-16'>{item.weight} Kg</td>
+                            <td className='w-16'>{ item.value }</td>
+                            <td className=' whitespace-nowrap overflow-hidden overflow-ellipsis'>{ item.description ? item.description : ' - ' }</td>
+                            <td className='w-16'>x { item.ammount }</td>
+                            <td className='text-center w-10'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
                         </tr>
                     );
                     })}

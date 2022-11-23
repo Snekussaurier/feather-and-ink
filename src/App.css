@@ -92,6 +92,40 @@ input {
   scrollbar-width: none;  /* Firefox */
 }
 
+.table-header {
+  font-family: 'Eczar', serif;
+  color: rgb(245 243 194);
+  font-size: 1rem/* 16px */;
+  line-height: 1.5rem/* 24px */;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  background-color: #191B31;
+  text-align: right;
+  gap: 8px;
+  padding: 8px;
+}
+
+.table-row {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-size: 1rem/* 16px */;
+  line-height: 1.5rem/* 24px */;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  background-color: #191B31;
+  justify-content: start;
+  align-items: center;
+  text-align: right;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.table-row:nth-child(even){
+  background-color: rgb(19 21 44);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
