@@ -21,7 +21,7 @@ function Backpack(params) {
 
     return (   
         <div className="flex flex-col px-8 pt-24 pb-12 w-full z-10 max-w-[1400px] gap-4">
-            <div className="flex flex-row max-w-full gap-4 h-full max-h-full">
+            <div className="flex flex-row gap-4 h-full max-h-full">
                 <div className="flex flex-col gap-2 w-full">
                     <h1>{selectedItemGroup}</h1>
                     <div className="flex flex-row w-full border-b border-foreground-highlight items-center pb-2 mb-2 gap-2">
@@ -41,7 +41,7 @@ function Backpack(params) {
                             + Add item
                         </button>
                     </div>
-                    <div className="max-h-full overflow-y-auto scrollbar scrollbar-y gap-4">
+                    <div className="max-h-full overflow-y-auto scrollbar scrollbar-y gap-4 w-full">
                         {(() => {
                                 switch (selectedItemGroup) {
                                     case "Weapons":

@@ -1,5 +1,6 @@
 import {React} from 'react'
 import { ReactSVG } from "react-svg";
+import weapon from '../mdl/weapon';
 import TrashIcon from "../res/trash-alt.svg"
 
 function WeaponList(props) {
@@ -26,39 +27,43 @@ function WeaponList(props) {
 
     if(filteredData.length > 0){
         return (
-            <div className='flex-col'>
-                <div className='table-header'>
-                    <h5 className='text-center w-10'>•</h5>
-                    <h5 className='text-left w-48'>Name</h5>
-                    <h5 className='w-12'>KMB</h5>
-                    <h5 className='w-12'>INI</h5>
-                    <h5 className='w-12'>ATB</h5>
-                    <h5 className='w-12'>DFB</h5>
-                    <h5 className='w-12'>DMG</h5>
-                    <h5 className='w-full'>Funktion</h5>
-                    <h5 className='text-center w-10'>•</h5>
-                </div>
-                {filteredData.map(weapon => {
-                return (
-                    <div key={weapon.id} className="table-row">
-                        <div className='flex justify-center w-10'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weaponGroup + ".svg")} className='fill-red h-6 w-6'/></div>
-                        <div className='text-left w-48'>{ weapon.name }</div>
-                        <div className='w-12'>{getPrefix(weapon.fightBonus)}</div>
-                        <div className='w-12'>{getPrefix(weapon.initiative)}</div>
-                        <div className='w-12'>{getPrefix(weapon.attackBonus)}</div>
-                        <div className='w-12'>{getPrefix(weapon.defenseBonus)}</div>
-                        <div className='w-12'>{getPrefix(weapon.damage)}</div>
-                        <div className='w-full'>{ weapon.description ? weapon.description : ' - ' }</div>
-                        <div className='text-center w-10'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></div>
-                    </div>
-                );
-                })}
-            </div>
+            <table className="w-full h-full table-fixed">
+                <thead>
+                    <tr className="text-right text-foreground-highlight leading-10 bg-background sticky top-0 z-10 border-spacing-2">
+                        <th className='text-center w-10'>•</th>
+                        <th className='text-left w-48'>Name</th>
+                        <th className='w-12'>KMB</th>
+                        <th className='w-12'>INI</th>
+                        <th className='w-12'>ATB</th>
+                        <th className='w-12'>DFB</th>
+                        <th className='w-12'>DMG</th>
+                        <th className='w-full'>Funktion</th>
+                        <th className='text-center w-10'>•</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredData.map(weapon => {
+                    return (
+                        <tr key={weapon.id} className="text-right odd:bg-background-dark bg-background">
+                            <td className='flex justify-center h-full items-center w-10'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weaponGroup + ".svg")} className='fill-red h-6 w-6'/></td>
+                            <td className='text-left w-48'>{ weapon.name }</td>
+                            <td className='w-12'>{weapon.fightBonus} Kg</td>
+                            <td className='w-12'>{ weapon.initiative }</td>
+                            <td className='w-12'>{ weapon.attackBonus }</td>
+                            <td className='w-12'>{ weapon.defenseBonus }</td>
+                            <td className='w-12'>{ weapon.damage }</td>
+                            <td className=' whitespace-nowrap overflow-hidden overflow-ellipsis'>{ weapon.description ? weapon.description : ' - ' }</td>
+                            <td className='text-center w-10'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
+                        </tr>
+                    );
+                    })}
+                </tbody>
+            </table>
         );
         }       
         else {
             return (
-                <div className=' h-20 flex justify-center items-center w-full'>
+                <div className='h-20 flex justify-center items-center w-full'>
                     <h1>
                         No Weapons
                     </h1>

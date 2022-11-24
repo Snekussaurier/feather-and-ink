@@ -115,22 +115,14 @@ input {
   display: flex;
   flex-direction: row;
   background-color: #191B31;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   text-align: right;
   gap: 8px;
   padding: 0 8px;
+  max-width: 100%;
 }
 
 .table-row:nth-child(even){
   background-color: rgb(19 21 44);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
