@@ -47,7 +47,7 @@ function WeaponList(props) {
                         <tr key={weapon.id} className="text-right odd:bg-background-dark bg-background">
                             <td className='flex justify-center h-full items-center w-10'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weaponGroup + ".svg")} className='fill-red h-6 w-6'/></td>
                             <td className='text-left w-48'>{ weapon.name }</td>
-                            <td className='w-12'>{weapon.fightBonus} Kg</td>
+                            <td className='w-12'>{weapon.fightBonus}</td>
                             <td className='w-12'>{ weapon.initiative }</td>
                             <td className='w-12'>{ weapon.attackBonus }</td>
                             <td className='w-12'>{ weapon.defenseBonus }</td>

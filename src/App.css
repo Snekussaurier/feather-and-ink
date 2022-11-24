@@ -82,6 +82,11 @@ input {
   max-width: max(1160px, 65%);
 }
 
+.add-item-container {
+  max-height: max(670px, 75%);
+  max-width: max(500px, 30%);
+}
+
 .rtl-grid {
   direction: rtl;
 }
@@ -90,6 +95,11 @@ input {
 .no-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.dropdown {
+  border-radius: 0.25rem;
+  font-family: 'Eczar', serif; 
 }
 
 .table-header {

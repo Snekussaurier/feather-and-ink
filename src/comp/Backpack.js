@@ -9,6 +9,7 @@ import ArmorIcon from "../res/closed-barbute.svg"
 import HealingIcon from "../res/drink-me.svg"
 import FoodIcon from "../res/shiny-apple.svg"
 import ItemsIcon from "../res/swap-bag.svg"
+import { AddItem } from "./AddItem";
 
 function Backpack(params) {
     const [selectedItemGroup , setSelectedItemGroup] = useState("Weapons");
@@ -18,6 +19,9 @@ function Backpack(params) {
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
+
+    const [addItems, setAddItems] = useState(false);
+    const onAddItems = () => setAddItems((active) => !active);
 
     return (   
         <div className="flex flex-col px-8 pt-24 pb-12 w-full z-10 max-w-[1400px] gap-4">
@@ -37,8 +41,8 @@ function Backpack(params) {
                             <input type="text" placeholder="search..." className="bg-background border border-current-line outline-none caret-foreground h-fit text-foreground rounded px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line transition-all" onChange={inputHandler}>
                             </input>
                         </form>
-                        <button className="bg-background text-foreground-highlight px-4 py-2 transition-all hover:bg-current-line">
-                            + Add item
+                        <button className="bg-background text-foreground-highlight px-4 py-2 transition-all hover:bg-current-line border border-foreground-highlight" onClick={() => onAddItems()}>
+                            Add item
                         </button>
                     </div>
                     <div className="max-h-full overflow-y-auto scrollbar scrollbar-y gap-4 w-full">
@@ -67,6 +71,7 @@ function Backpack(params) {
                     <CoinButton name='Kupferlinge' currency="kupferlinge" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Muena' currency="muena" character={params.character} setCharacter={params.setCharacter}/>
                 </div>
+                <AddItem onAddItem={onAddItems} addItemActive={addItems}/>
             </div>
         </div>
     );
