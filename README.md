@@ -10,7 +10,7 @@
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/downloads/snekussaurier/feather-and-ink/total.svg?style=flat-square&color=purple"/>
 </p>
 
-![Background](https://user-images.githubusercontent.com/68194327/200125328-9e8b291e-b18c-48f0-aa64-6961fee0aed0.png)
+![Background](https://user-images.githubusercontent.com/68194327/203724941-a3b2d3f9-ac99-43b1-ac1c-2698b94f11ec.png)
 
 #### Feather&Ink is a visualization tool for your pen&paper character in the world of Aborea. It uses a stack of React.js, Electron and SQLite 3.0.
 # Features
@@ -52,9 +52,17 @@ This will install all the required dependencies.
 ```jsx
 yarn run dev
 ```
-# Version 0.1.0-alpha
 
-Feather&Ink is currently in its version 0.1.0-alpha, so it's currently under active development. There are a lot of features, that are missing or aren't fully implemented. We are currently trying to fix those issues as soon as possible.
+3. Building the binary:
+
+```jsx
+yarn run build-local
+```
+This will build the execetable for your operating system.
+
+# Version 0.1.2-alpha
+
+Feather&Ink is currently in its version 0.1.2-alpha, so it's currently under active development. There are a lot of features, that are missing or aren't fully implemented. We are currently trying to fix those issues as soon as possible.
 
 ## Create a bug report
 
