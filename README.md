@@ -60,9 +60,9 @@ yarn run build-local
 ```
 This will build the execetable for your operating system.
 
-# Version 0.1.0-alpha
+# Version 0.1.2-alpha
 
-Feather&Ink is currently in its version 0.1.0-alpha, so it's currently under active development. There are a lot of features, that are missing or aren't fully implemented. We are currently trying to fix those issues as soon as possible.
+Feather&Ink is currently in its version 0.1.2-alpha, so it's currently under active development. There are a lot of features, that are missing or aren't fully implemented. We are currently trying to fix those issues as soon as possible.
 
 ## Create a bug report
 
