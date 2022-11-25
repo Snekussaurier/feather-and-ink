@@ -10,13 +10,25 @@ export const AddItem = (props) => {
                 <div className='flex items-center border-b border-current-line h-16 pt-[30px] pb-5 px-5'>
                     <h2 className='text-lg text-foreground-highlight'>Add New</h2>
                     <select className='text-lg font-medium bg-current-line dropdown text-foreground-highlight ml-1 h-8 outline-none after:border-none'>
-                        <option className='rounded'>Weapon</option>
-                        <option>Armor</option>
-                        <option>Potions</option>
-                        <option>Food</option>
+                        <option className='hover:bg-background-dark'>Weapon</option>
+                        <option className='hover:bg-background-dark'>Armor</option>
+                        <option className='hover:bg-background-dark'>Potions</option>
+                        <option className='hover:bg-background-dark'>Food</option>
                     </select>
                 </div>
-                <div className='flex-1'/>
+                <div className='h-full overflow-y-auto scrollbar scrollbar-y'>
+                    <form className='max-h-full flex flex-col p-5 gap-2'>
+                        <h2>Name</h2>
+                        <input type="text" placeholder="Name" className="bg-background border border-current-line outline-none caret-foreground h-fit text-foreground rounded px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line transition-all w-full">
+                        </input>
+                        <h2>Gewicht</h2>
+                        <input type="number" placeholder="Gewicht in Kg" className="bg-background border border-current-line outline-none caret-foreground h-fit text-foreground rounded px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line transition-all w-full">
+                        </input>
+                        <h2>Initiative</h2>
+                        <input type="number" placeholder="Initiative" className="bg-background border border-current-line outline-none caret-foreground h-fit text-foreground rounded px-4 py-2 focus:border-foreground-highlight focus:bg-current-line  hover:bg-current-line transition-all w-full">
+                        </input>
+                    </form>
+                </div>
                 <div className='flex items-center border-t border-current-line py-5 px-5 justify-end gap-5'>
                     <button className="bg-background text-foreground-highlight px-4 py-2 transition-all hover:bg-current-line border border-foreground-highlight">
                         Add Item
