@@ -9,11 +9,12 @@ export const AddItem = (props) => {
             <div className='h-full flex flex-col flex-grow'>
                 <div className='flex items-center border-b border-current-line h-16 pt-[30px] pb-5 px-5'>
                     <h2 className='text-lg text-foreground-highlight'>Add New</h2>
-                    <select className='text-lg font-medium bg-current-line dropdown text-foreground-highlight ml-1 h-8 outline-none after:border-none'>
+                    <select className='text-lg font-medium bg-current-line dropdown text-foreground-highlight ml-1 h-8'>
                         <option className='rounded'>Weapon</option>
                         <option>Armor</option>
                         <option>Potions</option>
                         <option>Food</option>
+                        <option>Miscellaneous</option>
                     </select>
                 </div>
                 <div className='flex-1'/>
