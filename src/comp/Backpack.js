@@ -65,7 +65,8 @@ function Backpack(params) {
                         )()}
                     </div>
                 </div>
-                <div className="flex-col flex gap-4 mt-12">
+                <div className="flex-col flex gap-4">
+                    <h2>Wallet</h2>
                     <CoinButton name='Goldfalken' currency="goldfalken" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Triontaler' currency="triontaler" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Kupferlinge' currency="kupferlinge" character={params.character} setCharacter={params.setCharacter}/>
