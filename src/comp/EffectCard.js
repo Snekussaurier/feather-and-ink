@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 function EffectCard(params) {
     return(                
         <div className="min-w-[270px] flex-grow bg-background-very-dark border border-purple transition-all">
-            <div className="bg-purple p-2">
+            <div className="bg-current-line p-2">
                 <h2 className="text-background-very-dark text-2xl">Priesterlicher Schutz</h2> 
             </div>
             <div className="bg-background p-2 flex flex-col relative overflow-hidden">

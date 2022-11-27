@@ -19,6 +19,7 @@ module.exports = {
       backgroundImage: {
         'landscape': "linear-gradient(to right, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url('../src/res/background-illustration-1.jpg')",
         'dashboard': "linear-gradient(to bottom, rgba(25, 27, 49, 0.1), rgba(25, 27, 49, 1)), url('../src/res/background-illustration-3.jpg')",
+        'test-weapon': "linear-gradient(to left, rgba(14, 15, 33, 0), rgba(14, 15, 33, 0.75)), url('../src/res/BackgroundBanner.png')",
       },
       boxShadow: {
         'drop': '0 0px 15px -4px',

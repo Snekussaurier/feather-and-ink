@@ -12,11 +12,11 @@ function WeaponCard(params) {
     }
 
     return(                
-        <div className="min-w-[300px] max-w-[380px] flex-grow bg-current-line border-2 border-current-line transition-all flex flex-col">
+        <div className="min-w-[300px] max-w-[380px] h-[420px] flex-grow bg-foreground-highlight border border-foreground-highlight transition-all flex flex-col">
             <div className="bg-current-line p-2">
                 <h2 className="text-foreground-highlight text-2xl">{params.weapon.name}</h2> 
             </div>
-            <div className="bg-background p-2 flex flex-col relative overflow-hidden">
+            <div className="p-2 flex flex-col relative overflow-hidden bg-test-weapon bg-cover">
                 <h2>{params.weapon.weaponGroupName}</h2> 
                 <div className="h-5"/>
                 <h3>
@@ -25,7 +25,7 @@ function WeaponCard(params) {
                 <h2 className='text-4xl text-red'>
                     {getPrefix(params.weapon.fightBonus)}
                 </h2>
-                <ReactSVG src={require("../res/wpn_grps/weapon-group-" + params.weapon.weaponGroup + ".svg")} className='fill-red absolute h-36 w-36 -right-4 -bottom-8'/>
+                {/*<ReactSVG src={require("../res/wpn_grps/weapon-group-" + params.weapon.weaponGroup + ".svg")} className='fill-red absolute h-36 w-36 -right-4 -bottom-8'/>*/}
             </div>
             <div className="flex flex-col p-2 w-full bg-background-very-dark flex-grow">
                 <div className="grid grid-cols-2 grid-flow-row-dense justify-between w-full">
@@ -38,10 +38,10 @@ function WeaponCard(params) {
                     <h3>Defensivbonus</h3>
                     <h2 className="text-right">{getPrefix(params.weapon.defenseBonus)}</h2>   
                 </div>
-                <hr className=" border-current-line my-2"/>
-                <h3 className="italic">
+                <hr className=" border-foreground-highlight my-2"/>
+                <textarea className="italic bg-transparent text-[#FFFFFFAA] resize-none h-full scrollbar scrollbar-y" spellCheck="false">
                     {params.weapon.description}
-                </h3>
+                </textarea>
             </div>
         </div>
     );

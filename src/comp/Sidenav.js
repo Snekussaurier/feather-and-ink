@@ -51,7 +51,7 @@ function Sidenav(params) {
             </div>
           </div>
           <div className=" flex flex-col grow items-center w-full">
-            <SidenavButton icon={DashboardIcon} label="Dashbord" navigation="/"/>
+            <SidenavButton icon={DashboardIcon} label="Dashboard" navigation="/"/>
             <SidenavButton icon={BackpackIcon} label="Backpack" navigation="/backpack"/>
             <SidenavButton icon={LevelingIcon} label="Leveling" navigation="/leveling"/>
             <SidenavButton icon={BookIcon} label="Grimoire" navigation="/grimoire"/>

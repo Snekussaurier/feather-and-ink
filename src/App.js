@@ -86,18 +86,20 @@ function App() {
       // Fetch Weapon Skills
       const characterWeaponSkillsFromServer = await fetchCharacterWeaponSkills(characterId);
       setCharacterWeaponSkills(characterWeaponSkillsFromServer);
-
-      // Fetch Weapons
+      
+      // Calculate 'Kampfbonus' For The Weapon
       const calculateFightBonus = (skillLevel, attribute) => {
-        if(skillLevel === 0) return -2;
+        let fightBonus = 0;
         switch (attribute) {
           case 1:
-            return getAttributeBonus(characterFromServer.dexterity) + skillLevel;
+            fightBonus = getAttributeBonus(characterFromServer.dexterity) + skillLevel; break;
           case 2:
-            return getAttributeBonus(characterFromServer.strength) + skillLevel;
+            fightBonus = getAttributeBonus(characterFromServer.strength) + skillLevel; break;
           default:
-            return getAttributeBonus(Math.max(characterFromServer.dexterity, characterFromServer.strength)) + skillLevel;
+            fightBonus = getAttributeBonus(Math.max(characterFromServer.dexterity, characterFromServer.strength)) + skillLevel; break;
         }
+        if(skillLevel === 0) fightBonus = fightBonus - 2;
+        return fightBonus;
       }
 
       const weaponsFromServer = await fetchWeapons(characterId)
