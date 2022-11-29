@@ -19,15 +19,15 @@ export default class weapon extends Component {
         } catch (e) {
             weaponSkillLevel = 0;
         }
-
         switch (this.attribute) {
           case 1:
-            this.fightBonus = this.calcFightBonus(weaponSkillLevel, this.getAttributeBonus[character.dexterity]); break;
+            this.fightBonus = this.calcFightBonus(weaponSkillLevel, this.getAttributeBonus(character.dexterity)); break;
           case 2:
-            this.fightBonus = this.calcFightBonus(weaponSkillLevel, this.getAttributeBonus[character.strength]); break;
+            this.fightBonus = this.calcFightBonus(weaponSkillLevel, this.getAttributeBonus(character.strength)); break;
           default:
             this.fightBonus = this.calcFightBonus(weaponSkillLevel, this.getAttributeBonus(Math.max(character.dexterity, character.strength))); break;
         }
+
         this.initiative = parseInt(weapon.initiative)  + this.getAttributeBonus(character.dexterity);
         this.coreInitiative = parseInt(weapon.initiative);
         this.attackBonus = parseInt(weapon.atb);
