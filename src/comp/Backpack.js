@@ -10,6 +10,7 @@ import HealingIcon from "../res/drink-me.svg"
 import FoodIcon from "../res/shiny-apple.svg"
 import ItemsIcon from "../res/swap-bag.svg"
 import { AddItem } from "./AddItem";
+import weapon from "../mdl/weapon";
 
 function Backpack(params) {
     const [selectedItemGroup , setSelectedItemGroup] = useState("Weapons");
@@ -22,6 +23,19 @@ function Backpack(params) {
 
     const [addItems, setAddItems] = useState(false);
     const onAddItems = () => setAddItems((active) => !active);
+
+    const addWeapon = (input) => {
+        const weaponToAdd = new weapon(input, params.character, params.characterWeaponSkills);
+        const characterId = {"character_id": params.character.id};
+        const mergedWeapon = {...characterId, ...JSON.parse(JSON.stringify(weaponToAdd))};
+        window.api.insertWeapon(mergedWeapon);
+        params.setWeapons((data => [...data, weaponToAdd]));
+    }
+
+    const deleteWeapon = (id) => {
+        window.api.deleteWeapon(id);
+        params.setWeapons(params.weapons.filter((weapon) => weapon.id !== id));
+    }
 
     return (   
         <div className="flex flex-col px-8 pt-24 pb-12 w-full z-10 max-w-[1400px] gap-4">
@@ -49,7 +63,7 @@ function Backpack(params) {
                         {(() => {
                                 switch (selectedItemGroup) {
                                     case "Weapons":
-                                        return <WeaponList weapons={params.weapons} input={inputText}/>
+                                        return <WeaponList weapons={params.weapons} input={inputText} deleteWeapon={deleteWeapon}/>
                                     case "Armor":
                                         return <ArmorList armor={params.armor} input={inputText}/>
                                     case "Miscellaneous":
@@ -72,7 +86,7 @@ function Backpack(params) {
                     <CoinButton name='Kupferlinge' currency="kupferlinge" character={params.character} setCharacter={params.setCharacter}/>
                     <CoinButton name='Muena' currency="muena" character={params.character} setCharacter={params.setCharacter}/>
                 </div>
-                <AddItem onAddItem={onAddItems} addItemActive={addItems}/>
+                <AddItem onAddItem={onAddItems} addItemActive={addItems} addWeapon={addWeapon}/>
             </div>
         </div>
     );

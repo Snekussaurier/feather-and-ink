@@ -136,7 +136,7 @@ function Dashboard(params) {
                     <h1 className=" text-6xl">{params.character.name}</h1>
                     <div className="flex flex-row justify-between items-end">
                         <h2>Level {levelCalculation()}</h2>
-                        <p className=" text-cyan">{params.character.current_exp}/{xpToNextLevel(levelCalculation() + 1)}</p> 
+                        <p className=" text-blue">{params.character.current_exp}/{xpToNextLevel(levelCalculation() + 1)}</p> 
                     </div>
                     <ProgressBar target={xpToNextLevel(levelCalculation() + 1) - xpToNextLevel(levelCalculation())} now={params.character.current_exp - xpToNextLevel(levelCalculation())}/>
                     <table className="table-fixed mt-4 backdrop-blur">

@@ -1,6 +1,5 @@
 import {React} from 'react'
 import { ReactSVG } from "react-svg";
-import weapon from '../mdl/weapon';
 import TrashIcon from "../res/trash-alt.svg"
 
 function WeaponList(props) {
@@ -47,13 +46,13 @@ function WeaponList(props) {
                         <tr key={weapon.id} className="text-right odd:bg-background-dark bg-background">
                             <td className='flex justify-center h-full items-center w-10'><ReactSVG src={require("../res/wpn_grps/weapon-group-" + weapon.weaponGroup + ".svg")} className='fill-red h-6 w-6'/></td>
                             <td className='text-left w-48'>{ weapon.name }</td>
-                            <td className='w-12'>{weapon.fightBonus}</td>
-                            <td className='w-12'>{ weapon.initiative }</td>
-                            <td className='w-12'>{ weapon.attackBonus }</td>
-                            <td className='w-12'>{ weapon.defenseBonus }</td>
-                            <td className='w-12'>{ weapon.damage }</td>
+                            <td className='w-12'>{ getPrefix(weapon.fightBonus) }</td>
+                            <td className='w-12'>{ getPrefix(weapon.initiative) }</td>
+                            <td className='w-12'>{ getPrefix(weapon.attackBonus) }</td>
+                            <td className='w-12'>{ getPrefix(weapon.defenseBonus) }</td>
+                            <td className='w-12'>{ getPrefix(weapon.damage) }</td>
                             <td className=' whitespace-nowrap overflow-hidden overflow-ellipsis'>{ weapon.description ? weapon.description : ' - ' }</td>
-                            <td className='text-center w-10'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors"/></button></td>
+                            <td className='text-center w-10'><button><ReactSVG src={TrashIcon} className="fill-foreground rounded-sm h-6 w-6 hover:fill-red transition-colors" onClick={() => props.deleteWeapon(weapon.id)}/></button></td>
                         </tr>
                     );
                     })}

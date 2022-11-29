@@ -6,7 +6,7 @@ const ProgressBar = (props) => {
 
   return (
     <div className="p-1 w-full bg-background-very-dark">
-        <div className="bg-cyan h-2" style={{width: width + '%'}}/>
+        <div className="bg-blue h-2" style={{width: width + '%'}}/>
     </div>
   )
 }

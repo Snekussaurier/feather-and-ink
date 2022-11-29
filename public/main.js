@@ -47,6 +47,22 @@ function createWindow () {
     })
   });
 
+  ipcMain.handle('insert-weapon', (event, args) => {
+    const sql = 'INSERT INTO weapons(id, character_id, name, weapon_group, weight, initiative, attribute, atb, dfb, damage, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    
+    db.run(sql, [args.id, args.character_id, args.name, args.weaponGroup, args.weight, args.coreInitiative, args.attribute, args.attackBonus, args.defenseBonus, args.damage, ""], function(err) {
+      if (err) return console.error(err.message);
+    })
+  });
+
+  ipcMain.handle('delete-weapon', (event, args) => {
+    const sql = 'DELETE FROM weapons WHERE id = ?;';
+    
+    db.run(sql, [args], function(err) {
+      if (err) return console.error(err.message);
+    })
+  });
+
   // Get armor details
   ipcMain.handle('get-armor', (event, args) => {
     return new Promise((resolve, reject) => {

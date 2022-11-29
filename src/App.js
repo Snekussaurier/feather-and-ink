@@ -57,23 +57,6 @@ function App() {
 
   // Get character from db
   useEffect(() => {
-    const attributeBonus = {
-      1: -3,
-      2: -2,
-      3: -1,
-      4: -1,
-      5: 0,
-      6: 1,
-      7: 1,
-      8: 2,
-      9: 2,
-      10: 3 
-    }
-
-    const getAttributeBonus = (attributeValue) => {
-      return attributeBonus[attributeValue]
-    }
-
     const getCharacters = async () => {
       const charactersFromServer = await fetchCharacters()
       setCharacters(charactersFromServer);
@@ -86,36 +69,12 @@ function App() {
       // Fetch Weapon Skills
       const characterWeaponSkillsFromServer = await fetchCharacterWeaponSkills(characterId);
       setCharacterWeaponSkills(characterWeaponSkillsFromServer);
-      
-      // Calculate 'Kampfbonus' For The Weapon
-      const calculateFightBonus = (skillLevel, attribute) => {
-        let fightBonus = 0;
-        switch (attribute) {
-          case 1:
-            fightBonus = getAttributeBonus(characterFromServer.dexterity) + skillLevel; break;
-          case 2:
-            fightBonus = getAttributeBonus(characterFromServer.strength) + skillLevel; break;
-          default:
-            fightBonus = getAttributeBonus(Math.max(characterFromServer.dexterity, characterFromServer.strength)) + skillLevel; break;
-        }
-        if(skillLevel === 0) fightBonus = fightBonus - 2;
-        return fightBonus;
-      }
 
       const weaponsFromServer = await fetchWeapons(characterId)
 
       let weaponArr = [];
       weaponsFromServer.forEach(weapon => {
-        // Find Skill Level
-        let weaponSkillLevel = 
-            characterWeaponSkillsFromServer.find((object) => 
-            object.weapon_group === weapon.weapon_group_id);
-        try {
-          weaponSkillLevel = weaponSkillLevel.weapon_skills;
-        } catch (e) {
-          weaponSkillLevel = 0;
-        }
-        weaponArr.push(new Weapon(weapon.id, weapon.name, weapon.weapon_group_id, weapon.weapon_group,calculateFightBonus(weaponSkillLevel, weapon.attribute), getAttributeBonus(characterFromServer.dexterity) + weapon.initiative, weapon.initiative, weapon.atb, weapon.dfb, weapon.damage, weapon.description));
+        weaponArr.push(new Weapon(weapon, characterFromServer, characterWeaponSkillsFromServer));
       });
       setWeapons(weaponArr);
     }
@@ -219,7 +178,7 @@ function App() {
           <div className="w-screen h-screen bg-cover fixed top-0 -z-10 right-0" style={{backgroundImage: `linear-gradient(to bottom, rgba(25, 27, 49, 0.4), rgba(25, 27, 49, 1)), url(${backgroundImage})`}}/>
           <Routes>
             <Route path="/" element={<Dashboard character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} tpProfessions={tpProfessions} skillLevel={skillLevel}/>}/>
-            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} weapons={weapons} armor={armor} items={items} healingItems={healingItems}/>}/>
+            <Route path="/backpack" element={<Backpack character={character} setCharacter={setCharacter} characterWeaponSkills={characterWeaponSkills} weapons={weapons} setWeapons={setWeapons} armor={armor} items={items} healingItems={healingItems}/>}/>
             <Route path="/leveling" element={<Leveling characterWeaponSkills={characterWeaponSkills}/>}/>
             <Route path="/grimoire" element={<Grimoire/>}/>
           </Routes>

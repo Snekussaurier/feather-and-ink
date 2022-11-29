@@ -10,7 +10,7 @@ export const AddItem = (props) => {
         event.preventDefault();
         // Check if the existing input values are valid
         if (handleValidation()) {
-            console.log(inputs);
+            props.addWeapon(inputs);
             // Clear existing data
             handleClear();
             // Close dialogue
@@ -39,13 +39,13 @@ export const AddItem = (props) => {
         }
 
         // Weapon group
-        if (!inputs.weapon_group) {
+        if (!inputs.weapon_group_id) {
             formIsValid = false;
-            setErrors(values => ({...values, weapon_group: "Cannot be empty"}));
+            setErrors(values => ({...values, weapon_group_id: "Cannot be empty"}));
         }
 
         // Attribute group
-        if (!inputs.attribut) {
+        if (!inputs.attribute) {
             formIsValid = false;
             setErrors(values => ({...values, attribut: "Cannot be empty"}));
         }
@@ -110,9 +110,9 @@ export const AddItem = (props) => {
                             <span className='text-red'>{errors.name}</span>
                             <h2>Waffen Gruppe</h2>
                             <select
-                                name='weapon_group'
+                                name='weapon_group_id'
                                 onChange={handleChange}
-                                value={inputs.weapon_group || ""}
+                                value={inputs.weapon_group_id || ""}
                                 className='text-lg font-medium bg-current-line dropdown text-foreground-highlight ml-1 h-8 outline-none after:border-none'>
                                 <option value="" disabled>CHOOSE</option>
                                 <option value={1}>Armbrust</option>
@@ -125,19 +125,19 @@ export const AddItem = (props) => {
                                 <option value={8}>Wuchtwaffe</option>
                                 <option value={9}>Wurfwaffe</option>
                             </select>
-                            <span className='text-red'>{errors.weapon_group}</span>
+                            <span className='text-red'>{errors.weapon_group_id}</span>
                             <h2>Attribut</h2>
                             <select
-                                name='attribut'
+                                name='attribute'
                                 onChange={handleChange}
-                                value={inputs.attribut || ""} 
+                                value={inputs.attribute || ""} 
                                 className='text-lg font-medium bg-current-line dropdown text-foreground-highlight ml-1 h-8 outline-none after:border-none'>
                                 <option value="" disabled>CHOOSE</option>
                                 <option value={1}>Geschicklichkeit</option>
                                 <option value={2}>Stärke</option>
                                 <option value={3}>Geschicklichkeit/Stärke</option>
                             </select>
-                            <span className='text-red'>{errors.attribut}</span>
+                            <span className='text-red'>{errors.attribute}</span>
                             <h2>Gewicht</h2>
                             <input 
                                 type="number" 
